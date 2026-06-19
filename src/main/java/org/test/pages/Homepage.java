@@ -10,16 +10,10 @@ public class Homepage {
         this.driver = driver;
     }
 
-    private By registerPageBtn = By.cssSelector("[data-tag='register-lbl']");
-    private By loginButton = By.linkText("Login");
-    private By homeBanner = By.cssSelector("div[class='container-bg-top container-bg-top-mobile d-block d-lg-none wow fadeIn']");
-
-
+//    private final By registerPageBtn = By.cssSelector("[data-tag='register-lbl']");
+    private final By registerPageBtn = By.linkText("Register");
 
     public void clickRegisterPageButton() {
         driver.findElement(registerPageBtn).click();
-    }
-    public void clickLoginPageButton() {
-        driver.findElement(loginButton).click();
     }
 }

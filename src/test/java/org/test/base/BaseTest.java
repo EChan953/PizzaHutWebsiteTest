@@ -17,14 +17,15 @@ public class BaseTest {
     protected WebDriverWait wait;
     protected JavascriptExecutor js;
 
-    @BeforeSuite
+    @BeforeSuite(alwaysRun = true)
     public void setup() {
         driver = DriverFactory.createDriver(DriverFactory.BrowserType.CHROME);
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         js = (JavascriptExecutor) driver;
+        System.out.println("Yay!");
     }
 
-    @AfterSuite
+    @AfterSuite(alwaysRun = true)
     public void teardown() {
         if (driver != null) {
             driver.quit();

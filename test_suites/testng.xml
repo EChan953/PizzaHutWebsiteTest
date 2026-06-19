@@ -7,17 +7,19 @@
             </run>
         </groups>
         <packages>
-            <package name="org.test.tests.RegisterTest"/>
+            <package name="org.test.tests"/>
+            <package name="org.test.base"/>
+            <package name="org.test.utils"/>
         </packages>
     </test>
-    <test name="Register_Smoke">
-        <groups>
-            <run>
-                <include name="smoke"/>
-            </run>
-        </groups>
-        <packages>
-            <package name="org.test.tests.RegisterTest"></package>
-        </packages>
-    </test>
+<!--    <test name="Register_Smoke">-->
+<!--        <groups>-->
+<!--            <run>-->
+<!--                <include name="smoke"/>-->
+<!--            </run>-->
+<!--        </groups>-->
+<!--        <packages>-->
+<!--            <package name="org.test.tests.RegisterTest"/>-->
+<!--        </packages>-->
+<!--    </test>-->
 </suite>
