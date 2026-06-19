@@ -1,0 +1,23 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Register">
+    <test name="Register_Regression">
+        <groups>
+            <run>
+                <include name="regression"/>
+            </run>
+        </groups>
+        <packages>
+            <package name="org.test.tests.RegisterTest"/>
+        </packages>
+    </test>
+    <test name="Register_Smoke">
+        <groups>
+            <run>
+                <include name="smoke"/>
+            </run>
+        </groups>
+        <packages>
+            <package name="org.test.tests.RegisterTest"></package>
+        </packages>
+    </test>
+</suite>
