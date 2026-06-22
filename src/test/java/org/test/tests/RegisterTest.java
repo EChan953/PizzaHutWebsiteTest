@@ -29,10 +29,24 @@ public class RegisterTest extends BaseTest {
     private static final String REGISTER = SITE + "register";
     private static final String excelFilePath = "src/test/resources/testdata/TestData.xlsx";
 
-    @BeforeTest(groups = {"regression"})
+    @BeforeTest(groups = {"smoke", "regression", "e2e"})
     public void initPage() {
         register = new RegisterPage(driver);
         homepage = new Homepage(driver);
+    }
+
+    @BeforeMethod(groups = {"smoke", "regression", "e2e"})
+    public void setupPreRequisite(Method method) {
+        // FOR Pre-Requisite: User is on the Registration Page
+        if(!method.getName().contains("RSTC001")) {
+            extentTest.log(Status.INFO, "Loading Register Page");
+            driver.get(REGISTER);
+
+            // wait until its loaded
+            wait.until(ExpectedConditions.visibilityOfElementLocated(
+                    By.xpath("//h4[contains(text(), 'Register')]")
+            ));
+        }
     }
 
     //Test Data
@@ -70,18 +84,6 @@ public class RegisterTest extends BaseTest {
         // click on register
         homepage.clickRegisterPageButton();
 
-        wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath("//h4[contains(text(), 'Register')]")
-        ));
-    }
-
-    // load register page
-    public void loadRegisterPage() {
-        // load register page
-        extentTest.log(Status.INFO, "Loading Register Page");
-        driver.get(REGISTER);
-
-        // wait until its loaded
         wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.xpath("//h4[contains(text(), 'Register')]")
         ));
@@ -135,8 +137,6 @@ public class RegisterTest extends BaseTest {
     // Verify that clicking the Back button redirects the user back to the previous Pizza Hut webpage
     @Test(groups = {"regression"})
     public void RSTC002_shouldRedirectToHomepageWhenBackButtonClicked() {
-        loadRegisterPage();
-
         extentTest.log(Status.INFO, "Clicking Back Button");
         register.clickBackButton();
 
@@ -157,8 +157,6 @@ public class RegisterTest extends BaseTest {
     // Verify that clicking the Pizza Hut logo redirects the user to the homepage
     @Test(groups = {"regression"})
     public void RSTC003_shouldRedirectToHomepageWhenPizzaHutLogoClicked() {
-        loadRegisterPage();
-
         extentTest.log(Status.INFO, "Clicking Pizza Hut Logo");
         register.clickPizzaHutLogo();
 
@@ -179,9 +177,6 @@ public class RegisterTest extends BaseTest {
     // Verify that First Name field rejects no input
     @Test(groups = {"regression"})
     public void RSTC004_shouldRejectFirstNameWithNoInput() {
-        // Pre-Requisite: User is on the Registration Page
-        loadRegisterPage();
-
         // 1. Leave First Name field blank
         extentTest.log(Status.INFO, "Leaving First Name field blank");
         register.enterFirstName("");
@@ -197,9 +192,6 @@ public class RegisterTest extends BaseTest {
     // Verify that First Name field rejects non-letter input
     @Test(dataProvider = "registerTestData", groups = {"regression"})
     public void RSTC005_shouldRejectFirstNameWithNonLetters(Map<String, String> data) {
-        // Pre-Requisite: User is on the Registration Page
-        loadRegisterPage();
-
         // 1. Enter a value containing numbers or special characters in the First Name field
         extentTest.log(Status.INFO, "Inputting invalid First Name: " + data.get("First Name"));
         register.enterFirstName(data.get("First Name"));
@@ -215,9 +207,6 @@ public class RegisterTest extends BaseTest {
     // Verify that First Name field accepts a valid name
     @Test(dataProvider = "registerTestData", groups = {"regression"})
     public void RSTC006_shouldAcceptValidFirstName(Map<String, String> data) {
-        // Pre-Requisite: User is on the Registration Page
-        loadRegisterPage();
-
         // 1. Enter valid First Name input
         extentTest.log(Status.INFO, "Inputting valid First Name: " + data.get("First Name"));
         register.enterFirstName(data.get("First Name"));
@@ -233,9 +222,6 @@ public class RegisterTest extends BaseTest {
     // Verify that Last Name field rejects no input
     @Test(groups = {"regression"})
     public void RSTC007_shouldRejectLastNameWithNoInput() {
-        // Pre-Requisite: User is on the Registration Page
-        loadRegisterPage();
-
         // 1. Enter no value in Last Name field
         extentTest.log(Status.INFO, "Leaving Last Name field blank");
         register.enterLastName("");
@@ -251,9 +237,6 @@ public class RegisterTest extends BaseTest {
     // Verify that Last Name field rejects non-letter input
     @Test(dataProvider = "registerTestData", groups = {"regression"})
     public void RSTC008_shouldRejectLastNameWithNonLetters(Map<String, String> data) {
-        // Pre-Requisite: User is on the Registration Page
-        loadRegisterPage();
-
         // 1. Enter input w/ non-letter value
         extentTest.log(Status.INFO, "Inputting invalid Last Name: " + data.get("Last Name"));
         register.enterLastName(data.get("Last Name"));
@@ -269,9 +252,6 @@ public class RegisterTest extends BaseTest {
     // Verify that Last Name field accepts a valid name
     @Test(dataProvider = "registerTestData", groups = {"regression"})
     public void RSTC009_shouldAcceptValidLastName(Map<String, String> data) {
-        // Pre-Requisite: User is on the Registration Page
-        loadRegisterPage();
-
         // 1. Enter valid last name input
         extentTest.log(Status.INFO, "Inputting valid Last Name: " + data.get("Last Name"));
         register.enterLastName(data.get("Last Name"));
@@ -287,9 +267,6 @@ public class RegisterTest extends BaseTest {
     // Verify that Gender field is optional
     @Test(groups = {"regression"})
     public void RSTC010_validateGenderIsOptional() {
-        // Pre-Requisite: User is on the Registration Page
-        loadRegisterPage();
-
         // 1. Select "Please select gender" from Gender field
         // "Please select gender" is by default chosen, so just click Register Btn
 
@@ -304,9 +281,6 @@ public class RegisterTest extends BaseTest {
     // Verify that user can select from the Gender field dropdown
     @Test(dataProvider = "registerTestData", groups = {"regression"})
     public void RSTC011_validateGenderInput(Map<String, String> data) {
-        // Pre-Requisite: User is on the Registration Page
-        loadRegisterPage();
-
         // 1. Click on the Gender field
         // 2. Choose Male/Female from dropdown
         extentTest.log(Status.INFO, "Selecting Gender: " + data.get("Gender"));
@@ -323,9 +297,6 @@ public class RegisterTest extends BaseTest {
     // Verify that Email Address field rejects no input
     @Test(groups = {"regression"})
     public void RSTC012_shouldRejectBlankEmailAddress() {
-        // Pre-Requisite: User is on the Registration Page
-        loadRegisterPage();
-
         // 1. Leave Email Address field blank
         extentTest.log(Status.INFO, "Leaving Email field blank");
         register.enterEmail("");
@@ -341,9 +312,6 @@ public class RegisterTest extends BaseTest {
     // Verify that Email Address field rejects an invalid email address
     @Test(dataProvider = "registerTestData", groups = {"regression"})
     public void RSTC013_shouldRejectInvalidEmailAddress(Map<String, String> data) {
-        // Pre-Requisite: User is on the Registration Page
-        loadRegisterPage();
-
         // 1. Enter invalid email address in the Email Address field
         extentTest.log(Status.INFO, "Inputting invalid Email: " + data.get("Email"));
         register.enterEmail(data.get("Email"));
@@ -359,9 +327,6 @@ public class RegisterTest extends BaseTest {
     // Verify that Email Address field accepts a valid email address
     @Test(dataProvider = "registerTestData", groups = {"regression"})
     public void RSTC014_shouldAcceptValidEmailAddress(Map<String, String> data) {
-        // Pre-requisite: User is on the Registration Page
-        loadRegisterPage();
-
         // 1. Enter a valid email address in the Email Address field
         extentTest.log(Status.INFO, "Inputting valid Email: " + data.get("Email"));
         register.enterEmail(data.get("Email"));
@@ -377,9 +342,6 @@ public class RegisterTest extends BaseTest {
     // Verify that Phone Number field rejects no input phone number
     @Test(groups = {"regression"})
     public void RSTC015_shouldRejectNoInputPhoneNumber() {
-        // Pre-requisite: User is on the Registration Page
-        loadRegisterPage();
-
         // 1. Leave Phone Number field blank.
         extentTest.log(Status.INFO, "Leaving Phone Number field blank");
         register.enterPhoneNumber("");
@@ -395,9 +357,6 @@ public class RegisterTest extends BaseTest {
     // Verify that Phone Number field rejects non-number input
     @Test(dataProvider = "registerTestData", groups = {"regression"})
     public void RSTC016_shouldRejectNonNumberInputPhoneNumber(Map<String, String> data) {
-        // Pre-requisite: User is on the Registration Page
-        loadRegisterPage();
-
         // 1. Enter a value containing letters or special characters in the Phone Number field
         extentTest.log(Status.INFO, "Inputting invalid Phone Number: " + data.get("Mobile Number"));
         register.enterPhoneNumber(data.get("Mobile Number"));
@@ -413,9 +372,6 @@ public class RegisterTest extends BaseTest {
     // Verify that Phone Number field rejects non-formatted phone number
     @Test(dataProvider = "registerTestData", groups = {"regression"})
     public void RSTC017_shouldRejectNonFormattedPhoneNumber(Map<String, String> data) {
-        // Pre-requisite: User is on the Registration Page
-        loadRegisterPage();
-
         // 1. Enter a numerical value not following the phone number format 09xxxxxxxxx in the Phone Number field
         extentTest.log(Status.INFO, "Inputting invalid Phone Number: " + data.get("Mobile Number"));
         register.enterPhoneNumber(data.get("Mobile Number"));
@@ -432,9 +388,6 @@ public class RegisterTest extends BaseTest {
     // Verify that Phone Number field rejects an incomplete Philippine phone number
     @Test(dataProvider = "registerTestData", groups = {"regression"})
     public void RSTC018_shouldRejectIncompletePhilippinePhoneNumber(Map<String, String> data) {
-        // Pre-requisite: User is on the Registration Page
-        loadRegisterPage();
-
         // 1. Enter an incomplete Philippine phone number in the Phone Number field
         extentTest.log(Status.INFO, "Inputting invalid Phone Number: " + data.get("Mobile Number"));
         register.enterPhoneNumber(data.get("Mobile Number"));
@@ -451,9 +404,6 @@ public class RegisterTest extends BaseTest {
     // Verify that Phone Number field accepts a valid Philippine phone number
     @Test(dataProvider = "registerTestData", groups = {"regression"})
     public void RSTC019_shouldAcceptValidPhilippinePhoneNumber(Map<String, String> data) {
-        // Pre-requisite: User is on the Registration Page
-        loadRegisterPage();
-
         // 1. Enter a valid Philippine phone number in the Phone Number field
         extentTest.log(Status.INFO, "Inputting valid Phone Number: " + data.get("Mobile Number"));
         register.enterPhoneNumber(data.get("Mobile Number"));
@@ -470,9 +420,6 @@ public class RegisterTest extends BaseTest {
     // Verify that Your Password field rejects no input
     @Test(groups = {"regression"})
     public void RSTC020_shouldRejectBlankPasswordInput() {
-        // Pre-requisite: User is on the Registration Page
-        loadRegisterPage();
-
         // 1. Leave Your Password field blank
         extentTest.log(Status.INFO, "Leaving password field blank");
         register.enterPassword("");
@@ -481,17 +428,14 @@ public class RegisterTest extends BaseTest {
         clickRegisterButton();
 
         // 3. Verify that system rejects blank Your Password input.
-        extentTest.log(Status.INFO, "Verifying Password field Validity");
-//        Assert.assertFalse(register.getPasswordPoliciesMet() >= 3, "Password must meet at least 3 of 4 requirements.");
+        extentTest.log(Status.INFO, "Verifying Password field rejects blank password input");
+        Assert.assertFalse(register.getPasswordPoliciesMet() >= 3, "Password must meet at least 3 of 4 requirements.");
         Assert.assertFalse(register.isPasswordValid(), "Password must meet at least 3 of 4 requirements.");
     }
 
     // Verify that Your Password field rejects a password with only one Password Policy Requirement met
     @Test(dataProvider = "registerTestData", groups = {"regression"})
     public void RSTC021_shouldRejectPasswordWithOnlyOnePasswordPolicyMet(Map<String, String> data) {
-        // Pre-requisite: User is on the Registration Page
-        loadRegisterPage();
-
         // 1. Enter an invalid password with only one Password Policy Requirement met in the Your Password field
         extentTest.log(Status.INFO, "Inputting invalid Password: " + data.get("Password"));
         register.enterPassword(data.get("Password"));
@@ -508,9 +452,6 @@ public class RegisterTest extends BaseTest {
     // Verify that Your Password field rejects a password with only two Password Policy Requirement met
     @Test(dataProvider = "registerTestData", groups = {"regression"})
     public void RSTC022_shouldRejectPasswordWithOnlyTwoPasswordPolicyMet(Map<String, String> data) {
-        // Pre-requisite: User is on the Registration Page
-        loadRegisterPage();
-
         // 1. Enter an invalid password with only two Password Policy Requirement met in the Your Password field
         extentTest.log(Status.INFO, "Inputting invalid Password: " + data.get("Password"));
         register.enterPassword(data.get("Password"));
@@ -527,9 +468,6 @@ public class RegisterTest extends BaseTest {
     // Verify that Your Password field accepts a password with three Password Policy Requirement met
     @Test(dataProvider = "registerTestData", groups = {"regression"})
     public void RSTC023_shouldAcceptPasswordWithThreePasswordPolicyMet(Map<String, String> data) {
-        // Pre-requisite: User is on the Registration Page
-        loadRegisterPage();
-
         // 1. Enter a valid password with three Password Policy Requirement met in the Your Password field
         extentTest.log(Status.INFO, "Inputting valid Password: " + data.get("Password"));
         register.enterPassword(data.get("Password"));
@@ -546,9 +484,6 @@ public class RegisterTest extends BaseTest {
     // Verify that Your Password field accepts a password with all 4 Password Policy Requirement met
     @Test(dataProvider = "registerTestData", groups = {"regression"})
     public void RSTC024_shouldAcceptPasswordWithAllPasswordPolicyMet(Map<String, String> data) {
-        // Pre-requisite: User is on the Registration Page
-        loadRegisterPage();
-
         // 1. Enter a valid password with all Password Policy Requirement met in the Your Password field
         extentTest.log(Status.INFO, "Inputting valid Password: " + data.get("Password"));
         register.enterPassword(data.get("Password"));
@@ -564,9 +499,6 @@ public class RegisterTest extends BaseTest {
 
     @Test(dataProvider = "registerTestData", groups = {"regression"})
     public void RSTC025_togglePasswordShowsAndHidesPasswordInput(Map<String, String> data) {
-        // Pre-requisite: User is on the Registration Page
-        loadRegisterPage();
-
         // 1. Enter a valid password in the Your Password field
         extentTest.log(Status.INFO, "Inputting valid Password: " + data.get("Password"));
         register.enterPassword(data.get("Password"));
@@ -584,9 +516,6 @@ public class RegisterTest extends BaseTest {
 
     @Test(dataProvider = "registerTestData", groups = {"regression"})
     public void RSTC026_shouldRejectMismatchingPasswords(Map<String, String> data) {
-        // Pre-requisite: User is on the Registration Page
-        loadRegisterPage();
-
         // 1. Enter a valid password in the Your Password field
         extentTest.log(Status.INFO, "Inputting valid Password: " + data.get("Password"));
         register.enterPassword(data.get("Password"));
@@ -602,9 +531,6 @@ public class RegisterTest extends BaseTest {
 
     @Test(dataProvider = "registerTestData", groups = {"regression"})
     public void RSTC027_shouldAcceptMatchingPasswords(Map<String, String> data) {
-        // Pre-requisite: User is on the Registration Page
-        loadRegisterPage();
-
         // 1. Enter a valid password in the Your Password field
         extentTest.log(Status.INFO, "Inputting valid Password: " + data.get("Password"));
         register.enterPassword(data.get("Password"));
@@ -621,9 +547,6 @@ public class RegisterTest extends BaseTest {
     // Verify that the Birthday fields reject empty input
     @Test(groups = {"regression"})
     public void RSTC028_shouldRejectEmptyBirthdayField() {
-        // Pre-requisite: User is on the Registration Page
-        loadRegisterPage();
-
         // 1. Leave Day field set to "Day"
         // 2. Leave Month field set to "Month"
         // Nothing happens, since "Day" and "Month" are default values
@@ -645,9 +568,6 @@ public class RegisterTest extends BaseTest {
         int current_yr = java.time.Year.now().getValue();
         int expected_yr = current_yr - 20;
 
-        // Pre-requisite: User is on the Registration Page
-        loadRegisterPage();
-
         // 1. Check default year in the Year field
         extentTest.log(Status.INFO, "Retrieving Default year");
         String actual_yr = register.getBirthYear();
@@ -660,9 +580,6 @@ public class RegisterTest extends BaseTest {
     // Verify that the Birthday fields rejects future dates
     @Test(dataProvider = "registerTestData", groups = {"regression"})
     public void RSTC030_shouldRejectFutureBirthdays(Map<String, String> data) {
-        // Pre-requisite: User is on the Registration Page
-        loadRegisterPage();
-
         // 1. Enter a date of birth that is later than today’s date
         extentTest.log(Status.INFO, "Inputting future Birthday: " + data.get("Day") + "/" + data.get("Month") + "/" + data.get("Year"));
         register.selectCompleteBirthday(data.get("Day"), data.get("Month"), data.get("Year"));
@@ -678,9 +595,6 @@ public class RegisterTest extends BaseTest {
     // Verify that the Birthday fields accepts past or present dates
     @Test(dataProvider = "registerTestData", groups = {"regression"})
     public void RSTC031_shouldAcceptValidBirthday(Map<String, String> data) {
-        // Pre-requisite: User is on the Registration Page
-        loadRegisterPage();
-
         // 1. Enter a date of birth that is today or before today's date
         extentTest.log(Status.INFO, "Inputting valid Birthday: " + data.get("Day") + "/" + data.get("Month") + "/" + data.get("Year"));
         register.selectCompleteBirthday(data.get("Day"), data.get("Month"), data.get("Year"));
@@ -696,9 +610,6 @@ public class RegisterTest extends BaseTest {
     // Verify that the Terms of Use and Promotional Offers checkboxes are clickable and toggleable
     @Test(groups = {"regression"})
     public void RSTC032_checkboxesShouldBeClickable() {
-        // Pre-requisite: User is on the Registration Page
-        loadRegisterPage();
-
         // 1. Click on the Terms of Use checkbox
         extentTest.log(Status.INFO, "Clicking Terms of Use Checkbox");
         register.clickTermsCheckbox();
@@ -729,9 +640,6 @@ public class RegisterTest extends BaseTest {
     // Verify that the Terms of Use checkbox is a required field
     @Test(groups = {"regression"})
     public void RSTC033_termsShouldBeRequired() {
-        // Pre-requisite: User is on the Registration Page
-        loadRegisterPage();
-
         // 1. Leave Terms of Use checkbox unchecked; Do nothing
         extentTest.log(Status.INFO, "Leave Terms of Use checkbox unchecked");
 
@@ -746,9 +654,6 @@ public class RegisterTest extends BaseTest {
     // Verify that registering with an existing account's email prevents user from creating an account
     @Test(dataProvider = "registerTestData", groups = {"regression"})
     public void RSTC034_existingEmailShouldBePreventedFromCreatingAccount(Map<String, String> data) {
-        // Pre-requisite: User is on the Registration Page
-        loadRegisterPage();
-
         // 1. Input all required fields
         fillFields(data);
 
@@ -763,9 +668,6 @@ public class RegisterTest extends BaseTest {
     // Verify that registering with an existing account's email prevents user from creating an account
     @Test(dataProvider = "registerTestData", groups = {"regression"})
     public void RSTC035_shouldAcceptNewAccount(Map<String, String> data) {
-        // Pre-requisite: User is on the Registration Page
-        loadRegisterPage();
-
         // 1. Input all required fields
         fillFields(data);
 
