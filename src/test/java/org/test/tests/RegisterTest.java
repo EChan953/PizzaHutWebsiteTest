@@ -5,12 +5,16 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.test.base.BaseTest;
 import org.test.pages.Homepage;
 import org.test.pages.RegisterPage;
+import org.test.utils.ExcelReader;
 import org.test.utils.TestListener;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Listeners;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
+
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 @Listeners(TestListener.class)
 public class RegisterTest extends BaseTest {
@@ -19,11 +23,40 @@ public class RegisterTest extends BaseTest {
 
     private static final String SITE = "https://www.pizzahut.com.ph/";
     private static final String REGISTER = SITE + "register";
+    private static final String excelFilePath = "src/test/resources/testdata/TestData.xlsx";
 
     @BeforeTest(groups = {"regression"})
     public void initPage() {
         register = new RegisterPage(driver);
         homepage = new Homepage(driver);
+    }
+
+    //Test Data
+    //Update Object and DataProvider Name
+    @DataProvider(name="registerTestData")
+    public Iterator<Object[]> getRegisterTestData(Method method){
+
+        String rawTestCaseID = method.getName();
+
+        //Update Test Case Identifier
+        String testCaseID = rawTestCaseID.split("_")[0].replace("RSTC","RS-TC-");
+
+        //Update Sheet Name
+        List<Map<String, String>> allData =
+                ExcelReader.readExcelData(excelFilePath, "Registration_Data");
+
+        List<Map<String, String>> filtered =
+                ExcelReader.filterByTestCase(allData, testCaseID);
+
+        List<Object[]> result = new ArrayList<>();
+
+        for (Map<String, String> map : filtered) {
+            result.add(new Object[]{map});
+        }
+
+        return result.iterator();
+
+
     }
 
     // Verify Registration Page is Accessible
@@ -125,13 +158,13 @@ public class RegisterTest extends BaseTest {
     }
 
     // Verify that First Name field rejects non-letter input
-    @Test(groups = {"regression"})
-    public void RSTC004_shouldRejectFirstNameWithNonLetters() {
+    @Test(dataProvider = "registerTestData", groups = {"regression"})
+    public void RSTC004_shouldRejectFirstNameWithNonLetters(Map<String, String> data) {
         // Pre-Requisite: User is on the Registration Page
         loadRegisterPage();
 
         // 1. Enter a value containing numbers or special characters in the First Name field
-        register.enterFirstName("Jane123!");
+        register.enterFirstName(data.get("First Name"));
 
         // 2. Press the Register button
         // Scroll to bottom of page, press Register
