@@ -6,6 +6,7 @@ import com.aventstack.extentreports.Status;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.test.pages.Homepage;
 import org.test.utils.DriverFactory;
 import org.test.utils.EmailUtil;
 import org.test.utils.ExtentManager;
@@ -43,6 +44,22 @@ public class BaseTest {
 
         ExtentManager.getReports().flush(); // generate report
         EmailUtil.sendReport();      // send it
+    }
+    @BeforeMethod(alwaysRun = true)
+    public void startTest(Method method) {
+        extentTest = extent.createTest(method.getName());  // auto-names node after test method
+    }
+
+    @AfterMethod(alwaysRun = true)
+    public void endTest(ITestResult result) {
+        switch (result.getStatus()) {
+            case ITestResult.SUCCESS ->
+                    extentTest.log(Status.PASS, "Test passed");
+            case ITestResult.FAILURE ->
+                    extentTest.log(Status.FAIL, result.getThrowable());
+            case ITestResult.SKIP ->
+                    extentTest.log(Status.SKIP, "Test skipped");
+        }
     }
 
     @BeforeMethod(alwaysRun = true)
