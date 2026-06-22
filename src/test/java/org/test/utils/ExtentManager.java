@@ -7,7 +7,7 @@ public class ExtentManager {
 
     private static ExtentReports extent;
 
-    public static ExtentReports get() {
+    public static ExtentReports getReports() {
         if (extent == null) {
             ExtentSparkReporter reporter =
                     new ExtentSparkReporter("test-output/ExtentReport.html");

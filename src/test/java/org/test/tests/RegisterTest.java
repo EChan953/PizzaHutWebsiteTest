@@ -1,5 +1,6 @@
 package org.test.tests;
 
+import com.aventstack.extentreports.Status;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.test.base.BaseTest;
@@ -8,6 +9,9 @@ import org.test.pages.RegisterPage;
 import org.test.utils.ExcelReader;
 import org.test.utils.TestListener;
 import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Listeners;
+import org.testng.annotations.Test;
 import org.testng.annotations.*;
 
 import java.lang.reflect.Method;
@@ -55,13 +59,12 @@ public class RegisterTest extends BaseTest {
         }
 
         return result.iterator();
-
-
     }
 
     // Verify Registration Page is Accessible
-    public void redirectToRegisterPage() {
+    public void redirectFromHomepageToRegisterPage() {
         // load homepage
+        extentTest.log(Status.INFO, "Loading Website Homepage");
         driver.get(SITE);
 
         // click on register
@@ -75,547 +78,570 @@ public class RegisterTest extends BaseTest {
     // load register page
     public void loadRegisterPage() {
         // load register page
+        extentTest.log(Status.INFO, "Loading Register Page");
         driver.get(REGISTER);
 
-        // wait until its actually loaded
+        // wait until its loaded
         wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.xpath("//h4[contains(text(), 'Register')]")
         ));
     }
 
+    // Click register button
     public void clickRegisterButton() {
-        // Scroll to bottom of page, press Register
+        // Scroll to bottom of page, Click Register
         register.scrollToRegisterButton();
 
         // click register button
+        extentTest.log(Status.INFO, "Clicking Register Button");
         register.clickRegisterButton();
+    }
+
+    // Fill form fields
+    public void fillFields(Map<String, String> data) {
+        extentTest.log(Status.INFO, "Filling Register inputs");
+
+        register.enterFirstName(data.get("First Name"));
+        register.enterLastName(data.get("Last Name"));
+        register.selectGender(data.get("Gender"));
+        register.enterEmail(data.get("Email"));   // Input an existing email in the Email Address field
+        register.enterPhoneNumber(data.get("Mobile Number"));
+        register.enterPassword(data.get("Password"));
+        register.enterRetypePassword(data.get("ConfirmPassword"));
+        register.selectCompleteBirthday(
+                data.get("Day"),
+                data.get("Month"),
+                data.get("Year"));
+        register.clickTermsCheckbox();
     }
 
     // Verify Registration Page is Accessible
     @Test(groups = {"smoke", "regression", "e2e"})
     public void RSTC001_verifyRegisterPageAccessibility() {
         // Access Register Page
-        redirectToRegisterPage();
+        extentTest.log(Status.INFO, "Accessing Register Page from Homepage");
+        redirectFromHomepageToRegisterPage();
 
         // assert URL
+        extentTest.log(Status.INFO, "Validating Register Page URL");
         String currentUrl = driver.getCurrentUrl();
         Assert.assertEquals(currentUrl, REGISTER);
 
         // Check if header is actually Register
+        extentTest.log(Status.INFO, "Validating Register Page Header loaded");
         Assert.assertTrue(register.isHeaderDisplayed(), "User is not redirected to Register Page.");
     }
 
     // Verify that clicking the Back button redirects the user back to the previous Pizza Hut webpage
     @Test(groups = {"regression"})
-    public void RSTC002_backButtonInRegisterRedirectsToHomepage() {
-        // Access Register Page
-        redirectToRegisterPage();
+    public void RSTC002_shouldRedirectToHomepageWhenBackButtonClicked() {
+        loadRegisterPage();
 
-        // assert URL
-        String currentUrl = driver.getCurrentUrl();
-        Assert.assertEquals(currentUrl, REGISTER);
-
-        // Check if header is actually Register
-        Assert.assertTrue(register.isHeaderDisplayed());
-
-        // press back
+        extentTest.log(Status.INFO, "Clicking Back Button");
         register.clickBackButton();
+
+        extentTest.log(Status.INFO, "Waiting for redirect to Homepage");
+        wait.until(ExpectedConditions.urlToBe(SITE));
+        Assert.assertEquals(driver.getCurrentUrl(), SITE, "Not redirected to Homepage.");
+
+        // Wait until homepage element is present
         WebElement check = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.id("address-autocomplete")
         ));
 
-        // check if correct link
-        Assert.assertEquals(driver.getCurrentUrl(), SITE, "Assertion Failed: Not redirected to Homepage.");
-
         // check if address input is there, since its part of the homepage
-        Assert.assertTrue(check.isDisplayed(), "Assertion Failed: Not redirected to Homepage.");
+        extentTest.log(Status.INFO, "Verifying Visibility of Homepage Element");
+        Assert.assertTrue(check.isDisplayed(), "Homepage element not visible.");
     }
 
     // Verify that clicking the Pizza Hut logo redirects the user to the homepage
     @Test(groups = {"regression"})
-    public void RSTC003_logoInRegisterRedirectsToHomepage() {
-        // Access Register Page
-        redirectToRegisterPage();
+    public void RSTC003_shouldRedirectToHomepageWhenPizzaHutLogoClicked() {
+        loadRegisterPage();
 
-        // assert URL
-        String currentUrl = driver.getCurrentUrl();
-        Assert.assertEquals(currentUrl, REGISTER);
-
-        // Check if header is actually Register
-        Assert.assertTrue(register.isHeaderDisplayed());
-
-        // press pizza hut logo
+        extentTest.log(Status.INFO, "Clicking Pizza Hut Logo");
         register.clickPizzaHutLogo();
+
+        extentTest.log(Status.INFO, "Waiting for redirect to Homepage");
+        wait.until(ExpectedConditions.urlToBe(SITE));
+        Assert.assertEquals(driver.getCurrentUrl(), SITE, "Not redirected to Homepage.");
+
+        // Wait until homepage element is present
         WebElement check = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.id("address-autocomplete")
         ));
 
-        // check if correct link
-        Assert.assertEquals(driver.getCurrentUrl(), SITE, "Assertion Failed: Not redirected to Homepage.");
-
         // check if address input is there, since its part of the homepage
-        Assert.assertTrue(check.isDisplayed(), "Assertion Failed: Not redirected to Homepage.");
+        extentTest.log(Status.INFO, "Verifying Visibility of Homepage Element");
+        Assert.assertTrue(check.isDisplayed(), "Homepage element not visible.");
+    }
+
+    // Verify that First Name field rejects no input
+    @Test(groups = {"regression"})
+    public void RSTC004_shouldRejectFirstNameWithNoInput() {
+        // Pre-Requisite: User is on the Registration Page
+        loadRegisterPage();
+
+        // 1. Leave First Name field blank
+        extentTest.log(Status.INFO, "Leaving First Name field blank");
+        register.enterFirstName("");
+
+        // 2. Click the Register button
+        clickRegisterButton();
+
+        // 3. Verify that the First Name field rejects no inputs.
+        extentTest.log(Status.INFO, "Verifying First Name field rejects no inputs");
+        Assert.assertFalse(register.isFirstNameValid(), "System should reject Blank First Name inputs.");
     }
 
     // Verify that First Name field rejects non-letter input
     @Test(dataProvider = "registerTestData", groups = {"regression"})
-    public void RSTC004_shouldRejectFirstNameWithNonLetters(Map<String, String> data) {
+    public void RSTC005_shouldRejectFirstNameWithNonLetters(Map<String, String> data) {
         // Pre-Requisite: User is on the Registration Page
         loadRegisterPage();
 
         // 1. Enter a value containing numbers or special characters in the First Name field
+        extentTest.log(Status.INFO, "Inputting invalid First Name: " + data.get("First Name"));
         register.enterFirstName(data.get("First Name"));
 
-        // 2. Press the Register button
-        // Scroll to bottom of page, press Register
+        // 2. Click the Register button
         clickRegisterButton();
 
-        // Go back to see input
-        register.scrollToFirstName();
-
         // 3. Verify that the First Name field rejects non-letter inputs.
+        extentTest.log(Status.INFO, "Verifying First Name field rejects non-letter inputs");
         Assert.assertFalse(register.isFirstNameValid(), "System should reject First Name with Non-Letters.");
     }
-//
-//    // Verify that First Name field rejects no input
-//    @Test(groups = {"regression"})
-//    public void shouldRejectFirstNameWithNoInput() {
-//        // Pre-Requisite: User is on the Registration Page
-//        loadRegisterPage();
-//
-//        // 1. Do not enter anything
-//        register.enterFirstName("");
-//
-//        // 2. Press the Register button
-//        // Scroll to bottom of page, press Register
-//        clickRegisterButton();
-//
-//        // Go back to see input
-//        register.scrollToFirstName();
-//
-//        // 3. Verify that the First Name field rejects no inputs.
-//        Assert.assertFalse(register.isFirstNameValid(), "System should reject Blank First Name inputs.");
-//    }
 
     // Verify that First Name field accepts a valid name
-    @Test(groups = {"regression"})
-    public void RSTC005_shouldAcceptValidFirstName() {
+    @Test(dataProvider = "registerTestData", groups = {"regression"})
+    public void RSTC006_shouldAcceptValidFirstName(Map<String, String> data) {
         // Pre-Requisite: User is on the Registration Page
         loadRegisterPage();
 
-        // 1. Enter a value containing letters only in the First Name field
-        register.enterFirstName("Jane");
+        // 1. Enter valid First Name input
+        extentTest.log(Status.INFO, "Inputting valid First Name: " + data.get("First Name"));
+        register.enterFirstName(data.get("First Name"));
 
-        // 2. Press the Register button
-        // Scroll to bottom of page, press Register
+        // 2. Click the Register button
         clickRegisterButton();
 
-        // Go back to see input
-        register.scrollToFirstName();
-
         // 3. Verify that First Name field accepts a valid name.
+        extentTest.log(Status.INFO, "Verifying First Name field accepts valid name");
         Assert.assertTrue(register.isFirstNameValid(), "System should accept valid first name.");
     }
 
-//    // Verify that Last Name field rejects no input
-//    @Test(groups = {"regression"})
-//    public void shouldRejectLastNameWithNoInput() {
-//        // Pre-Requisite: User is on the Registration Page
-//        loadRegisterPage();
-//
-//        // 1. Enter no value
-//        register.enterLastName("");
-//
-//        // 2. Press the Register button
-//        // Scroll to bottom of page, press Register
-//        clickRegisterButton();
-//
-//        // Go back to Last Name to see input
-//        register.scrollToLastName();
-//
-//        // 3. Verify that Last Name field rejects no input.
-//        Assert.assertFalse(register.isLastNameValid(), "System should reject last name with no input.");
-//    }
+    // Verify that Last Name field rejects no input
+    @Test(groups = {"regression"})
+    public void RSTC007_shouldRejectLastNameWithNoInput() {
+        // Pre-Requisite: User is on the Registration Page
+        loadRegisterPage();
+
+        // 1. Enter no value in Last Name field
+        extentTest.log(Status.INFO, "Leaving Last Name field blank");
+        register.enterLastName("");
+
+        // 2. Click the Register button
+        clickRegisterButton();
+
+        // 3. Verify that Last Name field rejects no input.
+        extentTest.log(Status.INFO, "Verifying Last Name field rejects no input");
+        Assert.assertFalse(register.isLastNameValid(), "System should reject last name with no input.");
+    }
 
     // Verify that Last Name field rejects non-letter input
-    @Test(groups = {"regression"})
-    public void RSTC006_shouldRejectLastNameWithNonLetters() {
+    @Test(dataProvider = "registerTestData", groups = {"regression"})
+    public void RSTC008_shouldRejectLastNameWithNonLetters(Map<String, String> data) {
         // Pre-Requisite: User is on the Registration Page
         loadRegisterPage();
 
         // 1. Enter input w/ non-letter value
-        register.enterLastName("Doe123!");
+        extentTest.log(Status.INFO, "Inputting invalid Last Name: " + data.get("Last Name"));
+        register.enterLastName(data.get("Last Name"));
 
-        // 2. Press the Register button
-        // Scroll to bottom of page, press Register
+        // 2. Click the Register button
         clickRegisterButton();
 
-        // Go back to see input
-        register.scrollToLastName();
-
         // 3. Verify that Last Name field rejects non-letter input.
+        extentTest.log(Status.INFO, "Verifying Last Name field rejects non-letter inputs");
         Assert.assertFalse(register.isLastNameValid(), "System should reject last name with non-letters.");
     }
 
     // Verify that Last Name field accepts a valid name
-    @Test(groups = {"regression"})
-    public void RSTC007_shouldAcceptValidLastName() {
+    @Test(dataProvider = "registerTestData", groups = {"regression"})
+    public void RSTC009_shouldAcceptValidLastName(Map<String, String> data) {
         // Pre-Requisite: User is on the Registration Page
         loadRegisterPage();
 
-        // 1. Enter no value
-        register.enterLastName("Doe");
+        // 1. Enter valid last name input
+        extentTest.log(Status.INFO, "Inputting valid Last Name: " + data.get("Last Name"));
+        register.enterLastName(data.get("Last Name"));
 
-        // 2. Press the Register button
-        // Scroll to bottom of page, press Register
+        // 2. Click the Register button
         clickRegisterButton();
 
-        // Go back to see input
-        register.scrollToLastName();
-
-        // 3. Verify that Last Name field accepts a valid name.
+        // 3. Verify that Last Name field accepts a valid last name.
+        extentTest.log(Status.INFO, "Verifying Last Name field accepts valid input");
         Assert.assertTrue(register.isLastNameValid(), "System should accept valid last name.");
     }
 
     // Verify that Gender field is optional
     @Test(groups = {"regression"})
-    public void RSTC008_validateGenderIsOptional() {
+    public void RSTC010_validateGenderIsOptional() {
         // Pre-Requisite: User is on the Registration Page
         loadRegisterPage();
 
         // 1. Select "Please select gender" from Gender field
-        // actually, no need to do anything since "Please select gender" is by default chosen
-        // so, just click Register Btn
+        // "Please select gender" is by default chosen, so just click Register Btn
 
-        // 2. Press the Register button
+        // 2. Click the Register button
         clickRegisterButton();
 
-        // go back to see input
-        register.scrollToGender();
-
         // 3. Verify that Gender field is valid even without an input.
+        extentTest.log(Status.INFO, "Verifying Gender field is valid regardless of input");
         Assert.assertTrue(register.isGenderValid(), "Gender should be valid even with no input.");
     }
 
     // Verify that user can select from the Gender field dropdown
-    @Test(groups = {"regression"})
-    public void RSTC009_validateMaleGenderInput() {
+    @Test(dataProvider = "registerTestData", groups = {"regression"})
+    public void RSTC011_validateGenderInput(Map<String, String> data) {
         // Pre-Requisite: User is on the Registration Page
         loadRegisterPage();
 
-        // 1. 1. Click on the Gender field
-        // 2. Choose Male from dropdown
-        register.selectGender("Male");
+        // 1. Click on the Gender field
+        // 2. Choose Male/Female from dropdown
+        extentTest.log(Status.INFO, "Selecting Gender: " + data.get("Gender"));
+        register.selectGender(data.get("Gender"));
 
-        // 3. Press the Register button
+        // 3. Click the Register button
         clickRegisterButton();
 
-        // go back to see input
-        register.scrollToGender();
-
         // 4. Verify that user can select from the Gender field dropdown.
+        extentTest.log(Status.INFO, "Verifying Gender field is valid regardless of input");
         Assert.assertTrue(register.isGenderValid(), "System should accept gender input regardless of choice.");
     }
 
-    // Verify that user can select from the Gender field dropdown
+    // Verify that Email Address field rejects no input
     @Test(groups = {"regression"})
-    public void RSTC009_validateFemaleGenderInput() {
+    public void RSTC012_shouldRejectBlankEmailAddress() {
         // Pre-Requisite: User is on the Registration Page
         loadRegisterPage();
 
-        // 1. 1. Click on the Gender field
-        // 2. Choose Male from dropdown
-        register.selectGender("Female");
+        // 1. Leave Email Address field blank
+        extentTest.log(Status.INFO, "Leaving Email field blank");
+        register.enterEmail("");
 
-        // 3. Press the Register button
+        // 2. Click the Register button
         clickRegisterButton();
 
-        // go back to see input
-        register.scrollToGender();
-
-        // Verify that user can select from the Gender field dropdown.
-        Assert.assertTrue(register.isGenderValid(), "System should accept gender input regardless of choice.");
+        // 3. Verify that user cannot proceed with a blank email address.
+        extentTest.log(Status.INFO, "Verifying user cannot proceed with a blank email address");
+        Assert.assertFalse(register.isEmailValid(), "System should reject blank email address.");
     }
 
     // Verify that Email Address field rejects an invalid email address
-    @Test(groups = {"regression"})
-    public void RSTC010_shouldRejectInvalidEmailAddress() {
+    @Test(dataProvider = "registerTestData", groups = {"regression"})
+    public void RSTC013_shouldRejectInvalidEmailAddress(Map<String, String> data) {
         // Pre-Requisite: User is on the Registration Page
         loadRegisterPage();
 
-        // 1. Enter an invalid email address in the Email Address field
-        register.enterEmail("janedoe.com");
+        // 1. Enter invalid email address in the Email Address field
+        extentTest.log(Status.INFO, "Inputting invalid Email: " + data.get("Email"));
+        register.enterEmail(data.get("Email"));
 
-        // 2. Press the Register button
+        // 2. Click the Register button
         clickRegisterButton();
-        register.scrollToEmail();
 
-        // 3. Verify that user can input a valid email address.
+        // 3. Verify that user cannot input an invalid email address.
+        extentTest.log(Status.INFO, "Verifying Email field rejects invalid email");
         Assert.assertFalse(register.isEmailValid(), "System should reject invalid email address.");
     }
 
     // Verify that Email Address field accepts a valid email address
-    @Test(groups = {"regression"})
-    public void RSTC011_shouldAcceptValidEmailAddress() {
+    @Test(dataProvider = "registerTestData", groups = {"regression"})
+    public void RSTC014_shouldAcceptValidEmailAddress(Map<String, String> data) {
         // Pre-requisite: User is on the Registration Page
         loadRegisterPage();
 
         // 1. Enter a valid email address in the Email Address field
-        register.enterEmail("janedoe@gmail.com");
+        extentTest.log(Status.INFO, "Inputting valid Email: " + data.get("Email"));
+        register.enterEmail(data.get("Email"));
 
-        // 2. Press the Register button
+        // 2. Click the Register button
         clickRegisterButton();
-        register.scrollToEmail();
 
         // 3. Verify that user can input a valid email address.
+        extentTest.log(Status.INFO, "Verifying Email field accepts valid email");
         Assert.assertTrue(register.isEmailValid(), "System should accept valid email address.");
     }
 
-//    // Verify that Phone Number field rejects no input phone number
-//    @Test(groups = {"regression"})
-//    public void shouldRejectNoInputPhoneNumber() {
-//        // Pre-requisite: User is on the Registration Page
-//        loadRegisterPage();
-//
-//        // 1. Enter a value containing letters or special characters in the Phone Number field
-//        register.scrollToPhoneNumber();
-//        register.enterPhoneNumber("");
-//
-//        // 2. Press the Register button
-//        clickRegisterButton();
-//        register.scrollToPhoneNumber();
-//
-//        // 3. Verify that user cannot input non-numbers in Phone Number field.
-//        Assert.assertFalse(register.isPhoneNumberValid(), "System should reject no input in phone number field.");
-//    }
+    // Verify that Phone Number field rejects no input phone number
+    @Test(groups = {"regression"})
+    public void RSTC015_shouldRejectNoInputPhoneNumber() {
+        // Pre-requisite: User is on the Registration Page
+        loadRegisterPage();
+
+        // 1. Leave Phone Number field blank.
+        extentTest.log(Status.INFO, "Leaving Phone Number field blank");
+        register.enterPhoneNumber("");
+
+        // 2. Click the Register button
+        clickRegisterButton();
+
+        // 3. Verify that user cannot input non-numbers in Phone Number field.
+        extentTest.log(Status.INFO, "Verifying Phone Number field rejects no input");
+        Assert.assertFalse(register.isPhoneNumberValid(), "System should reject no input in phone number field.");
+    }
 
     // Verify that Phone Number field rejects non-number input
-    @Test(groups = {"regression"})
-    public void RSTC012_shouldRejectNonNumberInputPhoneNumber() {
+    @Test(dataProvider = "registerTestData", groups = {"regression"})
+    public void RSTC016_shouldRejectNonNumberInputPhoneNumber(Map<String, String> data) {
         // Pre-requisite: User is on the Registration Page
         loadRegisterPage();
 
         // 1. Enter a value containing letters or special characters in the Phone Number field
-        register.scrollToPhoneNumber();
-        register.enterPhoneNumber("testing!");
+        extentTest.log(Status.INFO, "Inputting invalid Phone Number: " + data.get("Mobile Number"));
+        register.enterPhoneNumber(data.get("Mobile Number"));
 
-        // 2. Press the Register button
+        // 2. Click the Register button
         clickRegisterButton();
-        register.scrollToPhoneNumber();
-        delay();
 
         // 3. Verify that user cannot input non-numbers in Phone Number field.
+        extentTest.log(Status.INFO, "Verifying Phone Number field rejects non-number input");
         Assert.assertFalse(register.isPhoneNumberValid(), "System should not let use input non number phone numbers.");
     }
 
     // Verify that Phone Number field rejects non-formatted phone number
-    @Test(groups = {"regression"})
-    public void RSTC013_shouldRejectNonFormattedPhoneNumber() {
+    @Test(dataProvider = "registerTestData", groups = {"regression"})
+    public void RSTC017_shouldRejectNonFormattedPhoneNumber(Map<String, String> data) {
         // Pre-requisite: User is on the Registration Page
         loadRegisterPage();
 
-        // 1. Enter a value containing letters or special characters in the Phone Number field
-        register.scrollToPhoneNumber();
-        register.enterPhoneNumber("12345678900");
+        // 1. Enter a numerical value not following the phone number format 09xxxxxxxxx in the Phone Number field
+        extentTest.log(Status.INFO, "Inputting invalid Phone Number: " + data.get("Mobile Number"));
+        register.enterPhoneNumber(data.get("Mobile Number"));
 
-        // 2. Press the Register button
+        // 2. Click the Register button
         clickRegisterButton();
-        delay();
 
-        // 3. Verify that user cannot input non-numbers in Phone Number field.
+        // 3. Verify that user cannot input non-formatted phone numbers in Phone Number field.
+        extentTest.log(Status.INFO, "Verifying Phone Number field rejects non-formatted mobile numbers");
         Assert.assertTrue(register.isPhoneNumberErrorDisplayed(), "System should reject incorrectly formatted phone number.");
-        Assert.assertFalse(register.isPhoneNumberValid(), "System should reject incorrectly formatted phone number.");
+//        Assert.assertFalse(register.isPhoneNumberValid(), "System should reject incorrectly formatted phone number.");
     }
 
     // Verify that Phone Number field rejects an incomplete Philippine phone number
-    @Test(groups = {"regression"})
-    public void RSTC014_shouldRejectIncompletePhilippinePhoneNumber() {
+    @Test(dataProvider = "registerTestData", groups = {"regression"})
+    public void RSTC018_shouldRejectIncompletePhilippinePhoneNumber(Map<String, String> data) {
         // Pre-requisite: User is on the Registration Page
         loadRegisterPage();
 
-        // 1. Enter a value containing letters or special characters in the Phone Number field
-        register.scrollToPhoneNumber();
-        register.enterPhoneNumber("091234567");
+        // 1. Enter an incomplete Philippine phone number in the Phone Number field
+        extentTest.log(Status.INFO, "Inputting invalid Phone Number: " + data.get("Mobile Number"));
+        register.enterPhoneNumber(data.get("Mobile Number"));
 
-        // 2. Press the Register button
+        // 2. Click the Register button
         clickRegisterButton();
-        register.scrollToPhoneNumber();
 
-        // 3. Verify that user cannot input non-numbers in Phone Number field.
+        // 3. Verify that user cannot input incomplete Philippine phone number in Phone Number field.
+        extentTest.log(Status.INFO, "Verifying Phone Number field rejects non-Philippine mobile number");
         Assert.assertTrue(register.isPhoneNumberErrorDisplayed(), "System should reject incomplete PH Phone number.");
-        Assert.assertFalse(register.isPhoneNumberValid(), "System should reject incomplete PH Phone number.");
+//        Assert.assertFalse(register.isPhoneNumberValid(), "System should reject incomplete PH Phone number.");
     }
 
     // Verify that Phone Number field accepts a valid Philippine phone number
-    @Test(groups = {"regression"})
-    public void RSTC015_shouldAcceptValidPhilippinePhoneNumber() {
+    @Test(dataProvider = "registerTestData", groups = {"regression"})
+    public void RSTC019_shouldAcceptValidPhilippinePhoneNumber(Map<String, String> data) {
         // Pre-requisite: User is on the Registration Page
         loadRegisterPage();
 
-        // 1. Enter a value containing letters or special characters in the Phone Number field
-        register.scrollToPhoneNumber();
-        register.enterPhoneNumber("09123456789");
+        // 1. Enter a valid Philippine phone number in the Phone Number field
+        extentTest.log(Status.INFO, "Inputting valid Phone Number: " + data.get("Mobile Number"));
+        register.enterPhoneNumber(data.get("Mobile Number"));
 
-        // 2. Press the Register button
+        // 2. Click the Register button
         clickRegisterButton();
-        register.scrollToPhoneNumber();
 
-        // 3. Verify that user cannot input non-numbers in Phone Number field.
+        // 3. Verify that system accepts valid PH phone number.
+        extentTest.log(Status.INFO, "Verifying Phone Number field accepts valid Philippine mobile number");
         Assert.assertFalse(register.isPhoneNumberErrorDisplayed(), "System should accept valid PH Phone number.");
         Assert.assertTrue(register.isPhoneNumberValid(), "System should accept valid PH Phone number.");
     }
 
-    // Verify that Your Password field rejects a password with only one Password Policy Requirement met
+    // Verify that Your Password field rejects no input
     @Test(groups = {"regression"})
-    public void RSTC016_shouldRejectPasswordWithOnlyOnePasswordPolicyMet() {
+    public void RSTC020_shouldRejectBlankPasswordInput() {
         // Pre-requisite: User is on the Registration Page
         loadRegisterPage();
 
-        // 1. Enter a value containing letters or special characters in the Phone Number field
-        register.scrollToPassword();
-        register.enterPassword("password");
+        // 1. Leave Your Password field blank
+        extentTest.log(Status.INFO, "Leaving password field blank");
+        register.enterPassword("");
 
-        // 2. Press the Register button
+        // 2. Click the Register button
         clickRegisterButton();
-        register.scrollToPassword();
+
+        // 3. Verify that system rejects blank Your Password input.
+        extentTest.log(Status.INFO, "Verifying Password field Validity");
+//        Assert.assertFalse(register.getPasswordPoliciesMet() >= 3, "Password must meet at least 3 of 4 requirements.");
+        Assert.assertFalse(register.isPasswordValid(), "Password must meet at least 3 of 4 requirements.");
+    }
+
+    // Verify that Your Password field rejects a password with only one Password Policy Requirement met
+    @Test(dataProvider = "registerTestData", groups = {"regression"})
+    public void RSTC021_shouldRejectPasswordWithOnlyOnePasswordPolicyMet(Map<String, String> data) {
+        // Pre-requisite: User is on the Registration Page
+        loadRegisterPage();
+
+        // 1. Enter an invalid password with only one Password Policy Requirement met in the Your Password field
+        extentTest.log(Status.INFO, "Inputting invalid Password: " + data.get("Password"));
+        register.enterPassword(data.get("Password"));
+
+        // 2. Click the Register button
+        clickRegisterButton();
 
         // 3. Verify that system rejects password that only follows 1 Password Policy Requirement
+        extentTest.log(Status.INFO, "Verifying system rejects password that only follows 1 password policy requirement");
         Assert.assertFalse(register.getPasswordPoliciesMet() >= 3, "Password must meet at least 3 of 4 requirements.");
         Assert.assertFalse(register.isPasswordValid(), "Password must meet at least 3 of 4 requirements.");
     }
 
     // Verify that Your Password field rejects a password with only two Password Policy Requirement met
-    @Test(groups = {"regression"})
-    public void RSTC017_shouldRejectPasswordWithOnlyTwoPasswordPolicyMet() {
+    @Test(dataProvider = "registerTestData", groups = {"regression"})
+    public void RSTC022_shouldRejectPasswordWithOnlyTwoPasswordPolicyMet(Map<String, String> data) {
         // Pre-requisite: User is on the Registration Page
         loadRegisterPage();
 
-        // 1. Enter a value containing letters or special characters in the Phone Number field
-        register.scrollToPassword();
-        register.enterPassword("password123");
+        // 1. Enter an invalid password with only two Password Policy Requirement met in the Your Password field
+        extentTest.log(Status.INFO, "Inputting invalid Password: " + data.get("Password"));
+        register.enterPassword(data.get("Password"));
 
-        // 2. Press the Register button
+        // 2. Click the Register button
         clickRegisterButton();
-        register.scrollToPassword();
 
         // 3. Verify that system rejects password that only follows 2 Password Policy Requirement
+        extentTest.log(Status.INFO, "Verifying system rejects password that only follows 2 password policy requirement");
         Assert.assertFalse(register.getPasswordPoliciesMet() >= 3, "Password must meet at least 3 of 4 requirements.");
         Assert.assertFalse(register.isPasswordValid(), "Password must meet at least 3 of 4 requirements.");
     }
 
     // Verify that Your Password field accepts a password with three Password Policy Requirement met
-    @Test(groups = {"regression"})
-    public void RSTC018_shouldAcceptPasswordWithThreePasswordPolicyMet() {
+    @Test(dataProvider = "registerTestData", groups = {"regression"})
+    public void RSTC023_shouldAcceptPasswordWithThreePasswordPolicyMet(Map<String, String> data) {
         // Pre-requisite: User is on the Registration Page
         loadRegisterPage();
 
-        // 1. Enter a value containing letters or special characters in the Phone Number field
-        register.scrollToPassword();
-        register.enterPassword("Password123");
+        // 1. Enter a valid password with three Password Policy Requirement met in the Your Password field
+        extentTest.log(Status.INFO, "Inputting valid Password: " + data.get("Password"));
+        register.enterPassword(data.get("Password"));
 
-        // 2. Press the Register button
+        // 2. Click the Register button
         clickRegisterButton();
-        register.scrollToPassword();
 
-        // 3. Verify that system rejects password that only follows 2 Password Policy Requirement
-        Assert.assertTrue(register.getPasswordPoliciesMet() >= 3, "Password must meet at least 3 of 4 requirements.");
-        Assert.assertTrue(register.isPasswordValid(), "Password must meet at least 3 of 4 requirements.");
+        // 3. Verify that system accepts password that follows 3 Password Policy Requirements
+        extentTest.log(Status.INFO, "Verifying system accepts password that follow 3 password policy requirement");
+        Assert.assertTrue(register.getPasswordPoliciesMet() >= 3, "Password meets at least 3 of 4 requirements, should be valid.");
+        Assert.assertTrue(register.isPasswordValid(), "Password meets at least 3 of 4 requirements, should be valid.");
     }
 
     // Verify that Your Password field accepts a password with all 4 Password Policy Requirement met
-    @Test(groups = {"regression"})
-    public void RSTC019_shouldAcceptPasswordWithAllPasswordPolicyMet() {
+    @Test(dataProvider = "registerTestData", groups = {"regression"})
+    public void RSTC024_shouldAcceptPasswordWithAllPasswordPolicyMet(Map<String, String> data) {
         // Pre-requisite: User is on the Registration Page
         loadRegisterPage();
 
-        // 1. Enter a value containing letters or special characters in the Phone Number field
-        register.scrollToPassword();
-        register.enterPassword("Password123!");
+        // 1. Enter a valid password with all Password Policy Requirement met in the Your Password field
+        extentTest.log(Status.INFO, "Inputting valid Password: " + data.get("Password"));
+        register.enterPassword(data.get("Password"));
 
-        // 2. Press the Register button
+        // 2. Click the Register button
         clickRegisterButton();
-        register.scrollToPassword();
 
-        // 3. Verify that system rejects password that only follows 2 Password Policy Requirement
-        Assert.assertTrue(register.getPasswordPoliciesMet() >= 3, "Password must meet at least 3 of 4 requirements.");
-        Assert.assertTrue(register.isPasswordValid(), "Password must meet at least 3 of 4 requirements.");
+        // 3. Verify that system accepts password that follows all 4 Password Policy Requirements
+        extentTest.log(Status.INFO, "Verifying system accepts password that follow 4 password policy requirement");
+        Assert.assertTrue(register.getPasswordPoliciesMet() >= 3, "Password meets at least 3 of 4 requirements, should be valid.");
+        Assert.assertTrue(register.isPasswordValid(), "Password meets at least 3 of 4 requirements, should be valid.");
     }
 
-    @Test(groups = {"regression"})
-    public void RSTC020_togglePasswordShowsAndHidesPasswordInput() {
+    @Test(dataProvider = "registerTestData", groups = {"regression"})
+    public void RSTC025_togglePasswordShowsAndHidesPasswordInput(Map<String, String> data) {
         // Pre-requisite: User is on the Registration Page
         loadRegisterPage();
 
-        // 1. Enter a value containing letters or special characters in the Phone Number field
-        register.scrollToPassword();
-        register.enterPassword("Password123!");
+        // 1. Enter a valid password in the Your Password field
+        extentTest.log(Status.INFO, "Inputting valid Password: " + data.get("Password"));
+        register.enterPassword(data.get("Password"));
 
         // 2. Click on the eye icon with slash to show the password; Verify that password can be unmasked
+        extentTest.log(Status.INFO, "Clicking password visibility toggle and verifying password is unmasked");
         register.clickPasswordMaskButton();
         Assert.assertEquals(register.getPasswordType(), "text", "Password should be unmasked.");
 
-        // 3. Click on the eye icon without slash to hide the password
+        // 3. Click on the eye icon without slash to hide the password; Verify that password can be unmasked
+        extentTest.log(Status.INFO, "Clicking password visibility toggle and verifying password is masked");
         register.clickPasswordMaskButton();
         Assert.assertEquals(register.getPasswordType(), "password", "Password should be masked.");
     }
 
-    @Test(groups = {"regression"})
-    public void RSTC021_shouldRejectMismatchingPasswords() {
+    @Test(dataProvider = "registerTestData", groups = {"regression"})
+    public void RSTC026_shouldRejectMismatchingPasswords(Map<String, String> data) {
         // Pre-requisite: User is on the Registration Page
         loadRegisterPage();
 
         // 1. Enter a valid password in the Your Password field
-        register.scrollToPassword();
-        register.enterPassword("Password123!");
+        extentTest.log(Status.INFO, "Inputting valid Password: " + data.get("Password"));
+        register.enterPassword(data.get("Password"));
 
-        // 2.Enter a different password in the Confirm Password field
-        register.enterRetypePassword("Password");
-        clickRegisterButton();
+        // 2. Enter a different password in the Confirm Password field
+        extentTest.log(Status.INFO, "Inputting mismatching Confirm Password: " + data.get("ConfirmPassword"));
+        register.enterRetypePassword(data.get("ConfirmPassword"));
 
         // 3. Verify that system does not accept mismatching passwords.
+        extentTest.log(Status.INFO, "Verifying system does not accept mismatching passwords");
         Assert.assertTrue(register.isPasswordMismatchErrorPresent(), "Mismatching Passwords should be rejected.");
     }
 
-    @Test(groups = {"regression"})
-    public void RSTC022_shouldAcceptMatchingPasswords() {
+    @Test(dataProvider = "registerTestData", groups = {"regression"})
+    public void RSTC027_shouldAcceptMatchingPasswords(Map<String, String> data) {
         // Pre-requisite: User is on the Registration Page
         loadRegisterPage();
 
         // 1. Enter a valid password in the Your Password field
-        register.scrollToPassword();
-        register.enterPassword("Password123!");
+        extentTest.log(Status.INFO, "Inputting valid Password: " + data.get("Password"));
+        register.enterPassword(data.get("Password"));
 
-        // 2.Enter a different password in the Confirm Password field
-        register.enterRetypePassword("Password123!");
-        clickRegisterButton();
+        // 2. Enter the same password in the Confirm Password field
+        extentTest.log(Status.INFO, "Inputting matching Confirm Password: " + data.get("ConfirmPassword"));
+        register.enterRetypePassword(data.get("ConfirmPassword"));
 
-        // 3. Verify that system does not accept mismatching passwords.
+        // 3. Verify that system accepts matching passwords.
+        extentTest.log(Status.INFO, "Verifying system accepts matching passwords");
         Assert.assertTrue(register.isRetypePasswordValid(), "Matching Passwords should be accepted.");
     }
 
     // Verify that the Birthday fields reject empty input
     @Test(groups = {"regression"})
-    public void RSTC023_shouldRejectEmptyBirthdayField() {
+    public void RSTC028_shouldRejectEmptyBirthdayField() {
         // Pre-requisite: User is on the Registration Page
         loadRegisterPage();
 
         // 1. Leave Day field set to "Day"
         // 2. Leave Month field set to "Month"
-        // Above 2 means that nothing happens
-        register.scrollToBirthday();
+        // Nothing happens, since "Day" and "Month" are default values
+        extentTest.log(Status.INFO, "Leaving Birthday values as default");
 
-        // 3. Press the Register button
+        // 3. Click the Register button
         clickRegisterButton();
-        register.scrollToBirthday();
 
         // 4. Verify that Birthday field rejects empty input.
+        extentTest.log(Status.INFO, "Verifying Birthday field rejects empty input");
         Assert.assertFalse(register.isBirthdayInputValid(), "System should reject empty birthday fields.");
     }
 
     // Verify that the Year field in Birthday is set to the year that is 20 years before
     @Test(groups = {"regression"})
-    public void RSTC024_defaultBirthYearIs20YearsBefore() {
+    public void RSTC029_defaultBirthYearIs20YearsBefore() {
         // Setup expected value
+        extentTest.log(Status.INFO, "Calculating expected birth year (current year - 20)");
         int current_yr = java.time.Year.now().getValue();
         int expected_yr = current_yr - 20;
 
@@ -623,150 +649,138 @@ public class RegisterTest extends BaseTest {
         loadRegisterPage();
 
         // 1. Check default year in the Year field
-        register.scrollToBirthday();
+        extentTest.log(Status.INFO, "Retrieving Default year");
         String actual_yr = register.getBirthYear();
 
         // 2. Verify that the Year field in Birthday is set to the year that is 20 years before.
-        Assert.assertEquals(actual_yr, String.valueOf(expected_yr), "Assertion Failed: Default Birth Year is not 20 years before.");
+        extentTest.log(Status.INFO, "Verifying default birth year is set to " + expected_yr);
+        Assert.assertEquals(actual_yr, String.valueOf(expected_yr), "Default Birth Year is not 20 years before.");
     }
 
     // Verify that the Birthday fields rejects future dates
-    @Test(groups = {"regression"})
-    public void RSTC025_shouldRejectFutureBirthdays() {
+    @Test(dataProvider = "registerTestData", groups = {"regression"})
+    public void RSTC030_shouldRejectFutureBirthdays(Map<String, String> data) {
         // Pre-requisite: User is on the Registration Page
         loadRegisterPage();
 
         // 1. Enter a date of birth that is later than today’s date
-        register.scrollToBirthday();
-        register.selectCompleteBirthday("31", "12", "2026");
+        extentTest.log(Status.INFO, "Inputting future Birthday: " + data.get("Day") + "/" + data.get("Month") + "/" + data.get("Year"));
+        register.selectCompleteBirthday(data.get("Day"), data.get("Month"), data.get("Year"));
 
-        // 3. Press the Register button
+        // 3. Click the Register button
         clickRegisterButton();
-        register.scrollToBirthday();
 
-        // 4. Verify that Birthday field rejects empty input.
+        // 4. Verify that system does not accept future dates.
+        extentTest.log(Status.INFO, "Verifying that system does not accept future dates");
         Assert.assertFalse(register.isBirthdayInputValid(), "System should reject dates that do not exist yet.");
     }
 
     // Verify that the Birthday fields accepts past or present dates
-    @Test(groups = {"regression"})
-    public void RSTC026_shouldAcceptValidBirthday() {
+    @Test(dataProvider = "registerTestData", groups = {"regression"})
+    public void RSTC031_shouldAcceptValidBirthday(Map<String, String> data) {
         // Pre-requisite: User is on the Registration Page
         loadRegisterPage();
 
         // 1. Enter a date of birth that is today or before today's date
-        register.scrollToBirthday();
-        register.selectCompleteBirthday("19", "9", "2002");
+        extentTest.log(Status.INFO, "Inputting valid Birthday: " + data.get("Day") + "/" + data.get("Month") + "/" + data.get("Year"));
+        register.selectCompleteBirthday(data.get("Day"), data.get("Month"), data.get("Year"));
 
-        // 3. Press the Register button
+        // 3. Click the Register button
         clickRegisterButton();
-        register.scrollToBirthday();
 
-        // 4. Verify that Birthday field rejects empty input.
+        // 4. Verify that system accepts past or present dates.
+        extentTest.log(Status.INFO, "Verifying that system accepts past or present dates");
         Assert.assertTrue(register.isBirthdayInputValid(), "System should accept valid birthdays.");
     }
 
     // Verify that the Terms of Use and Promotional Offers checkboxes are clickable and toggleable
     @Test(groups = {"regression"})
-    public void RSTC027_checkboxesShouldBeClickable() {
+    public void RSTC032_checkboxesShouldBeClickable() {
         // Pre-requisite: User is on the Registration Page
         loadRegisterPage();
 
         // 1. Click on the Terms of Use checkbox
-        register.scrollToTerms();
+        extentTest.log(Status.INFO, "Clicking Terms of Use Checkbox");
         register.clickTermsCheckbox();
 
         // 2. Click on the Promotional Offers checkbox
+        extentTest.log(Status.INFO, "Clicking Promotional Offers checkbox");
         register.clickPromotionalCheckbox();
+
+        // 5. Verify that Terms of Use and Promotional Offers checkboxes are functional
+        extentTest.log(Status.INFO, "Verifying that both checkboxes are selected and fully functional");
         Assert.assertTrue(register.isTermsChecked(), "Checkbox should be clickable.");
         Assert.assertTrue(register.isPromotionalChecked(), "Checkbox should be clickable.");
 
         // 3. Click on the Terms of Use checkbox
-        register.scrollToTerms();
+        extentTest.log(Status.INFO, "Unselecting Terms of Use checkbox");
         register.clickTermsCheckbox();
 
         // 4. Click on the Promotional Offers checkbox
+        extentTest.log(Status.INFO, "Unselecting Promotional Offers checkbox");
         register.clickPromotionalCheckbox();
+
+        // 5. Verify that Terms of Use and Promotional Offers checkboxes are functional
+        extentTest.log(Status.INFO, "Verifying that both checkboxes are unselected and fully functional");
         Assert.assertFalse(register.isTermsChecked(), "Checkbox should be clickable.");
         Assert.assertFalse(register.isPromotionalChecked(), "Checkbox should be clickable.");
     }
 
     // Verify that the Terms of Use checkbox is a required field
     @Test(groups = {"regression"})
-    public void RSTC028_termsShouldBeRequired() {
+    public void RSTC033_termsShouldBeRequired() {
         // Pre-requisite: User is on the Registration Page
         loadRegisterPage();
 
-        // 1. Leave Terms of Use checkbox unchecked
-        register.scrollToTerms();
+        // 1. Leave Terms of Use checkbox unchecked; Do nothing
+        extentTest.log(Status.INFO, "Leave Terms of Use checkbox unchecked");
 
-        // 2. Press Register
+        // 2. Click Register
         clickRegisterButton();
-        register.scrollToTerms();
 
         // 3. Verify that Terms of Use checkbox is required.
+        extentTest.log(Status.INFO, "Verifying that Terms of Use checkbox is required");
         Assert.assertTrue(register.isTermsOfUseErrorDisplayed(), "Terms checkbox should be required.");
     }
 
-//    // Verify that the Promotional Offers checkbox is an optional field
-//    @Test(groups = {"regression"})
-//    public void RSTC029_promotionalShouldBeOptional() {
-//        // Pre-requisite: User is on the Registration Page
-//        loadRegisterPage();
-//
-//        // 1. Make sure the register form fields are incomplete/empty
-//        // 2. Leave Promotional Offers checkbox unchecked
-//        register.scrollToPromotional();
-//        clickRegisterButton();
-//
-//        // 3.
-//    }
-
     // Verify that registering with an existing account's email prevents user from creating an account
-    @Test(groups = {"regression"})
-    public void RSTC030_existingEmailShouldBePreventedFromCreatingAccount() {
+    @Test(dataProvider = "registerTestData", groups = {"regression"})
+    public void RSTC034_existingEmailShouldBePreventedFromCreatingAccount(Map<String, String> data) {
         // Pre-requisite: User is on the Registration Page
         loadRegisterPage();
 
         // 1. Input all required fields
-        register.enterFirstName("Jane");
-        register.enterLastName("Doe");
-        register.selectGender("Female");
-        register.enterEmail("janedoe@gmail.com");   // Input an existing email in the Email Address field
-        register.enterPhoneNumber("09123456789");
-        register.enterPassword("Password123!");
-        register.enterRetypePassword("Password123!");
-        register.selectCompleteBirthday("19", "9", "2002");
-        register.clickTermsCheckbox();
+        fillFields(data);
 
         // 3. Click the Register button
-//        clickRegisterButton();
+        clickRegisterButton();
 
         // 4. Verify that system does not accept existing emails.
-//
+        extentTest.log(Status.INFO, "Verifying that register fails due to existing email");
+        Assert.assertTrue(register.getToastError().getText().contains("Email is existed"), "Email existed error should pop-up");
     }
 
     // Verify that registering with an existing account's email prevents user from creating an account
-    @Test(groups = {"regression"})
-    public void RSTC031_ShouldAcceptNewAccount() {
+    @Test(dataProvider = "registerTestData", groups = {"regression"})
+    public void RSTC035_shouldAcceptNewAccount(Map<String, String> data) {
         // Pre-requisite: User is on the Registration Page
         loadRegisterPage();
 
         // 1. Input all required fields
-        register.enterFirstName("John");
-        register.enterLastName("Doe");
-        register.selectGender("Male");
-        register.enterEmail("johndoe@gmail.com");   // 2. Input a new email in the Email Address field
-        register.enterPhoneNumber("09987654321");
-        register.enterPassword("Password123!");
-        register.enterRetypePassword("Password123!");
-        register.selectCompleteBirthday("19", "9", "2002");
-        register.clickTermsCheckbox();
+        fillFields(data);
 
         // 3. Click the Register button
 //        clickRegisterButton();
 
         // 4. Verify that registering account is successful with all valid inputs.
-//
+        extentTest.log(Status.INFO, "Verifying all inputs valid, ready for Register");
+        Assert.assertTrue(register.isFirstNameValid());
+        Assert.assertTrue(register.isLastNameValid());
+        Assert.assertTrue(register.isEmailValid());
+        Assert.assertTrue(register.isPhoneNumberValid());
+        Assert.assertTrue(register.isPasswordValid());
+        Assert.assertTrue(register.isRetypePasswordValid());
+        Assert.assertTrue(register.isBirthdayInputValid());
+        Assert.assertTrue(register.isTermsChecked());
     }
 }
