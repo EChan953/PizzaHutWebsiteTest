@@ -6,11 +6,11 @@
                 <include name="regression"/>
             </run>
         </groups>
-        <packages>
-            <package name="org.test.tests"/>
-            <package name="org.test.base"/>
-            <package name="org.test.utils"/>
-        </packages>
+
+        <classes>
+            <class name="org.test.tests.RegisterTest"/>
+        </classes>
+
     </test>
 <!--    <test name="Register_Smoke">-->
 <!--        <groups>-->

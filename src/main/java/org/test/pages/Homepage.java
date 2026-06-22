@@ -10,8 +10,7 @@ public class Homepage {
         this.driver = driver;
     }
 
-//    private final By registerPageBtn = By.cssSelector("[data-tag='register-lbl']");
-    private final By registerPageBtn = By.linkText("Register");
+    private final By registerPageBtn = By.cssSelector("[data-tag='register-lbl']");
 
     public void clickRegisterPageButton() {
         driver.findElement(registerPageBtn).click();
