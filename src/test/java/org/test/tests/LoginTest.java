@@ -349,14 +349,20 @@ public class LoginTest extends BaseTest {
     }
 
     @Test(dataProvider = "forgetPasswordTestData", groups = {"regression", "login"})
-    public void LSTC012_VerifyValidPasswordChange(Map<String, String> data){
+    public void LSTC012_VerifyPasswordMasking(Map<String, String> data){
         //Continue from previous test "LSTC011"
-        //Check Turn Off Password Masking - Maybe new test case
-        extentTest.info("Check Turn Off Password Masking");
+        //7. Click the "eye" icon to turn off password masking
+        extentTest.info("Click the \"eye\" icon to turn off password masking");
         forgetpassword.clickRevealPasswordButton();
+
+        //8. Verify PlainText
         String actual = forgetpassword.getPlainTextPassword();
         Assert.assertEquals(actual, "Password@1234", "Password not found");
+    }
 
+    @Test(dataProvider = "forgetPasswordTestData", groups = {"regression", "login"})
+    public void LSTC013_VerifyValidPasswordChange(Map<String, String> data){
+        //Continue from previous test "LSTC012"
         //7. Enter valid confirm password
         extentTest.info("Enter valid confirm password");
         forgetpassword.clearConfirmPasswordInput();
@@ -374,8 +380,8 @@ public class LoginTest extends BaseTest {
     }
 
     @Test(dataProvider = "loginTestData", groups = {"regression", "login"})
-    public void LSTC013_VerifyUpdatedPassword(Map<String, String> data) throws InterruptedException {
-        //Continue from previous test "LSTC012"
+    public void LSTC014_VerifyUpdatedPassword(Map<String, String> data) throws InterruptedException {
+        //Continue from previous test "LSTC013"
         //10. Enter valid email address and updated password
         extentTest.info("Enter valid email address and updated password");
         login.login(data.get("Email"),data.get("Password"));
