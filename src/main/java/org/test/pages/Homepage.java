@@ -1,19 +1,19 @@
 package org.test.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.*;
+import java.util.NoSuchElementException;
+
+import static org.openqa.selenium.support.locators.RelativeLocator.with;
 
 public class Homepage {
     WebDriver driver;
@@ -37,11 +37,17 @@ public class Homepage {
     private final By addressError = By.cssSelector(".alert-warning.border-radius.p-2");
     private final By addressOptions = By.cssSelector(".pac-item .pac-matched");
     private final By currentLocation = By.xpath("//span[normalize-space()='Or use my current location']");
+    private final By nearestHutLink = By.xpath("//span[normalize-space()='Find my nearest Hut']");
     private final By currentLocationError = By.xpath("(//small[@class='text-danger'])[1]");
     private final By changeAddressButton = By.xpath("//button[normalize-space()='Or change address']");
     private final By changeAddressYes = By.xpath("//div[@class='col p-3 cursor-pointer text-center']");
+    private final By changeAddressCancel = By.cssSelector(".col.p-3.cursor-pointer.text-center.border-right");
+    private final By map = By.cssSelector(".container-map");
     private final By mapAddressBox = By.cssSelector(".container-address-info.p-3");
-    private final By mapCursor = By.cssSelector("div[tabindex='-1']");
+    private final By continueOrderButton = By.xpath("//button[normalize-space()='Continue to order']");
+    private final By nearHutText = By.cssSelector(".font-weight-bold.mb-1");
+    private final By myHutButton = By.className("btn-success");
+    private final By changeAddressOrderPage = By.xpath("(//button[contains(@type,'button')][normalize-space()='Change'])[1]");
 
     // actions
 
@@ -109,6 +115,59 @@ public class Homepage {
         driver.findElement(currentLocation).click();
     }
 
+    public void clickNearestHut() {
+        driver.findElement(nearestHutLink).click();
+    }
+
+    public void clickContinueOrderButton() {
+        driver.findElement(continueOrderButton).click();
+    }
+
+    public void clickMyHutButton() {
+        // driver.findElement(myHutButton).click();
+        js.executeScript("arguments[0].click();", myHutButton);
+    }
+
+    public String chooseAnyNearHut() {
+        List<WebElement> nearestHutsText = driver.findElements(nearHutText);
+        List<WebElement> nearestHutsDivs = driver.findElements(By.cssSelector(".item.w-100.p-2.pl-3.pr-3"));
+        String hutText;
+
+        if (!nearestHutsText.isEmpty()) {
+            // Pick a random index
+            int randomIndex = new Random().nextInt(nearestHutsText.size());
+            System.out.println(randomIndex);
+
+            // Click the randomly chosen hut
+            // Find the radio input to the left of the <p> text
+            js.executeScript("arguments[0].click();", nearestHutsDivs.get(randomIndex));
+            hutText = nearestHutsText.get(randomIndex).getText().replaceFirst("^\\d+\\.\\s*", "");
+            System.out.println(hutText);
+        } else {
+            throw new NoSuchElementException("No huts found with locator: " + nearestHutsText.toString());
+        }
+
+        clickMyHutButton();
+
+        return hutText;
+    }
+
+    public void clickChangeAddressOrderPage() {
+        driver.findElement(changeAddressOrderPage).click();
+    }
+
+    public void clickChangeAddressModal() {
+        driver.findElement(changeAddressButton).click();
+    }
+
+    public void clickChangeAddressCancel() {
+        driver.findElement(changeAddressCancel).click();
+    }
+
+    public void clickChangeAddressYes() {
+        driver.findElement(changeAddressYes).click();
+    }
+
     // validation methods
     public boolean isGeolocationDivDisplayed() {
         return find(geolocationDiv).isDisplayed();
@@ -156,7 +215,27 @@ public class Homepage {
 
     // check if map for delivery address is displayed
     public boolean isDeliveryMapDisplayed() {
-        return find(mapAddressBox).isDisplayed();
+        return find(map).isDisplayed() && find(mapAddressBox).isDisplayed();
     }
 
+    // check address in order page based on business hours
+    public void checkTime() {
+        // Get current local time
+        LocalTime now = LocalTime.now();
+        LocalTime startBusiness = LocalTime.of(9, 0);   // 10:00 AM
+        LocalTime endBusiness   = LocalTime.of(23, 0);   // 11:00 PM
+
+        if (!now.isBefore(startBusiness) && !now.isAfter(endBusiness)) {
+            // Business Hours
+            wait.until(ExpectedConditions.visibilityOfElementLocated(
+                    By.cssSelector("div[class='container-localization-info media ml-4 cursor-pointer'] span[class='font-weight-bold']")
+            ));
+        } else {
+            // Out of Hours
+            wait.until(ExpectedConditions.visibilityOfElementLocated(
+                    By.cssSelector(".p-2.alert-warning")
+            ));
+            clickContinueOrderButton();
+        }
+    }
 }
