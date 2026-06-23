@@ -1,9 +1,7 @@
 package org.test.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -15,11 +13,13 @@ public class RegisterPage {
     WebDriver driver;
     WebDriverWait wait;
     JavascriptExecutor js;
+    Actions a;
 
     public RegisterPage(WebDriver driver) {
         this.driver = driver;
         this.js = (JavascriptExecutor) driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.a = new Actions(driver);
     }
 
     // locators
@@ -27,7 +27,7 @@ public class RegisterPage {
     private final By lastName = By.cssSelector("[data-tag='last-name-txt']");
     private final By gender = By.cssSelector("[data-tag='gender-drp']");
     private final By email = By.cssSelector("[data-tag='email-txt']");
-    private final By phone_number = By.cssSelector("[data-tag='phone-txt']");
+    private final By phoneNumber = By.cssSelector("[data-tag='phone-txt']");
     private final By password = By.cssSelector("[data-tag='password-lbl']");
     private final By retypePassword = By.cssSelector("[data-tag='retype-password-txt']");
     private final By birthdayDay = By.cssSelector("[data-tag='day-drp']");
@@ -55,7 +55,7 @@ public class RegisterPage {
             By.xpath("//p[contains(.,'Non-alphanumeric')]");
 
     private final By passwordMismatchError = By.cssSelector(".invalid-feedback.d-block");
-    private final By phoneNumberError = By.xpath("//div[contains(text(),'Please follow format 09xxxxxxxxx')]");
+    private final By phoneNumberError = By.xpath("//div[contains(@class,'invalid-feedback d-block')]");
     private final By toastError = By.cssSelector("div[data-tag='toast-error']");
 
     // actions
@@ -66,12 +66,16 @@ public class RegisterPage {
 
     // input in first name textbox
     public void enterFirstName(String name) {
-        find(firstName).sendKeys(name);
+        WebElement input = find(firstName);
+        input.clear();
+        input.sendKeys(name);
     }
 
     // input last name
     public void enterLastName(String name) {
-        find(lastName).sendKeys(name);
+        WebElement input = find(lastName);
+        input.clear();
+        input.sendKeys(name);
     }
 
     // input gender
@@ -82,22 +86,31 @@ public class RegisterPage {
 
     // input email
     public void enterEmail(String emailInput) {
-        find(email).sendKeys(emailInput);
+        WebElement input = find(email);
+        input.clear();
+        input.sendKeys(emailInput);
     }
 
     // input phone number
     public void enterPhoneNumber(String phoneNumber) {
-        find(phone_number).sendKeys(phoneNumber);
+        WebElement input = find(this.phoneNumber);
+        input.clear();
+        input.sendKeys(phoneNumber);
     }
 
     // input password
     public void enterPassword(String passwordInput) {
-        find(password).sendKeys(passwordInput);
+        WebElement input = find(password);
+        a.doubleClick(input).build().perform();
+        input.sendKeys(Keys.BACK_SPACE);
+        input.sendKeys(passwordInput);
     }
 
     // input retype-password
     public void enterRetypePassword(String retypePasswordInput) {
-        find(retypePassword).sendKeys(retypePasswordInput);
+        WebElement input = find(retypePassword);
+        input.clear();
+        input.sendKeys(retypePasswordInput);
     }
 
     // input birth day
@@ -186,7 +199,7 @@ public class RegisterPage {
 
     // check if phone number is valid
     public boolean isPhoneNumberValid() {
-        return checkValidity(phone_number);
+        return checkValidity(phoneNumber);
     }
 
     // check if phone number is valid
