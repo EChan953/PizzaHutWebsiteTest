@@ -38,6 +38,28 @@ public class LoginPage {
     private final By resetPasswordEmailInput = By.cssSelector("input[data-tag='email-txt']");
 
     //actions
+    // check validity of input
+    public boolean checkValidity(By locator) {
+        Object result = js.executeScript(
+                "return arguments[0].checkValidity();", find(locator)
+        );
+
+        return Boolean.TRUE.equals(result);
+    }
+    //find locator
+    public WebElement find(By locator) {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
+    public boolean IsEmailInputValid(){
+       return checkValidity(emailInput);
+    }
+    public boolean IsPasswordInputValid(){
+        return checkValidity(passwordInput);
+    }
+    public boolean IsResetPasswordEmailInputValid(){
+        return checkValidity(resetPasswordEmailInput);
+    }
 
     public String getLoginTitle() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(pageTitle));
@@ -70,6 +92,7 @@ public class LoginPage {
     }
 
     public void clickLoginButton(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(loginButton));
         driver.findElement(loginButton).click();
     }
 
@@ -102,9 +125,11 @@ public class LoginPage {
         return !elements.isEmpty();
     }
     public void clickForgotYourPasswordLink(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(forgotYourPasswordLink));
         driver.findElement(forgotYourPasswordLink).click();
     }
     public void clickResetPasswordButton(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(resetPasswordButton));
         driver.findElement(resetPasswordButton).click();
     }
     public void enterForgetPasswordEmail(String email) {

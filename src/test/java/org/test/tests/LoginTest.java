@@ -156,8 +156,32 @@ public class LoginTest extends BaseTest {
         Assert.assertEquals(actual,"https://www.pizzahut.com.ph/", "Homepage not Found");
     }
 
+    @Test(groups = {"regression", "login"})
+    public void LSTC004_verifyEmptyLoginCredentials(){
+        //Refresh
+        homepage.openWebsite(SITE);
+
+        //1. Click on the Login Link located in the navigation bar
+        extentTest.info("Click on the Login Link located in the navigation bar");
+        homepage.clickLoginPageButton();
+
+        //2. Click the "Login" button
+        extentTest.info("Click the \"Login\" button");
+        login.clickLoginButton();
+
+        //3. Verify that the user is not logged-in with no credentials
+        extentTest.info("Verify that the user is not logged-in with no credentials");
+        Boolean isValid = login.IsEmailInputValid();
+        Assert.assertFalse(isValid, "Invalid Email Accepted");
+        isValid = login.IsPasswordInputValid();
+        Assert.assertFalse(isValid, "Invalid Password Accepted");
+    }
+
     @Test(dataProvider = "loginTestData", groups = {"regression", "login"})
-    public void LSTC004_verifyInvalidLoginCredentials(Map<String, String> data){
+    public void LSTC005_verifyInvalidLoginCredentials(Map<String, String> data){
+        //Refresh
+        homepage.openWebsite(SITE);
+
         //1. Click on the Login Link located in the navigation bar
         extentTest.info("Click on the Login Link located in the navigation bar");
         homepage.clickLoginPageButton();
@@ -177,7 +201,7 @@ public class LoginTest extends BaseTest {
     }
 
     @Test(dataProvider = "loginTestData", groups = {"regression", "login"})
-    public void LSTC005_verifyInvalidEmail(Map<String, String> data){
+    public void LSTC006_verifyInvalidEmail(Map<String, String> data){
         //Refresh
         homepage.openWebsite(SITE);
 
@@ -201,7 +225,7 @@ public class LoginTest extends BaseTest {
     }
 
     @Test(dataProvider = "loginTestData", groups = {"regression", "login"})
-    public void LSTC006_verifyInvalidPassword(Map<String, String> data){
+    public void LSTC007_verifyInvalidPassword(Map<String, String> data){
         //Refresh
         homepage.openWebsite(SITE);
 
@@ -228,7 +252,7 @@ public class LoginTest extends BaseTest {
     }
 
     @Test(dataProvider = "loginTestData", groups = {"smoke", "regression", "e2e", "login"})
-    public void LSTC007_VerifyValidCredentials(Map<String, String> data){
+    public void LSTC008_VerifyValidCredentials(Map<String, String> data){
         //Refresh
         homepage.openWebsite(SITE);
 
@@ -251,7 +275,7 @@ public class LoginTest extends BaseTest {
     }
 
     @Test(groups = {"smoke", "regression", "login"})
-    public void LSTC008_VerifyLogoutButton() throws InterruptedException {
+    public void LSTC009_VerifyLogoutButton() throws InterruptedException {
         //Continue from previous test "LSTC007"
         //4. Press Logout located at the navigation bar
         extentTest.info("Press Logout located at the navigation bar");
@@ -263,8 +287,31 @@ public class LoginTest extends BaseTest {
 
     }
 
+    @Test(groups = {"regression", "login"})
+    public void LSTC010_VerifyForgetPasswordEmptyEmail(){
+        //1. Click on the Login Link located in the navigation bar
+        extentTest.info("Click on the Login Link located in the navigation bar");
+        homepage.clickLoginPageButton();
+
+        //2. Click on "Forgot your password?" link
+        extentTest.info("Click on \"Forgot your password?\" link");
+        login.clickForgotYourPasswordLink();
+
+        //3. Click "Send Password Reset Link"
+        extentTest.info("Click \"Send Password Reset Link\"");
+        login.clickResetPasswordButton();
+
+        //4. Verify No Password Reset Link is sent
+        extentTest.info("Verify No Password Reset Link is sent");
+        Boolean isValid = login.IsResetPasswordEmailInputValid();
+        Assert.assertFalse(isValid, "Invalid Email Accepted");
+    }
+
     @Test(dataProvider = "forgetPasswordTestData", groups = {"regression", "login"})
-    public void LSTC009_VerifyForgetPasswordInvalidEmail(Map<String, String> data){
+    public void LSTC011_VerifyForgetPasswordInvalidEmail(Map<String, String> data){
+        //Refresh
+        homepage.openWebsite(SITE);
+
         //1. Click on the Login Link located in the navigation bar
         extentTest.info("Click on the Login Link located in the navigation bar");
         homepage.clickLoginPageButton();
@@ -288,7 +335,7 @@ public class LoginTest extends BaseTest {
     }
 
     @Test(dataProvider = "forgetPasswordTestData", groups = {"regression", "login"})
-    public void LSTC010_VerifyInvalidPassword(Map<String, String> data){
+    public void LSTC012_VerifyEmptyPassword(Map<String, String> data) throws InterruptedException {
         //Continue from previous test "LSTC009"
         //3. Enter valid email
         extentTest.info("Enter valid email");
@@ -307,9 +354,24 @@ public class LoginTest extends BaseTest {
         email.redirectToEmailPage();
         email.enterEmail(data.get("Email"));
         email.clickArrowButton();
+        email.refreshEmail();
         email.clickResetLink();
         email.swtichToNewestTab();
 
+        //6. Click "Reset Password" Button
+        extentTest.info("Click \"Reset Password\" Button");
+        forgetpassword.clickResetPasswordButton();
+
+        //7. Verify User does not proceed to next step
+        extentTest.info("Verify User does not proceed to next step");
+        boolean isValid = forgetpassword.IsPasswordInputValid();
+        Assert.assertFalse(isValid, "Invalid Password Accepted");
+        isValid = forgetpassword.IsConfirmPasswordInputValid();
+        Assert.assertFalse(isValid, "Invalid Confirm Password Accepted");
+    }
+    @Test(dataProvider = "forgetPasswordTestData", groups = {"regression", "login"})
+    public void LSTC013_VerifyInvalidPassword(Map<String, String> data){
+        //Continue from previous test "LSTC012"
         //6. Enter invalid password conditions
         extentTest.info("Enter invalid password conditions");
         forgetpassword.enterPassword(data.get("Password"));
@@ -321,12 +383,12 @@ public class LoginTest extends BaseTest {
 
         //8. Verify Password is not accepted by the system
         extentTest.info("Verify Password is not accepted by the system");
-        actual = forgetpassword.getEmailErroMessage();
+        String actual = forgetpassword.getEmailErroMessage();
         Assert.assertEquals(actual, "Password policy requirements are not met", "Password was Accepted");
     }
 
     @Test(dataProvider = "forgetPasswordTestData", groups = {"regression", "login"})
-    public void LSTC011_VerifyInvalidConfirmPassword(Map<String, String> data){
+    public void LSTC014_VerifyInvalidConfirmPassword(Map<String, String> data){
         //Continue from previous test "LSTC010"
         //6. Enter valid password
         extentTest.info("Enter valid password");
@@ -349,7 +411,7 @@ public class LoginTest extends BaseTest {
     }
 
     @Test(dataProvider = "forgetPasswordTestData", groups = {"regression", "login"})
-    public void LSTC012_VerifyPasswordMasking(Map<String, String> data){
+    public void LSTC015_VerifyPasswordMasking(Map<String, String> data){
         //Continue from previous test "LSTC011"
         //7. Click the "eye" icon to turn off password masking
         extentTest.info("Click the \"eye\" icon to turn off password masking");
@@ -362,7 +424,7 @@ public class LoginTest extends BaseTest {
     }
 
     @Test(dataProvider = "forgetPasswordTestData", groups = {"regression", "login"})
-    public void LSTC013_VerifyValidPasswordChange(Map<String, String> data){
+    public void LSTC016_VerifyValidPasswordChange(Map<String, String> data){
         //Continue from previous test "LSTC012"
         //7. Enter valid confirm password
         extentTest.info("Enter valid confirm password");
@@ -381,7 +443,7 @@ public class LoginTest extends BaseTest {
     }
 
     @Test(dataProvider = "loginTestData", groups = {"regression", "login"})
-    public void LSTC014_VerifyUpdatedPassword(Map<String, String> data) throws InterruptedException {
+    public void LSTC017_VerifyUpdatedPassword(Map<String, String> data) throws InterruptedException {
         //Continue from previous test "LSTC013"
         //10. Enter valid email address and updated password
         extentTest.info("Enter valid email address and updated password");
