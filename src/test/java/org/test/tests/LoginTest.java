@@ -356,6 +356,7 @@ public class LoginTest extends BaseTest {
         forgetpassword.clickRevealPasswordButton();
 
         //8. Verify PlainText
+        extentTest.info("Verify PlainText");
         String actual = forgetpassword.getPlainTextPassword();
         Assert.assertEquals(actual, "Password@1234", "Password not found");
     }

@@ -2,8 +2,12 @@ package org.test.base;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.test.pages.Homepage;
@@ -16,8 +20,12 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
+import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Method;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 
 public class BaseTest {
 
@@ -51,12 +59,22 @@ public class BaseTest {
     }
 
     @AfterMethod(alwaysRun = true)
-    public void endTest(ITestResult result) {
+    public void endTest(ITestResult result) throws IOException {
         switch (result.getStatus()) {
             case ITestResult.SUCCESS ->
                     extentTest.log(Status.PASS, "Test passed");
-            case ITestResult.FAILURE ->
+            case ITestResult.FAILURE ->{
                     extentTest.log(Status.FAIL, result.getThrowable());
+                    try{
+                        String path = captureScreenshot(driver, result.getName());
+
+                        extentTest.fail("Screenshot attached",
+                                MediaEntityBuilder.createScreenCaptureFromPath(path).build());
+
+                    }catch (IOException e){
+                        e.printStackTrace();
+                    }
+            }
             case ITestResult.SKIP ->
                     extentTest.log(Status.SKIP, "Test skipped");
         }
@@ -70,4 +88,17 @@ public class BaseTest {
             throw new RuntimeException(e);
         }
     }
+
+
+    public String captureScreenshot(WebDriver driver, String testName) throws IOException {
+        File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+
+        String timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+        String path = System.getProperty("user.dir") + "/screenshots/"
+                + testName + "_" + timestamp + ".png";
+
+        FileUtils.copyFile(srcFile, new File(path));
+        return path;
+    }
+
 }
