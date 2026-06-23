@@ -61,10 +61,12 @@ public class Homepage {
         driver.findElement(registerPageBtn).click();
     }
 
+    // click on delivery tab in homepage
     public void clickDeliveryTab() {
         driver.findElement(deliveryTab).click();
     }
 
+    // click on pickup tab in homepage
     public void clickPickupTab() {
         driver.findElement(pickupTab).click();
     }
@@ -107,76 +109,58 @@ public class Homepage {
         }
     }
 
+    // click on go button
     public void clickGoButton() {
         driver.findElement(goButton).click();
     }
 
+    // click on "Or use my current location"
     public void clickCurrentLocation() {
         driver.findElement(currentLocation).click();
     }
 
+    // click on "Find my nearest Hut"
     public void clickNearestHut() {
         driver.findElement(nearestHutLink).click();
     }
 
+    // click on "Continue to order" button (Pre-order)
     public void clickContinueOrderButton() {
         driver.findElement(continueOrderButton).click();
     }
 
-    public void clickMyHutButton() {
-        // driver.findElement(myHutButton).click();
-        js.executeScript("arguments[0].click();", myHutButton);
-    }
-
-    public String chooseAnyNearHut() {
-        List<WebElement> nearestHutsText = driver.findElements(nearHutText);
-        List<WebElement> nearestHutsDivs = driver.findElements(By.cssSelector(".item.w-100.p-2.pl-3.pr-3"));
-        String hutText;
-
-        if (!nearestHutsText.isEmpty()) {
-            // Pick a random index
-            int randomIndex = new Random().nextInt(nearestHutsText.size());
-            System.out.println(randomIndex);
-
-            // Click the randomly chosen hut
-            // Find the radio input to the left of the <p> text
-            js.executeScript("arguments[0].click();", nearestHutsDivs.get(randomIndex));
-            hutText = nearestHutsText.get(randomIndex).getText().replaceFirst("^\\d+\\.\\s*", "");
-            System.out.println(hutText);
-        } else {
-            throw new NoSuchElementException("No huts found with locator: " + nearestHutsText.toString());
-        }
-
-        clickMyHutButton();
-
-        return hutText;
-    }
-
+    // click on "Change" button in Order page
     public void clickChangeAddressOrderPage() {
         driver.findElement(changeAddressOrderPage).click();
     }
 
+    // click on "Or change address" in modal
     public void clickChangeAddressModal() {
         driver.findElement(changeAddressButton).click();
     }
 
+    // click on Cancel of confirmation popup
     public void clickChangeAddressCancel() {
         driver.findElement(changeAddressCancel).click();
     }
 
+    // click on Yes of confirmation popup
     public void clickChangeAddressYes() {
         driver.findElement(changeAddressYes).click();
     }
 
     // validation methods
+    // check if geolocation div in homepage is displayed
     public boolean isGeolocationDivDisplayed() {
         return find(geolocationDiv).isDisplayed();
     }
 
+    // check if address div is displayed (when there is inputted location)
     public boolean isAddressDivDisplayed() {
         return find(addressDiv).isDisplayed();
     }
 
+    // clears address in homepage
     public void clearAddress() {
         if (isAddressDivDisplayed()) {
             driver.findElement(changeAddressButton).click();
