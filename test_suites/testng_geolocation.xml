@@ -1,0 +1,26 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Geolocation">
+<!--    <test name="Geolocation_Regression">-->
+<!--        <groups>-->
+<!--            <run>-->
+<!--                <include name="regression"/>-->
+<!--            </run>-->
+<!--        </groups>-->
+
+<!--        <classes>-->
+<!--            <class name="org.test.tests.GeolocationTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+    <test name="Geolocation_Smoke">
+        <groups>
+            <run>
+                <include name="smoke"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="org.test.tests.GeolocationTest"/>
+        </classes>
+    </test>
+</suite>
