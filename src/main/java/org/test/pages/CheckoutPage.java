@@ -17,11 +17,15 @@ public class CheckoutPage {
     WebDriver driver;
     WebDriverWait wait;
     JavascriptExecutor js;
+    Homepage homepage;
+    OrderingPage order;
 
     public CheckoutPage(WebDriver driver) {
         this.driver = driver;
         this.js = (JavascriptExecutor) driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.homepage = new Homepage(driver);
+        this.order = new OrderingPage(driver);
     }
 
     //locators
@@ -62,7 +66,6 @@ public class CheckoutPage {
     private final By goToPaymentButton = By.cssSelector("button[data-tag='go-to-payment-btn']");
 
     //actions
-
     // check validity of input
     public boolean checkValidity(By locator) {
         Object result = js.executeScript(
@@ -81,6 +84,21 @@ public class CheckoutPage {
                 By.cssSelector(".modal-backdrop-customize")
         ));
     }
+
+    //Create Order
+    public void createOrder(String addressInput) throws InterruptedException {
+        homepage.enterAddress(addressInput);
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.className("pac-item")));
+        homepage.selectBestAddressOption(addressInput);
+        homepage.checkTime();
+        Thread.sleep(1000);
+        order.clickPizzaTab();
+        //Add First Item to Cart
+        Thread.sleep(1000);
+        List<WebElement> addButtons = driver.findElements(By.cssSelector("[data-tag='item-btn']"));
+        addButtons.get(0).click();
+    }
+
     public void refresh() {
         driver.navigate().refresh();
     }
