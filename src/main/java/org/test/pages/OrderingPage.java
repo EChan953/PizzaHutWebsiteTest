@@ -29,7 +29,7 @@ public class OrderingPage {
     private final By wingstreet = By.xpath("//p[normalize-space()='WINGSTREET®']");
     private final By chickenAndSides = By.xpath("//p[normalize-space()='CHICKEN & SIDES']");
     private final By beverages = By.xpath("//p[normalize-space()='BEVERAGES']");
-    private final By vouchers = By.xpath("//p[normalize-space()='Vouchers']");
+    private final By vouchers = By.cssSelector("[data-tag='coupon-menu']");
 
     private final By mainContentDiv = By.cssSelector(".container-main-content");
     private final By cartDiv = By.cssSelector(".container-layout-cart");
@@ -37,6 +37,8 @@ public class OrderingPage {
     private final By activeTab = By.cssSelector(".nav-link.active");
     private final By toastSuccess = By.cssSelector("div[data-tag='toast-success']");
     private final By checkoutBtn = By.cssSelector("[data-tag='checkout-btn']");
+    private final By pizzaHutLogo = By.cssSelector(".image-desktop");
+    private final By chooseFromVouchersListBtn = By.cssSelector("[data-tag='get-a-voucher']");
 
     private final By limitedTimeIcon = By.cssSelector("img[alt='Limited Time Offer']");
 
@@ -45,9 +47,17 @@ public class OrderingPage {
     private final By pizzaCustomizationWindowCrusts = By.cssSelector(".container-list-crust-size .item.cursor-pointer");
     private final By pizzaCustomizationWindowAddBtn = By.cssSelector("[data-tag='add-item-modal-btn']");
     private final By dealsAddToBasketBtn = By.cssSelector("[data-tag='add-deal-to-my-basket']");
+    private final By addCouponBtn = By.cssSelector("[data-tag='add-coupoun-btn']");
+    private final By seniorCitizenChkbox = By.cssSelector("[data-tag='checkbox-senior-citizen']");
+    private final By minDeliveryOrderWarning = By.cssSelector("[data-tag='min-cart-lbl']");
 
     private final By cartItems = By.cssSelector(".container-item-cart");
-    private final By cartItemName = By.cssSelector("[data-tag='item-cart-name'] span");
+    private final By cartItemName = By.cssSelector("div[data-tag='item-cart-name'] span");
+
+    private final By increaseQtyBtn = By.cssSelector("[data-tag='increase-quantity-btn']");
+    private final By decreaseQtyBtn = By.cssSelector("[data-tag='decrease-quantity-btn']");
+    private final By deleteIcon = By.cssSelector("[data-tag='delete-item-btn']");
+    private final By itemQty = By.cssSelector("[data-tag='quantity']");
 
     // finds the web element; uses explicit wait for reliability
     public WebElement find(By locator) {
@@ -136,12 +146,18 @@ public class OrderingPage {
 
     // click the vouchers tab in the order navbar
     public void clickVouchersTab() {
-        clickNavbarTab(vouchers, "Vouchers");
+        find(vouchers).click();
     }
 
     // click checkout button
     public void clickCheckout() {
         find(checkoutBtn).click();
+    }
+
+    // click choose from vouchers list
+    public void clickChooseFromVouchersListBtn() {
+        find(chooseFromVouchersListBtn).click();
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(activeTab));
     }
 
     // check current active tab
@@ -243,7 +259,7 @@ public class OrderingPage {
     // ADD Items to cart
     // No Variation/Customization Version
     public void addToCartNoCustomizationOrVariation(String productName) {
-        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(menuItems));
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(menuItems));
 
         List<WebElement> items = driver.findElements(menuItems);
         for (int i = 0; i < items.size(); i++) {
@@ -290,7 +306,7 @@ public class OrderingPage {
 
     // Add Pizza to Cart With Customization
     public void addPizzaToCartWithCustomization(String pizzaName, String size, String crust) {
-        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(menuItems));
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(menuItems));
         List<WebElement> items = getMenuItems();
 
         for(WebElement item : items) {
@@ -314,7 +330,7 @@ public class OrderingPage {
 
     // Add Pizza to cart with Variation Dropdown
     public void addPizzaToCartWithVariation(String pizzaName, String variation) {
-        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(menuItems));
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(menuItems));
         List<WebElement> items = getMenuItems();
 
         for(WebElement item : items) {
@@ -332,7 +348,7 @@ public class OrderingPage {
 
     // Add Deals to Cart
     public void addDealsToCart(String dealsName) {
-        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(menuItems));
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(menuItems));
         List<WebElement> items = getMenuItems();
 
         for(WebElement item : items) {
@@ -351,11 +367,9 @@ public class OrderingPage {
 
     // Check Cart Items
     public boolean isProductInsideCart(String productName) {
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(cartItemName));
+        System.out.println("Name: " + driver.findElement(cartItemName).getText());
         List<WebElement> items = driver.findElements(cartItemName);
-        System.out.println("Cart items found: " + items.size());
-        for(WebElement item : items) {
-            System.out.println(item.getText());
-        }
 
         for(WebElement item : items) {
             if(item.getText().equalsIgnoreCase(productName)) {
@@ -365,9 +379,95 @@ public class OrderingPage {
         return false;
     }
 
+    // get qty of an item
+    public int getItemQty(String productName) {
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(cartItems));
+        List<WebElement> items = driver.findElements(cartItems);
+
+        for(WebElement item : items) {
+            String name = item.findElement(By.cssSelector("div[data-tag='item-cart-name'] span")).getText().trim();
+            if (name.equalsIgnoreCase(productName)) {
+                return Integer.parseInt(item.findElement(itemQty).getText());
+            }
+        }
+        return 0;
+    }
+
+    // Increase Item Quantity
+    public void increaseItemQty(String productName) {
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(cartItems));
+        List<WebElement> items = driver.findElements(cartItems);
+
+        for(WebElement item : items) {
+            String name = item.findElement(By.cssSelector("div[data-tag='item-cart-name'] span")).getText().trim();
+            if (name.equalsIgnoreCase(productName)) {
+                item.findElement(increaseQtyBtn).click();
+                wait.until(ExpectedConditions.visibilityOfElementLocated(toastSuccess));
+                return;
+            }
+        }
+    }
+
+    // Decrease Item Quantity
+    public void decreaseItemQty(String productName) {
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(cartItems));
+        List<WebElement> items = driver.findElements(cartItems);
+
+        for(WebElement item : items) {
+            String name = item.findElement(By.cssSelector("div[data-tag='item-cart-name'] span")).getText().trim();
+            if (name.equalsIgnoreCase(productName)) {
+                item.findElement(decreaseQtyBtn).click();
+                wait.until(ExpectedConditions.visibilityOfElementLocated(toastSuccess));
+                return;
+            }
+        }
+    }
+
+    // Delete Item
+    public void  deleteItem(String productName) {
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(cartItems));
+        List<WebElement> items = driver.findElements(cartItems);
+
+        for(WebElement item : items) {
+            String name = item.findElement(By.cssSelector("div[data-tag='item-cart-name'] span")).getText().trim();
+            if (name.equalsIgnoreCase(productName)) {
+                item.findElement(deleteIcon).click();
+                wait.until(ExpectedConditions.visibilityOfElementLocated(toastSuccess));
+                return;
+            }
+        }
+    }
+
+    // check if minimum delivery order warning is display
+    public boolean isMinDeliveryOrderWarningDisplayed() {
+        return find(minDeliveryOrderWarning).isDisplayed();
+    }
+
     // Check Checkout Button Availability
     public boolean isCheckoutAvailable() {
         return find(checkoutBtn).isEnabled();
     }
 
+    // Click Pizza Hut Logo
+    public void clickPizzaHutLogo() {
+        wait.until(ExpectedConditions.elementToBeClickable(pizzaHutLogo));
+        find(pizzaHutLogo).click();
+        System.out.println("Clicked!");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("body")));
+    }
+
+    // check voucher
+    public boolean isVoucherAddBtnPresent() {
+        return find(addCouponBtn).isDisplayed();
+    }
+
+    // select senior citizen checkbox
+    public void clickSeniorCitizenChkbox() {
+        find(seniorCitizenChkbox).click();
+    }
+
+    // check if senior citizen discount checkbox is ticked
+    public boolean isSeniorCitizenChkboxTicked() {
+        return find(seniorCitizenChkbox).isEnabled();
+    }
 }

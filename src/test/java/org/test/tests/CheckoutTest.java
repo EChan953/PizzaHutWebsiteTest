@@ -471,7 +471,7 @@ public class CheckoutTest extends BaseTest {
 
     }
 
-    @Test(groups = {"regression", "checkoutTest"})
+    @Test(groups = {"checkoutTest"})
     public void CSTC026_verifyTermsOfUsePage() throws InterruptedException {
         //Continue from previous test "CSTC024"
         //2. Click on the "Terms of Use" link
@@ -486,7 +486,7 @@ public class CheckoutTest extends BaseTest {
 
     }
 
-    @Test(groups = {"regression", "checkoutTest"})
+    @Test(groups = {"checkoutTest"})
     public void CSTC027_verifyPrivacyPolicyPage() throws InterruptedException {
         //Continue from previous test "CSTC026"
         //2. Click on the "Privacy Policy" link
