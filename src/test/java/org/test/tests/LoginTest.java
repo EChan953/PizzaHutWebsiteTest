@@ -1,12 +1,10 @@
 package org.test.tests;
 
-import com.aventstack.extentreports.ExtentTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.test.base.BaseTest;
 import org.test.pages.*;
 import org.test.utils.ExcelReader;
-import org.test.utils.ExtentManager;
 import org.test.utils.TestListener;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
@@ -171,9 +169,9 @@ public class LoginTest extends BaseTest {
 
         //3. Verify that the user is not logged-in with no credentials
         extentTest.info("Verify that the user is not logged-in with no credentials");
-        Boolean isValid = login.IsEmailInputValid();
+        Boolean isValid = login.isEmailInputValid();
         Assert.assertFalse(isValid, "Invalid Email Accepted");
-        isValid = login.IsPasswordInputValid();
+        isValid = login.isPasswordInputValid();
         Assert.assertFalse(isValid, "Invalid Password Accepted");
     }
 
@@ -303,7 +301,7 @@ public class LoginTest extends BaseTest {
 
         //4. Verify No Password Reset Link is sent
         extentTest.info("Verify No Password Reset Link is sent");
-        Boolean isValid = login.IsResetPasswordEmailInputValid();
+        Boolean isValid = login.isResetPasswordEmailInputValid();
         Assert.assertFalse(isValid, "Invalid Email Accepted");
     }
 
@@ -364,9 +362,9 @@ public class LoginTest extends BaseTest {
 
         //7. Verify User does not proceed to next step
         extentTest.info("Verify User does not proceed to next step");
-        boolean isValid = forgetpassword.IsPasswordInputValid();
+        boolean isValid = forgetpassword.isPasswordInputValid();
         Assert.assertFalse(isValid, "Invalid Password Accepted");
-        isValid = forgetpassword.IsConfirmPasswordInputValid();
+        isValid = forgetpassword.isConfirmPasswordInputValid();
         Assert.assertFalse(isValid, "Invalid Confirm Password Accepted");
     }
     @Test(dataProvider = "forgetPasswordTestData", groups = {"regression", "login"})
