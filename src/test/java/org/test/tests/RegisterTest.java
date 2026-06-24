@@ -31,7 +31,6 @@ public class RegisterTest extends BaseTest {
 
     @BeforeTest(alwaysRun = true)
     public void initPage() {
-        System.out.println("hello here");
         register = new RegisterPage(driver);
         homepage = new Homepage(driver);
     }
@@ -39,7 +38,6 @@ public class RegisterTest extends BaseTest {
     @BeforeMethod(alwaysRun = true)
     public void setupPreRequisite(Method method) {
         // FOR Pre-Requisite: User is on the Registration Page
-        System.out.println("hello");
         if(!method.getName().contains("RSTC001")) {
             extentTest.log(Status.INFO, "Loading Register Page");
             driver.get(REGISTER);
@@ -52,16 +50,11 @@ public class RegisterTest extends BaseTest {
     }
 
     //Test Data
-    //Update Object and DataProvider Name
     @DataProvider(name="registerTestData")
     public Iterator<Object[]> getRegisterTestData(Method method){
-
         String rawTestCaseID = method.getName();
-
-        //Update Test Case Identifier
         String testCaseID = rawTestCaseID.split("_")[0].replace("RSTC","RS-TC-");
 
-        //Update Sheet Name
         List<Map<String, String>> allData =
                 ExcelReader.readExcelData(excelFilePath, "Registration_Data");
 

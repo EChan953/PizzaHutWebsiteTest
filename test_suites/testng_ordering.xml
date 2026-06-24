@@ -1,0 +1,33 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Ordering">
+    <test name="Ordering_Regression">
+        <groups>
+            <run>
+                <include name="regression"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="org.test.tests.OrderingTest"/>
+        </classes>
+    </test>
+<!--    <test name="Ordering_Smoke">-->
+<!--        <groups>-->
+<!--            <run>-->
+<!--                <include name="smoke"/>-->
+<!--            </run>-->
+<!--        </groups>-->
+<!--        <classes>-->
+<!--            <class name="org.test.tests.OrderingTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+<!--    <test name="Ordering_E2E">-->
+<!--        <groups>-->
+<!--            <run>-->
+<!--                <include name="e2e"/>-->
+<!--            </run>-->
+<!--        </groups>-->
+<!--        <classes>-->
+<!--            <class name="org.test.tests.OrderingTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+</suite>
