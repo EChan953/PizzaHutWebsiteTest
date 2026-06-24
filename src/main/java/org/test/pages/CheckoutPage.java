@@ -81,9 +81,10 @@ public class CheckoutPage {
                 By.cssSelector(".modal-backdrop-customize")
         ));
     }
-    public void refresh(){
+    public void refresh() {
         driver.navigate().refresh();
     }
+
     public boolean isFirstNameValid(){
         return checkValidity(firstNameInput);
     }

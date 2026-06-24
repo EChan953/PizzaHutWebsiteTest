@@ -30,13 +30,13 @@ public class OrderingTest extends BaseTest {
     private static final String CHECKOUT = SITE + "checkout";
     private static final String excelFilePath = "src/test/resources/testdata/TestData.xlsx";
 
-    @BeforeTest(alwaysRun = true)
+    @BeforeTest(groups = {"smoke", "regression", "e2e", "ordering"})
     public void initPage() {
         homepage = new Homepage(driver);
         orderingPage = new OrderingPage(driver);
     }
 
-    @BeforeMethod(alwaysRun = true)
+    @BeforeMethod(groups = {"smoke", "regression", "e2e", "ordering"})
     public void setupPreRequisite(Method method) {
         // FOR Pre-Requisite: User is on the Registration Page
         if(method.getName().contains("OSTC001")) {
@@ -119,11 +119,11 @@ public class OrderingTest extends BaseTest {
     // wait for checkout
     public void waitForCheckout() {
         wait.until(ExpectedConditions.urlToBe(CHECKOUT));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("body")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("h4")));
     }
 
     // Verify Navigation to Order Menu
-    @Test(dataProvider = "geolocationTestData", groups = {"smoke", "regression", "e2e"})
+    @Test(dataProvider = "geolocationTestData", groups = {"smoke", "regression"})
     public void OSTC001_shouldNavigateToOrderMenu(Map<String, String> data) {
         // 1. Navigate to the order page after choosing their mode of order collection.
         inputAddress(data);

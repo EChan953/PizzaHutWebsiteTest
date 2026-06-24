@@ -29,9 +29,9 @@ import java.util.Date;
 
 public class BaseTest {
 
-    protected WebDriver driver;
-    protected WebDriverWait wait;
-    protected JavascriptExecutor js;
+    protected static WebDriver driver;
+    protected static WebDriverWait wait;
+    protected static JavascriptExecutor js;
     protected static ExtentReports extent;
     protected ExtentTest extentTest;
 

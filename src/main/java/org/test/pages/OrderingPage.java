@@ -351,13 +351,14 @@ public class OrderingPage {
 
     // Check Cart Items
     public boolean isProductInsideCart(String productName) {
-        List<WebElement> items = driver.findElements(cartItems);
+        List<WebElement> items = driver.findElements(cartItemName);
         System.out.println("Cart items found: " + items.size());
+        for(WebElement item : items) {
+            System.out.println(item.getText());
+        }
 
         for(WebElement item : items) {
-            String name = item.findElement(cartItemName).getText().trim();
-            System.out.println("Cart item name: '" + name + "'");
-            if(name.equalsIgnoreCase(productName)) {
+            if(item.getText().equalsIgnoreCase(productName)) {
                 return true;
             }
         }

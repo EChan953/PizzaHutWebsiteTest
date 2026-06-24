@@ -10,7 +10,6 @@
         <classes>
             <class name="org.test.tests.RegisterTest"/>
         </classes>
-
     </test>
 <!--    <test name="Register_Smoke">-->
 <!--        <groups>-->
@@ -18,8 +17,8 @@
 <!--                <include name="smoke"/>-->
 <!--            </run>-->
 <!--        </groups>-->
-<!--        <packages>-->
-<!--            <package name="org.test.tests.RegisterTest"/>-->
-<!--        </packages>-->
+<!--        <classes>-->
+<!--            <class name="org.test.tests.RegisterTest"></class>-->
+<!--        </classes>-->
 <!--    </test>-->
 </suite>

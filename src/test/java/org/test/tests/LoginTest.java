@@ -29,8 +29,9 @@ public class LoginTest extends BaseTest {
     private static final String LOGIN = SITE + "login";
     private static final String excelFilePath = "src/test/resources/testdata/TestData.xlsx";
 
-    @BeforeTest(groups = {"regression", "login"})
+    @BeforeTest(groups = {"smoke", "regression", "e2e", "login"})
     public void initPage() {
+        System.out.println("hello");
         login = new LoginPage(driver);
         homepage = new Homepage(driver);
         email = new EmailPage(driver);
@@ -101,7 +102,7 @@ public class LoginTest extends BaseTest {
     public void LSTC001_verifyLoginPageAccessibility(){
         //1. Access Login Page
         extentTest.info("Access Login Page");
-        homepage.openWebsite(SITE);
+        driver.get(SITE);
         //Verify
         String actual = homepage.getHomePageUrl();
         Assert.assertEquals(actual,"https://www.pizzahut.com.ph/", "Homepage not Found");

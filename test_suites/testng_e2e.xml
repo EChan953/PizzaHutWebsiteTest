@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="E2ETesting" verbose="1">
+    <test name="E2E" preserve-order="true">
+        <groups>
+            <run>
+                <include name="e2e"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="org.test.tests.GeolocationTest"/>
+            <class name="org.test.tests.OrderingTest"/>
+            <class name="org.test.tests.CheckoutTest"/>
+        </classes>
+    </test>
+
+</suite>

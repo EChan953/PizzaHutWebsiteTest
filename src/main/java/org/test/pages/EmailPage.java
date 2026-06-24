@@ -38,6 +38,8 @@ public class EmailPage {
         driver.findElement(emailInput).sendKeys(email);
     }
     public void clickArrowButton(){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0, 300)");
         wait.until(ExpectedConditions.visibilityOfElementLocated(arrowButton));
         driver.findElement(arrowButton).click();
     }

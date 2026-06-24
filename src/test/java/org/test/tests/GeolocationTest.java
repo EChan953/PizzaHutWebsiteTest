@@ -70,7 +70,7 @@ public class GeolocationTest extends BaseTest {
     }
 
     // Verify Homepage is Accessible
-    @Test(groups = {"smoke", "regression", "e2e", "geolocation"})
+    @Test(groups = {"smoke", "regression", "geolocation"})
     public void GTSTC001_verifyHomepageAccessibility() {
         // 1. Access Homepage
         extentTest.info("Access Homepage");
@@ -84,7 +84,7 @@ public class GeolocationTest extends BaseTest {
     }
 
     // Verify if user can switch between Delivery and Pickup Tab
-    @Test(groups = {"smoke", "regression", "e2e", "geolocation"})
+    @Test(groups = {"smoke", "regression", "geolocation"})
     public void GTSTC002_verifySwitchBetweenDeliveryPickup() {
         // 1. Navigate to Homepage
         extentTest.info("Navigate to Homepage");
@@ -144,7 +144,7 @@ public class GeolocationTest extends BaseTest {
     }
 
     // Verify user can enter and select a valid address from dropdown (Delivery)
-    @Test(dataProvider = "geolocationTestData", groups = {"smoke", "regression", "e2e", "geolocation"})
+    @Test(dataProvider = "geolocationTestData", groups = {"smoke", "regression", "geolocation"})
     public void GTSTC005_validDeliveryAddress(Map<String, String> data) {
         // 1. Navigate to Delivery tab
         extentTest.info("Navigate to Delivery tab");
@@ -171,6 +171,32 @@ public class GeolocationTest extends BaseTest {
         // Revert back to default homepage for other test cases
         driver.get(SITE);
         homepage.clearAddress();
+    }
+
+    // Verify user can enter and select a valid address from dropdown (Delivery)
+    @Test(dataProvider = "geolocationTestData", groups = {"e2e", "geolocation"})
+    public void GTSTC005_validDeliveryAddressE2E(Map<String, String> data) {
+        // 1. Navigate to Delivery tab
+        extentTest.info("Navigate to Delivery tab");
+        loadHomepage();
+
+        // 2. Input valid address
+        extentTest.info("Input valid address");
+        String expectedAddress = data.get("Address");
+        homepage.enterAddress(expectedAddress);
+
+        // 3. Select closest-matching address from dropdown options
+        extentTest.info("Select address from dropdown options");
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.className("pac-item")));
+        homepage.selectBestAddressOption(expectedAddress);
+
+        // 4. Verify that user proceeds to order page
+        extentTest.info("Verify user is redirected to order page");
+        homepage.checkTime(); // navigate to order page based on business hours
+        Assert.assertEquals(driver.getCurrentUrl(), ORDER, "Not redirected to Order page.");
+        // Check if Address Input is Correct
+        WebElement orderAddress = driver.findElement(By.cssSelector("div[class='container-localization-info media ml-4 cursor-pointer'] span[class='font-weight-bold']"));
+        Assert.assertTrue(orderAddress.getText().contains(data.get("Address")));
     }
 
     // Verify denial of location permission (Delivery)
@@ -203,7 +229,7 @@ public class GeolocationTest extends BaseTest {
     }
 
     // Verify accepting of location permission (Delivery)
-    @Test(groups = {"smoke", "regression", "e2e", "geolocation"})
+    @Test(groups = {"smoke", "regression", "geolocation"})
     public void GTSTC007_allowDeliveryLocationPermission() {
         // 1. Navigate to Delivery tab
         extentTest.info("Navigate to Delivery tab");
@@ -256,7 +282,7 @@ public class GeolocationTest extends BaseTest {
     }
 
     // Verify user can enter and select a valid address from dropdown (Pickup)
-    @Test(dataProvider = "geolocationTestData", groups = {"smoke", "regression", "e2e", "geolocation"})
+    @Test(dataProvider = "geolocationTestData", groups = {"smoke", "regression", "geolocation"})
     public void GTSTC011_validPickupAddress(Map<String, String> data) {
         // 1. Navigate to Pickup tab
         extentTest.info("Navigate to Pickup tab");
@@ -311,7 +337,7 @@ public class GeolocationTest extends BaseTest {
     }
 
     // Verify Nearest Huts map is displayed through "Find my nearest hut" feature
-    @Test(groups = {"smoke", "regression", "e2e", "geolocation"})
+    @Test(groups = {"smoke", "regression", "geolocation"})
     public void GTSTC013_allowPickupLocationPermission() {
         // 1. Navigate to Pickup tab
         extentTest.info("Navigate to Pickup tab");
@@ -372,7 +398,7 @@ public class GeolocationTest extends BaseTest {
     }
 
     // Verify system behavior when user updates location
-    @Test(groups = {"regression", "e2e", "geolocation"})
+    @Test(groups = {"regression", "geolocation"})
     public void GTSTC016_clearLocationUpdate() {
         // 1. Click "Change" beside the Delivery Address or Pickup Establishment
         extentTest.info("Click \"Change\" beside the Delivery Address or Pickup Establishment");

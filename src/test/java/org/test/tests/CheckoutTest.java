@@ -35,7 +35,7 @@ public class CheckoutTest extends BaseTest {
     private static final String CHECKOUT = SITE + "checkout";
     private static final String excelFilePath = "src/test/resources/testdata/TestData.xlsx";
 
-    @BeforeTest(groups = {"regression", "login", "checkoutTest"})
+    @BeforeTest(groups = {"regression", "login", "e2e", "checkoutTest"})
     public void initPage() {
         checkout = new CheckoutPage(driver);
         login = new LoginPage(driver);
@@ -81,7 +81,7 @@ public class CheckoutTest extends BaseTest {
     }
 
     //Tests
-    @Test(groups = {"smoke", "regression", "e2e", "checkoutTest"})
+    @Test(groups = {"regression", "checkoutTest"})
     public void CSTC001_verifyCheckoutPageAccessibility() throws InterruptedException {
         //Redirect to Order Page - Replace once merged
         CreateOrder();
@@ -517,7 +517,7 @@ public class CheckoutTest extends BaseTest {
     }
 
     @Test(dataProvider = "checkoutTestData", groups = {"regression", "checkoutTest", "e2e"})
-    public void CSTC029_verifyPayment(Map<String, String> data){
+    public void CSTC029_verifyPayment(Map<String, String> data) {
         //Recode later to fit with E2E
         //refresh
         checkout.refresh();
