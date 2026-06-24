@@ -30,7 +30,7 @@ public class GeolocationTest extends BaseTest {
     private static final String ORDER = SITE + "order/deal";
     private static final String excelFilePath = "src/test/resources/testdata/TestData.xlsx";
 
-    @BeforeTest(groups = {"regression"})
+    @BeforeTest(groups = {"smoke", "regression", "e2e", "geolocation"})
     public void initPage() {
         homepage = new Homepage(driver);
     }

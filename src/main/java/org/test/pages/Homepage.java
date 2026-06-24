@@ -44,7 +44,7 @@ public class Homepage {
     private final By changeAddressCancel = By.cssSelector(".col.p-3.cursor-pointer.text-center.border-right");
     private final By map = By.cssSelector(".container-map");
     private final By mapAddressBox = By.cssSelector(".container-address-info.p-3");
-    private final By continueOrderButton = By.xpath("//button[normalize-space()='Continue to order']");
+    private final By continueOrderButton = By.xpath("//button[normalize-space()='Pre-order']");
     private final By nearHutText = By.cssSelector(".font-weight-bold.mb-1");
     private final By myHutButton = By.className("btn-success");
     private final By changeAddressOrderPage = By.xpath("(//button[contains(@type,'button')][normalize-space()='Change'])[1]");
