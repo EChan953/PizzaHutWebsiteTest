@@ -11,14 +11,4 @@
             <class name="org.test.tests.RegisterTest"/>
         </classes>
     </test>
-<!--    <test name="Register_Smoke">-->
-<!--        <groups>-->
-<!--            <run>-->
-<!--                <include name="smoke"/>-->
-<!--            </run>-->
-<!--        </groups>-->
-<!--        <classes>-->
-<!--            <class name="org.test.tests.RegisterTest"></class>-->
-<!--        </classes>-->
-<!--    </test>-->
 </suite>

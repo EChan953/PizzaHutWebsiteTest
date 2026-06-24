@@ -117,7 +117,7 @@ public class LoginTest extends BaseTest {
         Assert.assertEquals(actualTitle, "Login", "Login Page not Found");
     }
 
-    @Test(groups = {"regression", "login"})
+    @Test(groups = {"smoke", "regression", "login"})
     public void LSTC002_verifyBackButton(){
         //Refresh
         homepage.openWebsite(SITE);
@@ -136,7 +136,7 @@ public class LoginTest extends BaseTest {
         Assert.assertEquals(actual,"https://www.pizzahut.com.ph/", "Homepage not Found");
     }
 
-    @Test(groups = {"regression", "login"})
+    @Test(groups = {"smoke", "regression", "login"})
     public void LSTC003_verifyLogoRedirection(){
         //Refresh
         homepage.openWebsite(SITE);

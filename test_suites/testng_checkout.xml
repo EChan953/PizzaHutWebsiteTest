@@ -3,11 +3,11 @@
     <test name="Checkout_Regression">
         <groups>
             <run>
-                <include name="checkoutTest"/>
+                <include name="regression"/>
             </run>
         </groups>
-        <packages>
-            <package name="org.test.tests"/>
-        </packages>
+        <classes>
+            <class name="org.test.tests.CheckoutTest"/>
+        </classes>
     </test>
 </suite>

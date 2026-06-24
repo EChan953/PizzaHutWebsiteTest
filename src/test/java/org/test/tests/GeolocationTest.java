@@ -229,7 +229,7 @@ public class GeolocationTest extends BaseTest {
     }
 
     // Verify accepting of location permission (Delivery)
-    @Test(groups = {"smoke", "regression", "geolocation"})
+    @Test(groups = {"regression", "geolocation"})
     public void GTSTC007_allowDeliveryLocationPermission() {
         // 1. Navigate to Delivery tab
         extentTest.info("Navigate to Delivery tab");
@@ -282,7 +282,7 @@ public class GeolocationTest extends BaseTest {
     }
 
     // Verify user can enter and select a valid address from dropdown (Pickup)
-    @Test(dataProvider = "geolocationTestData", groups = {"smoke", "regression", "geolocation"})
+    @Test(dataProvider = "geolocationTestData", groups = {"regression", "geolocation"})
     public void GTSTC011_validPickupAddress(Map<String, String> data) {
         // 1. Navigate to Pickup tab
         extentTest.info("Navigate to Pickup tab");
@@ -337,7 +337,7 @@ public class GeolocationTest extends BaseTest {
     }
 
     // Verify Nearest Huts map is displayed through "Find my nearest hut" feature
-    @Test(groups = {"smoke", "regression", "geolocation"})
+    @Test(groups = {"regression", "geolocation"})
     public void GTSTC013_allowPickupLocationPermission() {
         // 1. Navigate to Pickup tab
         extentTest.info("Navigate to Pickup tab");

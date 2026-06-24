@@ -35,7 +35,7 @@ public class CheckoutTest extends BaseTest {
     private static final String CHECKOUT = SITE + "checkout";
     private static final String excelFilePath = "src/test/resources/testdata/TestData.xlsx";
 
-    @BeforeTest(groups = {"regression", "login", "e2e", "checkoutTest"})
+    @BeforeTest(groups = {"smoke", "regression", "login", "e2e", "checkoutTest"})
     public void initPage() {
         checkout = new CheckoutPage(driver);
         login = new LoginPage(driver);
@@ -96,7 +96,7 @@ public class CheckoutTest extends BaseTest {
         Assert.assertEquals(actual, "Secure Checkout", "Checkout Page Not Found");
 
     }
-    @Test(groups = {"regression", "checkoutTest"})
+    @Test(groups = {"smoke", "regression", "checkoutTest"})
     public void CSTC002_verifyBackButton(){
         //Continue from previous test "CSTC001"
         //2. Click on the "< Back" button located on the upper left corner
@@ -110,7 +110,7 @@ public class CheckoutTest extends BaseTest {
         Assert.assertTrue(actual, "Redirection Error");
 
     }
-    @Test(groups = {"regression", "checkoutTest"})
+    @Test(groups = {"smoke", "regression", "checkoutTest"})
     public void CSTC003_verifyLogoRedirection(){
         //1. Click the "Checkout" button
         extentTest.info("Click the \"Checkout\" button");
@@ -126,7 +126,7 @@ public class CheckoutTest extends BaseTest {
         Assert.assertEquals(actual,"https://www.pizzahut.com.ph/", "Homepage not Found");
 
     }
-    @Test(groups = {"regression", "checkoutTest"})
+    @Test(groups = {"smoke", "regression", "checkoutTest"})
     public void CSTC004_verifySignInLink() throws InterruptedException {
         //Redirection Code to Order Page
         checkout.clickContinueToOrderButton();
@@ -144,18 +144,17 @@ public class CheckoutTest extends BaseTest {
         extentTest.info("Verify that the Login Page is displayed");
         String actual = checkout.getTitle();
         Assert.assertEquals(actual,"Login", "Login Page not Found");
+
+        //Redirection Code to Order Page
+        checkout.clickHomeButton();
+        checkout.clickContinueToOrderButton();
+        checkout.clickCheckoutButton();
+        Thread.sleep(2000);
     }
 
     @Test(groups = {"regression", "checkoutTest"})
     public void CSTC005_verifyDateTimePopup() throws InterruptedException {
-        //Redirection Code to Order Page
-        checkout.clickHomeButton();
-        checkout.clickContinueToOrderButton();
-
-        //1. Click the "Checkout" button
-        extentTest.info("Click the \"Checkout\" button");
-        checkout.clickCheckoutButton();
-
+        //Continue from previous test "CSTC004"
         //2. Click "Change" link besides date/time delivery
         extentTest.info("Click \"Change\" link besides date/time delivery");
         checkout.clickChangeLink();
@@ -516,7 +515,7 @@ public class CheckoutTest extends BaseTest {
 
     }
 
-    @Test(dataProvider = "checkoutTestData", groups = {"regression", "checkoutTest", "e2e"})
+    @Test(dataProvider = "checkoutTestData", groups = {"smoke", "regression", "checkoutTest", "e2e"})
     public void CSTC029_verifyPayment(Map<String, String> data) {
         //Recode later to fit with E2E
         //refresh
@@ -581,9 +580,4 @@ public class CheckoutTest extends BaseTest {
         Assert.assertTrue(actualChecboxSelection.contains("is-valid"), "Checkbox not Selected");
 
     }
-
-
-
-
-
 }

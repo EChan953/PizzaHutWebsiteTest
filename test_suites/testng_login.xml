@@ -6,8 +6,8 @@
                 <include name="login"/>
             </run>
         </groups>
-        <packages>
-            <package name="org.test.tests"/>
-        </packages>
+        <classes>
+            <class name="org.test.tests.LoginTest"/>
+        </classes>
     </test>
 </suite>
