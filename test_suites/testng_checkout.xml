@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Checkout">
+    <test name="Checkout_Regression">
+        <groups>
+            <run>
+                <include name="checkoutTest"/>
+            </run>
+        </groups>
+        <packages>
+            <package name="org.test.tests"/>
+        </packages>
+    </test>
+</suite>

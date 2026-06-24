@@ -47,10 +47,10 @@ public class ForgetPasswordPage {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
-    public boolean IsPasswordInputValid(){
+    public boolean isPasswordInputValid(){
         return checkValidity(passwordInput);
     }
-    public boolean IsConfirmPasswordInputValid(){
+    public boolean isConfirmPasswordInputValid(){
         return checkValidity(confirmPasswordInput);
     }
     public void clickRevealPasswordButton() {

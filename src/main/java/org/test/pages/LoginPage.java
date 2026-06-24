@@ -51,13 +51,13 @@ public class LoginPage {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
-    public boolean IsEmailInputValid(){
+    public boolean isEmailInputValid(){
        return checkValidity(emailInput);
     }
-    public boolean IsPasswordInputValid(){
+    public boolean isPasswordInputValid(){
         return checkValidity(passwordInput);
     }
-    public boolean IsResetPasswordEmailInputValid(){
+    public boolean isResetPasswordEmailInputValid(){
         return checkValidity(resetPasswordEmailInput);
     }
 
