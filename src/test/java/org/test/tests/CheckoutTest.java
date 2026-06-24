@@ -60,31 +60,42 @@ public class CheckoutTest extends BaseTest {
         }
         return result.iterator();
     }
+    @DataProvider(name="geolocationTestData")
+    public Iterator<Object[]> getGeolocationTestData(Method method) {
 
-    public void CreateOrder() throws InterruptedException {
-        //Redirection Code to Order Page / TEMP
+        String rawTestCaseID = method.getName();
+
+        //Update Test Case Identifier
+        String testCaseID = rawTestCaseID.split("_")[0].replace("CSTC","CS-TC-");
+
+        //Update Sheet Name
+        List<Map<String, String>> allData =
+                ExcelReader.readExcelData(excelFilePath, "Geolocation_Tracking_Data");
+
+        List<Map<String, String>> filtered =
+                ExcelReader.filterByTestCase(allData, testCaseID);
+
+        List<Object[]> result = new ArrayList<>();
+
+        for (Map<String, String> map : filtered) {
+            result.add(new Object[]{map});
+        }
+
+        return result.iterator();
+
+    }
+
+
+    public void loadHomepage(){
         driver.get(SITE);
-        driver.findElement(By.id("address-autocomplete")).sendKeys("1");
-        Thread.sleep(1000);
-        actions.sendKeys(Keys.DOWN).perform();
-        Thread.sleep(1000);
-        actions.sendKeys(Keys.ENTER).perform();
-        Thread.sleep(1000);
-//        WebElement preorderBtn = driver.findElement(By.cssSelector("button[data-tag='pre-order-btn']"));
-//        wait.until(ExpectedConditions.elementToBeClickable(preorderBtn));
-//       preorderBtn.click();
-        Thread.sleep(5000);
-        driver.findElement(By.cssSelector("ul.navbar-nav li.nav-item.item-category:nth-of-type(2)")).click();
-        Thread.sleep(1000);
-        List<WebElement> addButtons = driver.findElements(By.cssSelector("[data-tag='item-btn']"));
-        addButtons.get(0).click();
     }
 
     //Tests
-    @Test(groups = {"regression", "checkoutTest"})
-    public void CSTC001_verifyCheckoutPageAccessibility() throws InterruptedException {
+    @Test(dataProvider = "geolocationTestData", groups = {"regression", "checkoutTest"})
+    public void CSTC001_verifyCheckoutPageAccessibility(Map<String, String> data) throws InterruptedException {
         //Redirect to Order Page - Replace once merged
-        CreateOrder();
+        loadHomepage();
+        checkout.createOrder(data.get("Address"));
 
         //1. Click the "Checkout" button
         extentTest.info("Click the \"Checkout\" button");
