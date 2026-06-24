@@ -25,6 +25,7 @@ public class EmailPage {
     private final By emailInput = By.cssSelector("input[class='ycptinput']");
     private final By arrowButton = By.cssSelector("button[class='md']");
     private final By resetLink = By.xpath("//a[contains(@href, 'setnewpassword')]");
+    private final By refreshButton = By.xpath("//button[@id='refresh']");
 
     //actions
 
@@ -40,7 +41,7 @@ public class EmailPage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(arrowButton));
         driver.findElement(arrowButton).click();
     }
-    public void clickResetLink(){
+    public void clickResetLink() {
         wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("ifmail"));
         wait.until(ExpectedConditions.visibilityOfElementLocated(resetLink));
         driver.findElement(resetLink).click();
@@ -48,6 +49,11 @@ public class EmailPage {
     public void swtichToNewestTab(){
         List<String> tabs = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(tabs.size() - 1));
+    }
+    public void refreshEmail() throws InterruptedException {
+        Thread.sleep(20000);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(refreshButton));
+        driver.findElement(refreshButton).click();
     }
 
 }

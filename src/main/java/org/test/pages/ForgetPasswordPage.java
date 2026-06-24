@@ -34,6 +34,25 @@ public class ForgetPasswordPage {
     private final By passwordErrorMessage = By.cssSelector("div[class='invalid-feedback d-block']");
 
     //actions
+    // check validity of input
+    public boolean checkValidity(By locator) {
+        Object result = js.executeScript(
+                "return arguments[0].checkValidity();", find(locator)
+        );
+
+        return Boolean.TRUE.equals(result);
+    }
+    //find locator
+    public WebElement find(By locator) {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
+    public boolean IsPasswordInputValid(){
+        return checkValidity(passwordInput);
+    }
+    public boolean IsConfirmPasswordInputValid(){
+        return checkValidity(confirmPasswordInput);
+    }
     public void clickRevealPasswordButton() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(revealPasswordButton));
         driver.findElement(revealPasswordButton).click();
