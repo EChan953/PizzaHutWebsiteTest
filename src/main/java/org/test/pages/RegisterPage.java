@@ -1,9 +1,7 @@
 package org.test.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -15,11 +13,13 @@ public class RegisterPage {
     WebDriver driver;
     WebDriverWait wait;
     JavascriptExecutor js;
+    Actions a;
 
     public RegisterPage(WebDriver driver) {
         this.driver = driver;
         this.js = (JavascriptExecutor) driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.a = new Actions(driver);
     }
 
     // locators
@@ -27,14 +27,13 @@ public class RegisterPage {
     private final By lastName = By.cssSelector("[data-tag='last-name-txt']");
     private final By gender = By.cssSelector("[data-tag='gender-drp']");
     private final By email = By.cssSelector("[data-tag='email-txt']");
-    private final By phone_number = By.cssSelector("[data-tag='phone-txt']");
+    private final By phoneNumber = By.cssSelector("[data-tag='phone-txt']");
     private final By password = By.cssSelector("[data-tag='password-lbl']");
     private final By retypePassword = By.cssSelector("[data-tag='retype-password-txt']");
-    private final By birthday = By.cssSelector("[data-tag='birthday-lbl']");
-    private final By birthday_day = By.cssSelector("[data-tag='day-drp']");
-    private final By birthday_month = By.cssSelector("[data-tag='month-drp']");
-    private final By birthday_year = By.cssSelector("[data-tag='year-drp']");
-    private final By terms_and_conditions = By.cssSelector("[data-tag='term-privacy-chk']");
+    private final By birthdayDay = By.cssSelector("[data-tag='day-drp']");
+    private final By birthdayMonth = By.cssSelector("[data-tag='month-drp']");
+    private final By birthdayYear = By.cssSelector("[data-tag='year-drp']");
+    private final By termsOfUse = By.cssSelector("[data-tag='term-privacy-chk']");
     private final By promotional = By.cssSelector("[data-tag='receive-promotional-chk']");
 
     private final By registerBtn = By.cssSelector("[data-tag='register-btn']");
@@ -56,6 +55,8 @@ public class RegisterPage {
             By.xpath("//p[contains(.,'Non-alphanumeric')]");
 
     private final By passwordMismatchError = By.cssSelector(".invalid-feedback.d-block");
+    private final By phoneNumberError = By.xpath("//div[contains(@class,'invalid-feedback d-block')]");
+    private final By toastError = By.cssSelector("div[data-tag='toast-error']");
 
     // actions
     // finds the web element; uses explicit wait for reliability
@@ -65,12 +66,16 @@ public class RegisterPage {
 
     // input in first name textbox
     public void enterFirstName(String name) {
-        find(firstName).sendKeys(name);
+        WebElement input = find(firstName);
+        input.clear();
+        input.sendKeys(name);
     }
 
     // input last name
     public void enterLastName(String name) {
-        find(lastName).sendKeys(name);
+        WebElement input = find(lastName);
+        input.clear();
+        input.sendKeys(name);
     }
 
     // input gender
@@ -81,39 +86,48 @@ public class RegisterPage {
 
     // input email
     public void enterEmail(String emailInput) {
-        find(email).sendKeys(emailInput);
+        WebElement input = find(email);
+        input.clear();
+        input.sendKeys(emailInput);
     }
 
     // input phone number
     public void enterPhoneNumber(String phoneNumber) {
-        find(phone_number).sendKeys(phoneNumber);
+        WebElement input = find(this.phoneNumber);
+        input.clear();
+        input.sendKeys(phoneNumber);
     }
 
     // input password
     public void enterPassword(String passwordInput) {
-        find(password).sendKeys(passwordInput);
+        WebElement input = find(password);
+        a.doubleClick(input).build().perform();
+        input.sendKeys(Keys.BACK_SPACE);
+        input.sendKeys(passwordInput);
     }
 
     // input retype-password
     public void enterRetypePassword(String retypePasswordInput) {
-        find(retypePassword).sendKeys(retypePasswordInput);
+        WebElement input = find(retypePassword);
+        input.clear();
+        input.sendKeys(retypePasswordInput);
     }
 
     // input birth day
     public void selectBirthDay(String day) {
-        Select dropdown = new Select(find(birthday_day));
+        Select dropdown = new Select(find(birthdayDay));
         dropdown.selectByVisibleText(day);
     }
 
     // input birth month
     public void selectBirthMonth(String month) {
-        Select dropdown = new Select(find(birthday_month));
+        Select dropdown = new Select(find(birthdayMonth));
         dropdown.selectByVisibleText(month);
     }
 
     // input birth year
     public void selectBirthYear(String year) {
-        Select dropdown = new Select(find(birthday_year));
+        Select dropdown = new Select(find(birthdayYear));
         dropdown.selectByVisibleText(year);
     }
 
@@ -126,7 +140,7 @@ public class RegisterPage {
 
     // click terms&conditions checkbox
     public void clickTermsCheckbox() {
-        find(terms_and_conditions).click();
+        find(termsOfUse).click();
     }
 
     // click promotional Checkbox
@@ -185,12 +199,12 @@ public class RegisterPage {
 
     // check if phone number is valid
     public boolean isPhoneNumberValid() {
-        return checkValidity(phone_number);
+        return checkValidity(phoneNumber);
     }
 
     // check if phone number is valid
     public boolean isPhoneNumberErrorDisplayed() {
-        return !driver.findElements(By.xpath("//div[contains(text(),'P')]")).isEmpty();
+        return !driver.findElements(phoneNumberError).isEmpty();
     }
 
     // CHECK PASSWORD POLICIES
@@ -246,17 +260,17 @@ public class RegisterPage {
 
     // check if birth day is valid
     public boolean isBirthDayValid() {
-        return checkValidity(birthday_day);
+        return checkValidity(birthdayDay);
     }
 
     // check if birth month is valid
     public boolean isBirthMonthValid() {
-        return checkValidity(birthday_month);
+        return checkValidity(birthdayMonth);
     }
 
     // check if birth year is valid
     public boolean isBirthYearValid() {
-        return checkValidity(birthday_year);
+        return checkValidity(birthdayYear);
     }
 
     // check if whole birthday input is valid
@@ -266,7 +280,7 @@ public class RegisterPage {
 
     // check if terms is checked
     public boolean isTermsChecked() {
-        return Objects.requireNonNull(find(terms_and_conditions).getAttribute("class")).contains("checked");
+        return Objects.requireNonNull(find(termsOfUse).getAttribute("class")).contains("checked");
     }
 
     // check if promos is checked
@@ -289,63 +303,26 @@ public class RegisterPage {
         scrollToView(registerBtn);
     }
 
-    // scroll to first name textbox to see it
-    public void scrollToFirstName() {
-        scrollToView(firstName);
-    }
-
-    // scroll to last name textbox to see it
-    public void scrollToLastName() {
-        scrollToView(lastName);
-    }
-
-    // scroll to gender
-    public void scrollToGender() {
-        scrollToView(gender);
-    }
-
-    // scroll to email
-    public void scrollToEmail() {
-        scrollToView(email);
-    }
-
-    // scroll to phone number
-    public void scrollToPhoneNumber() {
-        scrollToView(phone_number);
-    }
-
-    // scroll to password
-    public void scrollToPassword() {
-        scrollToView(password);
-    }
-
-    // scroll to birthday
-    public void scrollToBirthday() {
-        scrollToView(birthday);
-    }
-
-    // scroll to terms&conditions
-    public void scrollToTerms() {
-        scrollToView(terms_and_conditions);
-    }
-
-    // scroll to promotional offers
-    public void scrollToPromotional() {
-        scrollToView(promotional);
-    }
-
     // get year
     public String getBirthYear() {
-        return find(birthday_year).getAttribute("value");
+        return find(birthdayYear).getAttribute("value");
+    }
+
+    // get password type
+    public String getPasswordType() {
+        return find(password).getAttribute("type");
+    }
+
+    // get toast error
+    public WebElement getToastError() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(
+                toastError
+        ));
     }
 
     // Click password mask/unmask button
     public void clickPasswordMaskButton() {
         find(passwordMaskButton).click();
-    }
-
-    public String getPasswordType() {
-        return find(password).getAttribute("type");
     }
 
     public boolean isPasswordMismatchErrorPresent() {

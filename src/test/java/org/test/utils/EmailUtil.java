@@ -11,7 +11,7 @@ public class EmailUtil {
 
         final String fromEmail = "pizza.automation.reports@gmail.com";
         final String password = "bxjwbcwccnomxoyj";
-        final String toEmail = "jbongon@vertere-gs.com";
+        final String toEmail = "echan@vertere-gs.com";
 
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");

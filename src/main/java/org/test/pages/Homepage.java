@@ -1,6 +1,12 @@
 package org.test.pages;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
@@ -26,8 +32,9 @@ public class Homepage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    // locators
+    //locators
     private final By registerPageBtn = By.linkText("Register");
+    private final By loginPageBtn = By.linkText("Login");
     private final By geolocationDiv = By.cssSelector("div[role='tabpanel']");
     private final By addressDiv = By.xpath("//div[contains(@class,'bg-white p-4')]");
     private final By deliveryTab = By.cssSelector("div[title='Delivery']");
@@ -49,8 +56,10 @@ public class Homepage {
     private final By myHutButton = By.className("btn-success");
     private final By changeAddressOrderPage = By.xpath("(//button[contains(@type,'button')][normalize-space()='Change'])[1]");
 
-    // actions
-
+    //actions
+    public void openWebsite(String SITE){
+        driver.get(SITE);
+    }
     // finds the web element; uses explicit wait for reliability
     public WebElement find(By locator) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
@@ -59,6 +68,13 @@ public class Homepage {
     // click on register page button
     public void clickRegisterPageButton() {
         driver.findElement(registerPageBtn).click();
+    }
+    public void clickLoginPageButton() {
+        driver.findElement(loginPageBtn).click();
+    }
+    public String getHomePageUrl() {
+        String url = driver.getCurrentUrl();
+        return url;
     }
 
     // click on delivery tab in homepage

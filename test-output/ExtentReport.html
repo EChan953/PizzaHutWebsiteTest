@@ -35,7 +35,7 @@
 <a href="#"><span class="badge badge-primary"></span></a>
 </li>
 <li class="m-r-10">
-<a href="#"><span class="badge badge-primary">Jun 22, 2026 04:25:40 PM</span></a>
+<a href="#"><span class="badge badge-primary">Jun 22, 2026 02:12:40 PM</span></a>
 </li>
 </ul>
 </div>
@@ -45,6 +45,11 @@
 <li class="nav-item dropdown" onclick="toggleView('test-view')">
 <a id="nav-test" class="dropdown-toggle" href="#">
 <span class="ico"><i class="fa fa-list"></i></span>
+</a>
+</li>
+<li class="nav-item dropdown" onclick="toggleView('exception-view')">
+<a id="nav-exception" class="dropdown-toggle" href="#">
+<span class="ico"><i class="fa fa-bug"></i></span>
 </a>
 </li>
 <li class="nav-item dropdown" onclick="toggleView('dashboard-view')">
@@ -67,6 +72,7 @@
 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-exclamation-circle"></i></a>
 <ul id="status-toggle" class="dropdown-menu dropdown-md p-v-0">
 <a class="dropdown-item" status="pass" href="#"><span>Pass</span><span class="status success"></span></a>
+<a class="dropdown-item" status="fail" href="#"><span>Fail</span><span class="status danger"></span></a>
 <div class="dropdown-divider"></div>
 <a status="clear" class="dropdown-item" href="#"><span>Clear</span><span class="pull-right"><i class="fa fa-close"></i></span></a>
 </ul>
@@ -79,9 +85,9 @@
           tag=""
           device="">
           <div class="test-detail">
-            <p class="name">GTSTC001_verifyHomepageAccessibility</p>
+            <p class="name">RSTC001_verifyRegisterPageAccessibility</p>
             <p class="text-sm">
-              <span>4:25:41 PM</span> / <span>00:00:04:640</span>
+              <span>2:12:40 PM</span> / <span>00:00:04:406</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -89,10 +95,10 @@
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-pass">GTSTC001_verifyHomepageAccessibility</h5>
-<span class='badge badge-success'>06.22.2026 4:25:41 PM</span>
-<span class='badge badge-danger'>06.22.2026 4:25:45 PM</span>
-<span class='badge badge-default'>00:00:04:640</span>
+<h5 class="test-status text-pass">RSTC001_verifyRegisterPageAccessibility</h5>
+<span class='badge badge-success'>06.22.2026 2:12:40 PM</span>
+<span class='badge badge-danger'>06.22.2026 2:12:45 PM</span>
+<span class='badge badge-default'>00:00:04:406</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=1</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
@@ -103,8 +109,36 @@
   <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
   <tbody>
       <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:12:40 PM</td>
+        <td>
+          Accessing Register Page from Homepage
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:12:40 PM</td>
+        <td>
+          Loading Website Homepage
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:12:45 PM</td>
+        <td>
+          Validating Register Page URL
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:12:45 PM</td>
+        <td>
+          Validating Register Page Header loaded
+        </td>
+      </tr>
+      <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>4:25:45 PM</td>
+        <td>2:12:45 PM</td>
         <td>
           Test passed
         </td>
@@ -119,9 +153,9 @@
           tag=""
           device="">
           <div class="test-detail">
-            <p class="name">GTSTC002_verifySwitchBetweenDeliveryPickup</p>
+            <p class="name">RSTC002_shouldRedirectToHomepageWhenBackButtonClicked</p>
             <p class="text-sm">
-              <span>4:25:45 PM</span> / <span>00:00:02:463</span>
+              <span>2:12:45 PM</span> / <span>00:00:03:789</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -129,10 +163,10 @@
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-pass">GTSTC002_verifySwitchBetweenDeliveryPickup</h5>
-<span class='badge badge-success'>06.22.2026 4:25:45 PM</span>
-<span class='badge badge-danger'>06.22.2026 4:25:48 PM</span>
-<span class='badge badge-default'>00:00:02:463</span>
+<h5 class="test-status text-pass">RSTC002_shouldRedirectToHomepageWhenBackButtonClicked</h5>
+<span class='badge badge-success'>06.22.2026 2:12:45 PM</span>
+<span class='badge badge-danger'>06.22.2026 2:12:49 PM</span>
+<span class='badge badge-default'>00:00:03:789</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=2</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
@@ -143,8 +177,36 @@
   <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
   <tbody>
       <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:12:45 PM</td>
+        <td>
+          Loading Register Page
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:12:47 PM</td>
+        <td>
+          Clicking Back Button
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:12:47 PM</td>
+        <td>
+          Waiting for redirect to Homepage
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:12:49 PM</td>
+        <td>
+          Verifying Visibility of Homepage Element
+        </td>
+      </tr>
+      <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>4:25:48 PM</td>
+        <td>2:12:49 PM</td>
         <td>
           Test passed
         </td>
@@ -159,9 +221,9 @@
           tag=""
           device="">
           <div class="test-detail">
-            <p class="name">GTSTC003_noDeliveryAddress</p>
+            <p class="name">RSTC003_shouldRedirectToHomepageWhenPizzaHutLogoClicked</p>
             <p class="text-sm">
-              <span>4:25:48 PM</span> / <span>00:00:01:999</span>
+              <span>2:12:49 PM</span> / <span>00:00:03:983</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -169,10 +231,10 @@
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-pass">GTSTC003_noDeliveryAddress</h5>
-<span class='badge badge-success'>06.22.2026 4:25:48 PM</span>
-<span class='badge badge-danger'>06.22.2026 4:25:50 PM</span>
-<span class='badge badge-default'>00:00:01:999</span>
+<h5 class="test-status text-pass">RSTC003_shouldRedirectToHomepageWhenPizzaHutLogoClicked</h5>
+<span class='badge badge-success'>06.22.2026 2:12:49 PM</span>
+<span class='badge badge-danger'>06.22.2026 2:12:53 PM</span>
+<span class='badge badge-default'>00:00:03:983</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=3</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
@@ -183,8 +245,36 @@
   <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
   <tbody>
       <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:12:49 PM</td>
+        <td>
+          Loading Register Page
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:12:51 PM</td>
+        <td>
+          Clicking Pizza Hut Logo
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:12:51 PM</td>
+        <td>
+          Waiting for redirect to Homepage
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:12:53 PM</td>
+        <td>
+          Verifying Visibility of Homepage Element
+        </td>
+      </tr>
+      <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>4:25:50 PM</td>
+        <td>2:12:53 PM</td>
         <td>
           Test passed
         </td>
@@ -199,9 +289,9 @@
           tag=""
           device="">
           <div class="test-detail">
-            <p class="name">GTSTC004_invalidDeliveryAddress</p>
+            <p class="name">RSTC004_shouldRejectFirstNameWithNoInput</p>
             <p class="text-sm">
-              <span>4:25:52 PM</span> / <span>00:00:02:007</span>
+              <span>2:12:53 PM</span> / <span>00:00:01:134</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -209,10 +299,10 @@
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-pass">GTSTC004_invalidDeliveryAddress</h5>
-<span class='badge badge-success'>06.22.2026 4:25:52 PM</span>
-<span class='badge badge-danger'>06.22.2026 4:25:54 PM</span>
-<span class='badge badge-default'>00:00:02:007</span>
+<h5 class="test-status text-pass">RSTC004_shouldRejectFirstNameWithNoInput</h5>
+<span class='badge badge-success'>06.22.2026 2:12:53 PM</span>
+<span class='badge badge-danger'>06.22.2026 2:12:54 PM</span>
+<span class='badge badge-default'>00:00:01:134</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=4</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
@@ -223,8 +313,36 @@
   <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
   <tbody>
       <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:12:53 PM</td>
+        <td>
+          Loading Register Page
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:12:53 PM</td>
+        <td>
+          Leaving First Name field blank
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:12:54 PM</td>
+        <td>
+          Clicking Register Button
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:12:54 PM</td>
+        <td>
+          Verifying First Name field rejects no inputs
+        </td>
+      </tr>
+      <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>4:25:54 PM</td>
+        <td>2:12:54 PM</td>
         <td>
           Test passed
         </td>
@@ -234,25 +352,25 @@
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="5"
+        <li class="test-item"  status="fail" test-id="5"
           author=""
           tag=""
           device="">
           <div class="test-detail">
-            <p class="name">GTSTC005_validDeliveryAddress</p>
+            <p class="name">RSTC005_shouldRejectFirstNameWithNonLetters</p>
             <p class="text-sm">
-              <span>4:25:54 PM</span> / <span>00:00:06:100</span>
-              <span class="badge pass-bg log float-right">Pass</span>
+              <span>2:12:55 PM</span> / <span>00:00:01:262</span>
+              <span class="badge fail-bg log float-right">Fail</span>
             </p>
           </div>
           <div class="test-contents d-none">
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-pass">GTSTC005_validDeliveryAddress</h5>
-<span class='badge badge-success'>06.22.2026 4:25:54 PM</span>
-<span class='badge badge-danger'>06.22.2026 4:26:01 PM</span>
-<span class='badge badge-default'>00:00:06:100</span>
+<h5 class="test-status text-fail">RSTC005_shouldRejectFirstNameWithNonLetters</h5>
+<span class='badge badge-success'>06.22.2026 2:12:55 PM</span>
+<span class='badge badge-danger'>06.22.2026 2:12:56 PM</span>
+<span class='badge badge-default'>00:00:01:262</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=5</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
@@ -263,10 +381,69 @@
   <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
   <tbody>
       <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>4:26:01 PM</td>
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:12:55 PM</td>
         <td>
-          Test passed
+          Loading Register Page
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:12:56 PM</td>
+        <td>
+          Inputting invalid First Name: Jane123!
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:12:56 PM</td>
+        <td>
+          Clicking Register Button
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:12:56 PM</td>
+        <td>
+          Verifying First Name field rejects non-letter inputs
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>2:12:56 PM</td>
+        <td>
+          <textarea readonly class="code-block">java.lang.AssertionError: System should reject First Name with Non-Letters. expected [false] but found [true]
+	at org.testng.Assert.fail(Assert.java:111)
+	at org.testng.Assert.failNotEquals(Assert.java:1590)
+	at org.testng.Assert.assertFalse(Assert.java:79)
+	at org.test.tests.RegisterTest.RSTC005_shouldRejectFirstNameWithNonLetters(RegisterTest.java:213)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:697)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:1005)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.testng.TestRunner.privateRun(TestRunner.java:744)
+	at org.testng.TestRunner.run(TestRunner.java:616)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:109)
+</textarea>
+          
         </td>
       </tr>
   </tbody>
@@ -279,9 +456,9 @@
           tag=""
           device="">
           <div class="test-detail">
-            <p class="name">GTSTC006_denyLocationPermission</p>
+            <p class="name">RSTC006_shouldAcceptValidFirstName</p>
             <p class="text-sm">
-              <span>4:26:01 PM</span> / <span>00:00:06:543</span>
+              <span>2:12:57 PM</span> / <span>00:00:01:262</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -289,10 +466,10 @@
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-pass">GTSTC006_denyLocationPermission</h5>
-<span class='badge badge-success'>06.22.2026 4:26:01 PM</span>
-<span class='badge badge-danger'>06.22.2026 4:26:07 PM</span>
-<span class='badge badge-default'>00:00:06:543</span>
+<h5 class="test-status text-pass">RSTC006_shouldAcceptValidFirstName</h5>
+<span class='badge badge-success'>06.22.2026 2:12:57 PM</span>
+<span class='badge badge-danger'>06.22.2026 2:12:58 PM</span>
+<span class='badge badge-default'>00:00:01:262</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=6</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
@@ -303,8 +480,36 @@
   <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
   <tbody>
       <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:12:57 PM</td>
+        <td>
+          Loading Register Page
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:12:57 PM</td>
+        <td>
+          Inputting valid First Name: Jane
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:12:58 PM</td>
+        <td>
+          Clicking Register Button
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:12:58 PM</td>
+        <td>
+          Verifying First Name field accepts valid name
+        </td>
+      </tr>
+      <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>4:26:07 PM</td>
+        <td>2:12:58 PM</td>
         <td>
           Test passed
         </td>
@@ -319,9 +524,9 @@
           tag=""
           device="">
           <div class="test-detail">
-            <p class="name">GTSTC007_allowLocationPermission</p>
+            <p class="name">RSTC007_shouldRejectLastNameWithNoInput</p>
             <p class="text-sm">
-              <span>4:26:07 PM</span> / <span>00:00:08:338</span>
+              <span>2:12:58 PM</span> / <span>00:00:01:490</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -329,10 +534,10 @@
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-pass">GTSTC007_allowLocationPermission</h5>
-<span class='badge badge-success'>06.22.2026 4:26:07 PM</span>
-<span class='badge badge-danger'>06.22.2026 4:26:15 PM</span>
-<span class='badge badge-default'>00:00:08:338</span>
+<h5 class="test-status text-pass">RSTC007_shouldRejectLastNameWithNoInput</h5>
+<span class='badge badge-success'>06.22.2026 2:12:58 PM</span>
+<span class='badge badge-danger'>06.22.2026 2:12:59 PM</span>
+<span class='badge badge-default'>00:00:01:490</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=7</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
@@ -343,8 +548,2170 @@
   <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
   <tbody>
       <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:12:58 PM</td>
+        <td>
+          Loading Register Page
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:12:59 PM</td>
+        <td>
+          Leaving Last Name field blank
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:12:59 PM</td>
+        <td>
+          Clicking Register Button
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:12:59 PM</td>
+        <td>
+          Verifying Last Name field rejects no input
+        </td>
+      </tr>
+      <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>4:26:15 PM</td>
+        <td>2:12:59 PM</td>
+        <td>
+          Test passed
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="fail" test-id="8"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">RSTC008_shouldRejectLastNameWithNonLetters</p>
+            <p class="text-sm">
+              <span>2:12:59 PM</span> / <span>00:00:01:229</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-fail">RSTC008_shouldRejectLastNameWithNonLetters</h5>
+<span class='badge badge-success'>06.22.2026 2:12:59 PM</span>
+<span class='badge badge-danger'>06.22.2026 2:13:01 PM</span>
+<span class='badge badge-default'>00:00:01:229</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=8</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:12:59 PM</td>
+        <td>
+          Loading Register Page
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:00 PM</td>
+        <td>
+          Inputting invalid Last Name: Doe123!
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:00 PM</td>
+        <td>
+          Clicking Register Button
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:01 PM</td>
+        <td>
+          Verifying Last Name field rejects non-letter inputs
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>2:13:01 PM</td>
+        <td>
+          <textarea readonly class="code-block">java.lang.AssertionError: System should reject last name with non-letters. expected [false] but found [true]
+	at org.testng.Assert.fail(Assert.java:111)
+	at org.testng.Assert.failNotEquals(Assert.java:1590)
+	at org.testng.Assert.assertFalse(Assert.java:79)
+	at org.test.tests.RegisterTest.RSTC008_shouldRejectLastNameWithNonLetters(RegisterTest.java:267)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:697)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:1005)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.testng.TestRunner.privateRun(TestRunner.java:744)
+	at org.testng.TestRunner.run(TestRunner.java:616)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:109)
+</textarea>
+          
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="9"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">RSTC009_shouldAcceptValidLastName</p>
+            <p class="text-sm">
+              <span>2:13:01 PM</span> / <span>00:00:01:186</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">RSTC009_shouldAcceptValidLastName</h5>
+<span class='badge badge-success'>06.22.2026 2:13:01 PM</span>
+<span class='badge badge-danger'>06.22.2026 2:13:02 PM</span>
+<span class='badge badge-default'>00:00:01:186</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=9</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:01 PM</td>
+        <td>
+          Loading Register Page
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:02 PM</td>
+        <td>
+          Inputting valid Last Name: Doe
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:02 PM</td>
+        <td>
+          Clicking Register Button
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:02 PM</td>
+        <td>
+          Verifying Last Name field accepts valid input
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>2:13:02 PM</td>
+        <td>
+          Test passed
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="10"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">RSTC010_validateGenderIsOptional</p>
+            <p class="text-sm">
+              <span>2:13:02 PM</span> / <span>00:00:01:083</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">RSTC010_validateGenderIsOptional</h5>
+<span class='badge badge-success'>06.22.2026 2:13:02 PM</span>
+<span class='badge badge-danger'>06.22.2026 2:13:03 PM</span>
+<span class='badge badge-default'>00:00:01:083</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=10</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:02 PM</td>
+        <td>
+          Loading Register Page
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:03 PM</td>
+        <td>
+          Clicking Register Button
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:03 PM</td>
+        <td>
+          Verifying Gender field is valid regardless of input
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>2:13:03 PM</td>
+        <td>
+          Test passed
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="11"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">RSTC011_validateGenderInput</p>
+            <p class="text-sm">
+              <span>2:13:03 PM</span> / <span>00:00:01:273</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">RSTC011_validateGenderInput</h5>
+<span class='badge badge-success'>06.22.2026 2:13:03 PM</span>
+<span class='badge badge-danger'>06.22.2026 2:13:04 PM</span>
+<span class='badge badge-default'>00:00:01:273</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=11</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:03 PM</td>
+        <td>
+          Loading Register Page
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:04 PM</td>
+        <td>
+          Selecting Gender: Female
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:04 PM</td>
+        <td>
+          Clicking Register Button
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:04 PM</td>
+        <td>
+          Verifying Gender field is valid regardless of input
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>2:13:04 PM</td>
+        <td>
+          Test passed
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="12"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">RSTC011_validateGenderInput</p>
+            <p class="text-sm">
+              <span>2:13:04 PM</span> / <span>00:00:01:312</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">RSTC011_validateGenderInput</h5>
+<span class='badge badge-success'>06.22.2026 2:13:04 PM</span>
+<span class='badge badge-danger'>06.22.2026 2:13:06 PM</span>
+<span class='badge badge-default'>00:00:01:312</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=12</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:04 PM</td>
+        <td>
+          Loading Register Page
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:05 PM</td>
+        <td>
+          Selecting Gender: Male
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:06 PM</td>
+        <td>
+          Clicking Register Button
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:06 PM</td>
+        <td>
+          Verifying Gender field is valid regardless of input
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>2:13:06 PM</td>
+        <td>
+          Test passed
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="13"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">RSTC012_shouldRejectBlankEmailAddress</p>
+            <p class="text-sm">
+              <span>2:13:06 PM</span> / <span>00:00:01:143</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">RSTC012_shouldRejectBlankEmailAddress</h5>
+<span class='badge badge-success'>06.22.2026 2:13:06 PM</span>
+<span class='badge badge-danger'>06.22.2026 2:13:07 PM</span>
+<span class='badge badge-default'>00:00:01:143</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=13</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:06 PM</td>
+        <td>
+          Loading Register Page
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:07 PM</td>
+        <td>
+          Leaving Email field blank
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:07 PM</td>
+        <td>
+          Clicking Register Button
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:07 PM</td>
+        <td>
+          Verifying user cannot proceed with a blank email address
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>2:13:07 PM</td>
+        <td>
+          Test passed
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="14"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">RSTC013_shouldRejectInvalidEmailAddress</p>
+            <p class="text-sm">
+              <span>2:13:07 PM</span> / <span>00:00:01:348</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">RSTC013_shouldRejectInvalidEmailAddress</h5>
+<span class='badge badge-success'>06.22.2026 2:13:07 PM</span>
+<span class='badge badge-danger'>06.22.2026 2:13:08 PM</span>
+<span class='badge badge-default'>00:00:01:348</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=14</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:07 PM</td>
+        <td>
+          Loading Register Page
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:08 PM</td>
+        <td>
+          Inputting invalid Email: janedoe.com
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:08 PM</td>
+        <td>
+          Clicking Register Button
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:08 PM</td>
+        <td>
+          Verifying Email field rejects invalid email
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>2:13:08 PM</td>
+        <td>
+          Test passed
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="15"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">RSTC014_shouldAcceptValidEmailAddress</p>
+            <p class="text-sm">
+              <span>2:13:08 PM</span> / <span>00:00:01:197</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">RSTC014_shouldAcceptValidEmailAddress</h5>
+<span class='badge badge-success'>06.22.2026 2:13:08 PM</span>
+<span class='badge badge-danger'>06.22.2026 2:13:10 PM</span>
+<span class='badge badge-default'>00:00:01:197</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=15</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:08 PM</td>
+        <td>
+          Loading Register Page
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:09 PM</td>
+        <td>
+          Inputting valid Email: janedoe@gmail.com
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:09 PM</td>
+        <td>
+          Clicking Register Button
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:10 PM</td>
+        <td>
+          Verifying Email field accepts valid email
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>2:13:10 PM</td>
+        <td>
+          Test passed
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="16"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">RSTC015_shouldRejectNoInputPhoneNumber</p>
+            <p class="text-sm">
+              <span>2:13:10 PM</span> / <span>00:00:01:114</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">RSTC015_shouldRejectNoInputPhoneNumber</h5>
+<span class='badge badge-success'>06.22.2026 2:13:10 PM</span>
+<span class='badge badge-danger'>06.22.2026 2:13:11 PM</span>
+<span class='badge badge-default'>00:00:01:114</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=16</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:10 PM</td>
+        <td>
+          Loading Register Page
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:10 PM</td>
+        <td>
+          Leaving Phone Number field blank
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:11 PM</td>
+        <td>
+          Clicking Register Button
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:11 PM</td>
+        <td>
+          Verifying Phone Number field rejects no input
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>2:13:11 PM</td>
+        <td>
+          Test passed
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="17"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">RSTC016_shouldRejectNonNumberInputPhoneNumber</p>
+            <p class="text-sm">
+              <span>2:13:11 PM</span> / <span>00:00:01:101</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">RSTC016_shouldRejectNonNumberInputPhoneNumber</h5>
+<span class='badge badge-success'>06.22.2026 2:13:11 PM</span>
+<span class='badge badge-danger'>06.22.2026 2:13:12 PM</span>
+<span class='badge badge-default'>00:00:01:101</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=17</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:11 PM</td>
+        <td>
+          Loading Register Page
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:12 PM</td>
+        <td>
+          Inputting invalid Phone Number: testing!
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:12 PM</td>
+        <td>
+          Clicking Register Button
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:12 PM</td>
+        <td>
+          Verifying Phone Number field rejects non-number input
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>2:13:12 PM</td>
+        <td>
+          Test passed
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="18"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">RSTC017_shouldRejectNonFormattedPhoneNumber</p>
+            <p class="text-sm">
+              <span>2:13:12 PM</span> / <span>00:00:01:144</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">RSTC017_shouldRejectNonFormattedPhoneNumber</h5>
+<span class='badge badge-success'>06.22.2026 2:13:12 PM</span>
+<span class='badge badge-danger'>06.22.2026 2:13:13 PM</span>
+<span class='badge badge-default'>00:00:01:144</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=18</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:12 PM</td>
+        <td>
+          Loading Register Page
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:13 PM</td>
+        <td>
+          Inputting invalid Phone Number: 12345678900
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:13 PM</td>
+        <td>
+          Clicking Register Button
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:13 PM</td>
+        <td>
+          Verifying Phone Number field rejects non-formatted mobile numbers
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>2:13:13 PM</td>
+        <td>
+          Test passed
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="fail" test-id="19"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">RSTC018_shouldRejectIncompletePhilippinePhoneNumber</p>
+            <p class="text-sm">
+              <span>2:13:13 PM</span> / <span>00:00:01:130</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-fail">RSTC018_shouldRejectIncompletePhilippinePhoneNumber</h5>
+<span class='badge badge-success'>06.22.2026 2:13:13 PM</span>
+<span class='badge badge-danger'>06.22.2026 2:13:14 PM</span>
+<span class='badge badge-default'>00:00:01:130</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=19</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:13 PM</td>
+        <td>
+          Loading Register Page
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:14 PM</td>
+        <td>
+          Inputting invalid Phone Number: 091234567
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:14 PM</td>
+        <td>
+          Clicking Register Button
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:14 PM</td>
+        <td>
+          Verifying Phone Number field rejects non-Philippine mobile number
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>2:13:14 PM</td>
+        <td>
+          <textarea readonly class="code-block">java.lang.AssertionError: System should reject incomplete PH Phone number. expected [true] but found [false]
+	at org.testng.Assert.fail(Assert.java:111)
+	at org.testng.Assert.failNotEquals(Assert.java:1590)
+	at org.testng.Assert.assertTrue(Assert.java:57)
+	at org.test.tests.RegisterTest.RSTC018_shouldRejectIncompletePhilippinePhoneNumber(RegisterTest.java:448)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:697)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:1005)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.testng.TestRunner.privateRun(TestRunner.java:744)
+	at org.testng.TestRunner.run(TestRunner.java:616)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:109)
+</textarea>
+          
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="20"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">RSTC019_shouldAcceptValidPhilippinePhoneNumber</p>
+            <p class="text-sm">
+              <span>2:13:15 PM</span> / <span>00:00:01:100</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">RSTC019_shouldAcceptValidPhilippinePhoneNumber</h5>
+<span class='badge badge-success'>06.22.2026 2:13:15 PM</span>
+<span class='badge badge-danger'>06.22.2026 2:13:16 PM</span>
+<span class='badge badge-default'>00:00:01:100</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=20</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:15 PM</td>
+        <td>
+          Loading Register Page
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:15 PM</td>
+        <td>
+          Inputting valid Phone Number: 09123456789
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:15 PM</td>
+        <td>
+          Clicking Register Button
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:16 PM</td>
+        <td>
+          Verifying Phone Number field accepts valid Philippine mobile number
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>2:13:16 PM</td>
+        <td>
+          Test passed
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="21"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">RSTC020_shouldRejectBlankPasswordInput</p>
+            <p class="text-sm">
+              <span>2:13:16 PM</span> / <span>00:00:01:225</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">RSTC020_shouldRejectBlankPasswordInput</h5>
+<span class='badge badge-success'>06.22.2026 2:13:16 PM</span>
+<span class='badge badge-danger'>06.22.2026 2:13:17 PM</span>
+<span class='badge badge-default'>00:00:01:225</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=21</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:16 PM</td>
+        <td>
+          Loading Register Page
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:16 PM</td>
+        <td>
+          Leaving password field blank
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:17 PM</td>
+        <td>
+          Clicking Register Button
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:17 PM</td>
+        <td>
+          Verifying Password field Validity
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>2:13:17 PM</td>
+        <td>
+          Test passed
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="fail" test-id="22"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">RSTC021_shouldRejectPasswordWithOnlyOnePasswordPolicyMet</p>
+            <p class="text-sm">
+              <span>2:13:17 PM</span> / <span>00:00:01:360</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-fail">RSTC021_shouldRejectPasswordWithOnlyOnePasswordPolicyMet</h5>
+<span class='badge badge-success'>06.22.2026 2:13:17 PM</span>
+<span class='badge badge-danger'>06.22.2026 2:13:18 PM</span>
+<span class='badge badge-default'>00:00:01:360</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=22</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:17 PM</td>
+        <td>
+          Loading Register Page
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:18 PM</td>
+        <td>
+          Inputting invalid Password: password
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:18 PM</td>
+        <td>
+          Clicking Register Button
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:18 PM</td>
+        <td>
+          Verifying system rejects password that only follows 1 password policy requirement
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>2:13:18 PM</td>
+        <td>
+          <textarea readonly class="code-block">java.lang.AssertionError: Password must meet at least 3 of 4 requirements. expected [false] but found [true]
+	at org.testng.Assert.fail(Assert.java:111)
+	at org.testng.Assert.failNotEquals(Assert.java:1590)
+	at org.testng.Assert.assertFalse(Assert.java:79)
+	at org.test.tests.RegisterTest.RSTC021_shouldRejectPasswordWithOnlyOnePasswordPolicyMet(RegisterTest.java:506)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:697)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:1005)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.testng.TestRunner.privateRun(TestRunner.java:744)
+	at org.testng.TestRunner.run(TestRunner.java:616)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:109)
+</textarea>
+          
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="fail" test-id="23"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">RSTC022_shouldRejectPasswordWithOnlyTwoPasswordPolicyMet</p>
+            <p class="text-sm">
+              <span>2:13:18 PM</span> / <span>00:00:01:316</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-fail">RSTC022_shouldRejectPasswordWithOnlyTwoPasswordPolicyMet</h5>
+<span class='badge badge-success'>06.22.2026 2:13:18 PM</span>
+<span class='badge badge-danger'>06.22.2026 2:13:20 PM</span>
+<span class='badge badge-default'>00:00:01:316</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=23</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:18 PM</td>
+        <td>
+          Loading Register Page
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:19 PM</td>
+        <td>
+          Inputting invalid Password: password123
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:19 PM</td>
+        <td>
+          Clicking Register Button
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:19 PM</td>
+        <td>
+          Verifying system rejects password that only follows 2 password policy requirement
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>2:13:20 PM</td>
+        <td>
+          <textarea readonly class="code-block">java.lang.AssertionError: Password must meet at least 3 of 4 requirements. expected [false] but found [true]
+	at org.testng.Assert.fail(Assert.java:111)
+	at org.testng.Assert.failNotEquals(Assert.java:1590)
+	at org.testng.Assert.assertFalse(Assert.java:79)
+	at org.test.tests.RegisterTest.RSTC022_shouldRejectPasswordWithOnlyTwoPasswordPolicyMet(RegisterTest.java:525)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:697)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:1005)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.testng.TestRunner.privateRun(TestRunner.java:744)
+	at org.testng.TestRunner.run(TestRunner.java:616)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:109)
+</textarea>
+          
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="24"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">RSTC023_shouldAcceptPasswordWithThreePasswordPolicyMet</p>
+            <p class="text-sm">
+              <span>2:13:20 PM</span> / <span>00:00:01:376</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">RSTC023_shouldAcceptPasswordWithThreePasswordPolicyMet</h5>
+<span class='badge badge-success'>06.22.2026 2:13:20 PM</span>
+<span class='badge badge-danger'>06.22.2026 2:13:21 PM</span>
+<span class='badge badge-default'>00:00:01:376</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=24</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:20 PM</td>
+        <td>
+          Loading Register Page
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:21 PM</td>
+        <td>
+          Inputting valid Password: Password123
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:21 PM</td>
+        <td>
+          Clicking Register Button
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:21 PM</td>
+        <td>
+          Verifying system accepts password that follow 3 password policy requirement
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>2:13:21 PM</td>
+        <td>
+          Test passed
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="25"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">RSTC024_shouldAcceptPasswordWithAllPasswordPolicyMet</p>
+            <p class="text-sm">
+              <span>2:13:21 PM</span> / <span>00:00:01:343</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">RSTC024_shouldAcceptPasswordWithAllPasswordPolicyMet</h5>
+<span class='badge badge-success'>06.22.2026 2:13:21 PM</span>
+<span class='badge badge-danger'>06.22.2026 2:13:23 PM</span>
+<span class='badge badge-default'>00:00:01:343</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=25</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:21 PM</td>
+        <td>
+          Loading Register Page
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:22 PM</td>
+        <td>
+          Inputting valid Password: Password123!
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:22 PM</td>
+        <td>
+          Clicking Register Button
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:22 PM</td>
+        <td>
+          Verifying system accepts password that follow 4 password policy requirement
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>2:13:23 PM</td>
+        <td>
+          Test passed
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="26"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">RSTC025_togglePasswordShowsAndHidesPasswordInput</p>
+            <p class="text-sm">
+              <span>2:13:23 PM</span> / <span>00:00:01:201</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">RSTC025_togglePasswordShowsAndHidesPasswordInput</h5>
+<span class='badge badge-success'>06.22.2026 2:13:23 PM</span>
+<span class='badge badge-danger'>06.22.2026 2:13:24 PM</span>
+<span class='badge badge-default'>00:00:01:201</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=26</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:23 PM</td>
+        <td>
+          Loading Register Page
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:23 PM</td>
+        <td>
+          Inputting valid Password: Password123!
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:24 PM</td>
+        <td>
+          Clicking password visibility toggle and verifying password is unmasked
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:24 PM</td>
+        <td>
+          Clicking password visibility toggle and verifying password is masked
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>2:13:24 PM</td>
+        <td>
+          Test passed
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="27"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">RSTC026_shouldRejectMismatchingPasswords</p>
+            <p class="text-sm">
+              <span>2:13:24 PM</span> / <span>00:00:01:080</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">RSTC026_shouldRejectMismatchingPasswords</h5>
+<span class='badge badge-success'>06.22.2026 2:13:24 PM</span>
+<span class='badge badge-danger'>06.22.2026 2:13:25 PM</span>
+<span class='badge badge-default'>00:00:01:080</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=27</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:24 PM</td>
+        <td>
+          Loading Register Page
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:25 PM</td>
+        <td>
+          Inputting valid Password: Password123!
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:25 PM</td>
+        <td>
+          Inputting mismatching Confirm Password: Password
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:25 PM</td>
+        <td>
+          Verifying system does not accept mismatching passwords
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>2:13:25 PM</td>
+        <td>
+          Test passed
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="28"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">RSTC027_shouldAcceptMatchingPasswords</p>
+            <p class="text-sm">
+              <span>2:13:25 PM</span> / <span>00:00:01:408</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">RSTC027_shouldAcceptMatchingPasswords</h5>
+<span class='badge badge-success'>06.22.2026 2:13:25 PM</span>
+<span class='badge badge-danger'>06.22.2026 2:13:26 PM</span>
+<span class='badge badge-default'>00:00:01:408</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=28</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:25 PM</td>
+        <td>
+          Loading Register Page
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:26 PM</td>
+        <td>
+          Inputting valid Password: Password123!
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:26 PM</td>
+        <td>
+          Inputting matching Confirm Password: Password123!
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:26 PM</td>
+        <td>
+          Verifying system accepts matching passwords
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>2:13:26 PM</td>
+        <td>
+          Test passed
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="29"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">RSTC028_shouldRejectEmptyBirthdayField</p>
+            <p class="text-sm">
+              <span>2:13:26 PM</span> / <span>00:00:01:048</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">RSTC028_shouldRejectEmptyBirthdayField</h5>
+<span class='badge badge-success'>06.22.2026 2:13:26 PM</span>
+<span class='badge badge-danger'>06.22.2026 2:13:28 PM</span>
+<span class='badge badge-default'>00:00:01:048</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=29</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:26 PM</td>
+        <td>
+          Loading Register Page
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:27 PM</td>
+        <td>
+          Leaving Birthday values as default
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:27 PM</td>
+        <td>
+          Clicking Register Button
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:27 PM</td>
+        <td>
+          Verifying Birthday field rejects empty input
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>2:13:28 PM</td>
+        <td>
+          Test passed
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="30"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">RSTC029_defaultBirthYearIs20YearsBefore</p>
+            <p class="text-sm">
+              <span>2:13:28 PM</span> / <span>00:00:00:865</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">RSTC029_defaultBirthYearIs20YearsBefore</h5>
+<span class='badge badge-success'>06.22.2026 2:13:28 PM</span>
+<span class='badge badge-danger'>06.22.2026 2:13:28 PM</span>
+<span class='badge badge-default'>00:00:00:865</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=30</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:28 PM</td>
+        <td>
+          Calculating expected birth year (current year - 20)
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:28 PM</td>
+        <td>
+          Loading Register Page
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:28 PM</td>
+        <td>
+          Retrieving Default year
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:28 PM</td>
+        <td>
+          Verifying default birth year is set to 2006
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>2:13:28 PM</td>
+        <td>
+          Test passed
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="fail" test-id="31"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">RSTC030_shouldRejectFutureBirthdays</p>
+            <p class="text-sm">
+              <span>2:13:28 PM</span> / <span>00:00:01:638</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-fail">RSTC030_shouldRejectFutureBirthdays</h5>
+<span class='badge badge-success'>06.22.2026 2:13:28 PM</span>
+<span class='badge badge-danger'>06.22.2026 2:13:30 PM</span>
+<span class='badge badge-default'>00:00:01:638</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=31</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:28 PM</td>
+        <td>
+          Loading Register Page
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:29 PM</td>
+        <td>
+          Inputting future Birthday: 31/12/2026
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:30 PM</td>
+        <td>
+          Clicking Register Button
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:30 PM</td>
+        <td>
+          Verifying that system does not accept future dates
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>2:13:30 PM</td>
+        <td>
+          <textarea readonly class="code-block">java.lang.AssertionError: System should reject dates that do not exist yet. expected [false] but found [true]
+	at org.testng.Assert.fail(Assert.java:111)
+	at org.testng.Assert.failNotEquals(Assert.java:1590)
+	at org.testng.Assert.assertFalse(Assert.java:79)
+	at org.test.tests.RegisterTest.RSTC030_shouldRejectFutureBirthdays(RegisterTest.java:676)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:697)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:1005)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.testng.TestRunner.privateRun(TestRunner.java:744)
+	at org.testng.TestRunner.run(TestRunner.java:616)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:109)
+</textarea>
+          
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="32"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">RSTC031_shouldAcceptValidBirthday</p>
+            <p class="text-sm">
+              <span>2:13:30 PM</span> / <span>00:00:01:671</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">RSTC031_shouldAcceptValidBirthday</h5>
+<span class='badge badge-success'>06.22.2026 2:13:30 PM</span>
+<span class='badge badge-danger'>06.22.2026 2:13:32 PM</span>
+<span class='badge badge-default'>00:00:01:671</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=32</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:30 PM</td>
+        <td>
+          Loading Register Page
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:31 PM</td>
+        <td>
+          Inputting valid Birthday: 19/9/2002
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:32 PM</td>
+        <td>
+          Clicking Register Button
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:32 PM</td>
+        <td>
+          Verifying that system accepts past or present dates
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>2:13:32 PM</td>
+        <td>
+          Test passed
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="33"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">RSTC032_checkboxesShouldBeClickable</p>
+            <p class="text-sm">
+              <span>2:13:32 PM</span> / <span>00:00:01:407</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">RSTC032_checkboxesShouldBeClickable</h5>
+<span class='badge badge-success'>06.22.2026 2:13:32 PM</span>
+<span class='badge badge-danger'>06.22.2026 2:13:33 PM</span>
+<span class='badge badge-default'>00:00:01:407</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=33</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:32 PM</td>
+        <td>
+          Loading Register Page
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:33 PM</td>
+        <td>
+          Clicking Terms of Use Checkbox
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:33 PM</td>
+        <td>
+          Clicking Promotional Offers checkbox
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:33 PM</td>
+        <td>
+          Verifying that both checkboxes are selected and fully functional
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:33 PM</td>
+        <td>
+          Unselecting Terms of Use checkbox
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:33 PM</td>
+        <td>
+          Unselecting Promotional Offers checkbox
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:33 PM</td>
+        <td>
+          Verifying that both checkboxes are unselected and fully functional
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>2:13:33 PM</td>
+        <td>
+          Test passed
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="34"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">RSTC033_termsShouldBeRequired</p>
+            <p class="text-sm">
+              <span>2:13:33 PM</span> / <span>00:00:01:015</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">RSTC033_termsShouldBeRequired</h5>
+<span class='badge badge-success'>06.22.2026 2:13:33 PM</span>
+<span class='badge badge-danger'>06.22.2026 2:13:34 PM</span>
+<span class='badge badge-default'>00:00:01:015</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=34</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:33 PM</td>
+        <td>
+          Loading Register Page
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:34 PM</td>
+        <td>
+          Leave Terms of Use checkbox unchecked
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:34 PM</td>
+        <td>
+          Clicking Register Button
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:34 PM</td>
+        <td>
+          Verifying that Terms of Use checkbox is required
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>2:13:34 PM</td>
+        <td>
+          Test passed
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="35"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">RSTC034_existingEmailShouldBePreventedFromCreatingAccount</p>
+            <p class="text-sm">
+              <span>2:13:34 PM</span> / <span>00:00:03:053</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">RSTC034_existingEmailShouldBePreventedFromCreatingAccount</h5>
+<span class='badge badge-success'>06.22.2026 2:13:34 PM</span>
+<span class='badge badge-danger'>06.22.2026 2:13:37 PM</span>
+<span class='badge badge-default'>00:00:03:053</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=35</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:34 PM</td>
+        <td>
+          Loading Register Page
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:35 PM</td>
+        <td>
+          Filling Register inputs
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:37 PM</td>
+        <td>
+          Clicking Register Button
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:37 PM</td>
+        <td>
+          Verifying that register fails due to existing email
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>2:13:37 PM</td>
+        <td>
+          Test passed
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="36"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">RSTC035_shouldAcceptNewAccount</p>
+            <p class="text-sm">
+              <span>2:13:37 PM</span> / <span>00:00:03:050</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">RSTC035_shouldAcceptNewAccount</h5>
+<span class='badge badge-success'>06.22.2026 2:13:37 PM</span>
+<span class='badge badge-danger'>06.22.2026 2:13:40 PM</span>
+<span class='badge badge-default'>00:00:03:050</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=36</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:37 PM</td>
+        <td>
+          Loading Register Page
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:39 PM</td>
+        <td>
+          Filling Register inputs
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>2:13:40 PM</td>
+        <td>
+          Verifying all inputs valid, ready for Register
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>2:13:40 PM</td>
         <td>
           Test passed
         </td>
@@ -363,30 +2730,114 @@
 </div>
 <div class="test-content-detail"><div class="detail-body"></div></div>
 </div></div>
-<div class="container-fluid p-4 view dashboard-view">
+<div class="test-wrapper row view exception-view attributes-view">
+<div class="test-list">
+<div class="test-list-tools">
+<ul class="tools pull-left"><li><a href=""><span class="font-size-14">Exception</span></a></li></ul>
+<ul class="tools text-right"><li><a href="#"><span class="badge badge-primary">1</span></a></li></ul>
+</div>
+<div class="test-list-wrapper scrollable">
+<ul class="test-list-item">
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log badge-danger'>6</span>
+</span>
+<p class="name">java.lang.AssertionError</p>
+<p class="duration text-sm">6 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>java.lang.AssertionError</h4>
+<span status="fail" class='badge log badge-danger'>6 failed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="fail">
+<td><span class="badge log fail-bg">Fail</span></td>
+<td>14:12:55 PM</td>
+<td>
+<a href="#" class="linked" test-id='5' id='5'>RSTC005_shouldRejectFirstNameWithNonLetters</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="fail">
+<td><span class="badge log fail-bg">Fail</span></td>
+<td>14:12:59 PM</td>
+<td>
+<a href="#" class="linked" test-id='8' id='8'>RSTC008_shouldRejectLastNameWithNonLetters</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="fail">
+<td><span class="badge log fail-bg">Fail</span></td>
+<td>14:13:13 PM</td>
+<td>
+<a href="#" class="linked" test-id='19' id='19'>RSTC018_shouldRejectIncompletePhilippinePhoneNumber</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="fail">
+<td><span class="badge log fail-bg">Fail</span></td>
+<td>14:13:17 PM</td>
+<td>
+<a href="#" class="linked" test-id='22' id='22'>RSTC021_shouldRejectPasswordWithOnlyOnePasswordPolicyMet</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="fail">
+<td><span class="badge log fail-bg">Fail</span></td>
+<td>14:13:18 PM</td>
+<td>
+<a href="#" class="linked" test-id='23' id='23'>RSTC022_shouldRejectPasswordWithOnlyTwoPasswordPolicyMet</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="fail">
+<td><span class="badge log fail-bg">Fail</span></td>
+<td>14:13:28 PM</td>
+<td>
+<a href="#" class="linked" test-id='31' id='31'>RSTC030_shouldRejectFutureBirthdays</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="test-content scrollable">
+<div class="test-content-detail">
+<div class="detail-body"></div>
+</div>
+</div>
+</div><div class="container-fluid p-4 view dashboard-view">
 <div class="row">
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Started</p>
-<h3>Jun 22, 2026 04:25:40 PM</h3>
+<h3>Jun 22, 2026 02:12:40 PM</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Ended</p>
-<h3>Jun 22, 2026 04:26:16 PM</h3>
+<h3>Jun 22, 2026 02:13:41 PM</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0 text-pass">Tests Passed</p>
-<h3>7</h3>
+<h3>30</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0 text-fail">Tests Failed</p>
-<h3>0</h3>
+<h3>6</h3>
 </div></div>
 </div>
 </div>
@@ -402,12 +2853,12 @@
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='100%'>
-<b>7</b> tests passed
+<div><small data-tooltip='83%'>
+<b>30</b> tests passed
 </small>
 </div>
 <div>
-<small data-tooltip='0%'><b>0</b> tests failed,
+<small data-tooltip='16%'><b>6</b> tests failed,
 <b>0</b> skipped, <b data-tooltip='0%'>0</b> others
 </small>
 </div>
@@ -425,10 +2876,10 @@
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='100%'><b>7</b> events passed</small></div>
+<div><small data-tooltip='16%'><b>30</b> events passed</small></div>
 <div>
-<small data-tooltip='0%'><b>0</b> events failed,
-<b data-tooltip='%'>0</b> others
+<small data-tooltip='3%'><b>6</b> events failed,
+<b data-tooltip='%'>145</b> others
 </small>
 </div>
 </div>
@@ -444,7 +2895,7 @@
 </div></div>
 <script>
 var timeline = {
-"GTSTC001_verifyHomepageAccessibility":4.64,"GTSTC002_verifySwitchBetweenDeliveryPickup":2.463,"GTSTC003_noDeliveryAddress":1.999,"GTSTC004_invalidDeliveryAddress":2.007,"GTSTC005_validDeliveryAddress":6.1,"GTSTC006_denyLocationPermission":6.543,"GTSTC007_allowLocationPermission":8.338
+"RSTC001_verifyRegisterPageAccessibility":4.406,"RSTC002_shouldRedirectToHomepageWhenBackButtonClicked":3.789,"RSTC003_shouldRedirectToHomepageWhenPizzaHutLogoClicked":3.983,"RSTC004_shouldRejectFirstNameWithNoInput":1.134,"RSTC005_shouldRejectFirstNameWithNonLetters":1.262,"RSTC006_shouldAcceptValidFirstName":1.262,"RSTC007_shouldRejectLastNameWithNoInput":1.49,"RSTC008_shouldRejectLastNameWithNonLetters":1.229,"RSTC009_shouldAcceptValidLastName":1.186,"RSTC010_validateGenderIsOptional":1.083,"RSTC011_validateGenderInput":1.273,"RSTC011_validateGenderInput":1.312,"RSTC012_shouldRejectBlankEmailAddress":1.143,"RSTC013_shouldRejectInvalidEmailAddress":1.348,"RSTC014_shouldAcceptValidEmailAddress":1.197,"RSTC015_shouldRejectNoInputPhoneNumber":1.114,"RSTC016_shouldRejectNonNumberInputPhoneNumber":1.101,"RSTC017_shouldRejectNonFormattedPhoneNumber":1.144,"RSTC018_shouldRejectIncompletePhilippinePhoneNumber":1.13,"RSTC019_shouldAcceptValidPhilippinePhoneNumber":1.1,"RSTC020_shouldRejectBlankPasswordInput":1.225,"RSTC021_shouldRejectPasswordWithOnlyOnePasswordPolicyMet":1.36,"RSTC022_shouldRejectPasswordWithOnlyTwoPasswordPolicyMet":1.316,"RSTC023_shouldAcceptPasswordWithThreePasswordPolicyMet":1.376,"RSTC024_shouldAcceptPasswordWithAllPasswordPolicyMet":1.343,"RSTC025_togglePasswordShowsAndHidesPasswordInput":1.201,"RSTC026_shouldRejectMismatchingPasswords":1.08,"RSTC027_shouldAcceptMatchingPasswords":1.408,"RSTC028_shouldRejectEmptyBirthdayField":1.048,"RSTC029_defaultBirthYearIs20YearsBefore":0.865,"RSTC030_shouldRejectFutureBirthdays":1.638,"RSTC031_shouldAcceptValidBirthday":1.671,"RSTC032_checkboxesShouldBeClickable":1.407,"RSTC033_termsShouldBeRequired":1.015,"RSTC034_existingEmailShouldBePreventedFromCreatingAccount":3.053,"RSTC035_shouldAcceptNewAccount":3.05
 };
 </script>
 <div class="row">
@@ -453,8 +2904,8 @@ var timeline = {
 <script>
 var statusGroup = {
 parentCount: 5,
-passParent: 7,
-failParent: 0,
+passParent: 30,
+failParent: 6,
 warningParent: 0,
 skipParent: 0,
 childCount: 5,
@@ -470,11 +2921,11 @@ warningGrandChild: 0,
 skipGrandChild: 0,
 infoGrandChild: 0,
 eventsCount: 5,
-passEvents: 7,
-failEvents: 0,
+passEvents: 30,
+failEvents: 6,
 warningEvents: 0,
 skipEvents: 0,
-infoEvents: 0
+infoEvents: 145
 };
 </script>        </div>
       </div>
