@@ -322,7 +322,7 @@ public class OrderingTest extends BaseTest {
     }
 
     // Verify Product Listing (with Variation)
-    @Test(dataProvider = "orderingTestData", groups = {"smoke", "ordering"})
+    @Test(dataProvider = "orderingTestData", groups = {"ordering"})
     public void OSTC016_verifyProductListingWithVariationDropdownAddToCart(Map<String, String> data) {
         // 1. Click on the PIZZA tab
         extentTest.log(Status.INFO, "Clicking PIZZA Tab");

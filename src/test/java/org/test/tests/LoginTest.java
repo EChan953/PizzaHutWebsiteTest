@@ -170,7 +170,7 @@ public class LoginTest extends BaseTest {
 
         //3. Verify that the user is not logged-in with no credentials
         extentTest.info("Verify that the user is not logged-in with no credentials");
-        Boolean isValid = login.isEmailInputValid();
+        boolean isValid = login.isEmailInputValid();
         Assert.assertFalse(isValid, "Invalid Email Accepted");
         isValid = login.isPasswordInputValid();
         Assert.assertFalse(isValid, "Invalid Password Accepted");
@@ -302,7 +302,7 @@ public class LoginTest extends BaseTest {
 
         //4. Verify No Password Reset Link is sent
         extentTest.info("Verify No Password Reset Link is sent");
-        Boolean isValid = login.isResetPasswordEmailInputValid();
+        boolean isValid = login.isResetPasswordEmailInputValid();
         Assert.assertFalse(isValid, "Invalid Email Accepted");
     }
 
