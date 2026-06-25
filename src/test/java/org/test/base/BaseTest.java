@@ -90,7 +90,6 @@ public class BaseTest {
         }
     }
 
-
     public String captureScreenshot(WebDriver driver, String testName) throws IOException {
         File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 

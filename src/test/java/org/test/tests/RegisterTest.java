@@ -29,13 +29,13 @@ public class RegisterTest extends BaseTest {
     private static final String REGISTER = SITE + "register";
     private static final String excelFilePath = "src/test/resources/testdata/TestData.xlsx";
 
-    @BeforeTest(groups = {"smoke", "regression", "e2e"})
+    @BeforeTest(groups = {"smoke", "regression", "e2e", "register"})
     public void initPage() {
         register = new RegisterPage(driver);
         homepage = new Homepage(driver);
     }
 
-    @BeforeMethod(groups = {"smoke", "regression", "e2e"})
+    @BeforeMethod(groups = {"smoke", "regression", "e2e", "register"})
     public void setupPreRequisite(Method method) {
         // FOR Pre-Requisite: User is on the Registration Page
         if(!method.getName().contains("RSTC001")) {

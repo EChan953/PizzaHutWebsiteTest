@@ -3,7 +3,7 @@
     <test name="Register_Regression">
         <groups>
             <run>
-                <include name="regression"/>
+                <include name="register"/>
             </run>
         </groups>
 
