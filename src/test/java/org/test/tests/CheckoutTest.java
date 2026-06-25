@@ -42,8 +42,8 @@ public class CheckoutTest extends BaseTest {
         homepage = new Homepage(driver);
         actions = new Actions(driver);
     }
-    //Test Data
-    //Update Object and DataProvider Name
+
+    // Checkout Test Data
     @DataProvider(name="checkoutTestData")
     public Iterator<Object[]> getCheckoutTestData(Method method){
         String rawTestCaseID = method.getName();
@@ -61,30 +61,39 @@ public class CheckoutTest extends BaseTest {
         return result.iterator();
     }
 
-    public void CreateOrder() throws InterruptedException {
-        //Redirection Code to Order Page / TEMP
+    // Geolocation Test Data
+    @DataProvider(name="geolocationTestData")
+    public Iterator<Object[]> getGeolocationTestData(Method method) {
+        String rawTestCaseID = method.getName();
+
+        String testCaseID = rawTestCaseID.split("_")[0].replace("CSTC","CS-TC-");
+
+        List<Map<String, String>> allData =
+                ExcelReader.readExcelData(excelFilePath, "Geolocation_Tracking_Data");
+
+        List<Map<String, String>> filtered =
+                ExcelReader.filterByTestCase(allData, testCaseID);
+
+        List<Object[]> result = new ArrayList<>();
+
+        for (Map<String, String> map : filtered) {
+            result.add(new Object[]{map});
+        }
+
+        return result.iterator();
+    }
+
+    // Goto homepage
+    public void loadHomepage(){
         driver.get(SITE);
-        driver.findElement(By.id("address-autocomplete")).sendKeys("1");
-        Thread.sleep(1000);
-        actions.sendKeys(Keys.DOWN).perform();
-        Thread.sleep(1000);
-        actions.sendKeys(Keys.ENTER).perform();
-        Thread.sleep(1000);
-//        WebElement preorderBtn = driver.findElement(By.cssSelector("button[data-tag='pre-order-btn']"));
-//        wait.until(ExpectedConditions.elementToBeClickable(preorderBtn));
-//       preorderBtn.click();
-        Thread.sleep(5000);
-        driver.findElement(By.cssSelector("ul.navbar-nav li.nav-item.item-category:nth-of-type(2)")).click();
-        Thread.sleep(1000);
-        List<WebElement> addButtons = driver.findElements(By.cssSelector("[data-tag='item-btn']"));
-        addButtons.get(0).click();
     }
 
     //Tests
-    @Test(groups = {"regression", "checkoutTest"})
-    public void CSTC001_verifyCheckoutPageAccessibility() throws InterruptedException {
+    @Test(dataProvider = "geolocationTestData", groups = {"regression", "checkoutTest"})
+    public void CSTC001_verifyCheckoutPageAccessibility(Map<String, String> data) throws InterruptedException {
         //Redirect to Order Page - Replace once merged
-        CreateOrder();
+        loadHomepage();
+        checkout.createOrder(data.get("Address"));
 
         //1. Click the "Checkout" button
         extentTest.info("Click the \"Checkout\" button");
@@ -440,7 +449,7 @@ public class CheckoutTest extends BaseTest {
         Assert.assertTrue(text.contains("Maya QR Scan Upon Delivery"));
     }
 
-    @Test(groups = {"regression", "checkoutTest"})
+    @Test(groups = {"checkoutTest"})
     public void CSTC023_verifyContactlessDeliveryDisabled(){
         //Continue from previous test "CSTC021"
         //2. Select "Credit Card Terminal"

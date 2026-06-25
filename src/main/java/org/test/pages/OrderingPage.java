@@ -367,7 +367,13 @@ public class OrderingPage {
 
     // Check Cart Items
     public boolean isProductInsideCart(String productName) {
-        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(cartItemName));
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(toastSuccess));
+        try {
+            wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(cartItemName));
+        } catch (TimeoutException e) {
+            // cart is empty, no items found
+            return false;
+        }
         System.out.println("Name: " + driver.findElement(cartItemName).getText());
         List<WebElement> items = driver.findElements(cartItemName);
 
@@ -403,6 +409,7 @@ public class OrderingPage {
             if (name.equalsIgnoreCase(productName)) {
                 item.findElement(increaseQtyBtn).click();
                 wait.until(ExpectedConditions.visibilityOfElementLocated(toastSuccess));
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(toastSuccess));
                 return;
             }
         }
@@ -418,13 +425,14 @@ public class OrderingPage {
             if (name.equalsIgnoreCase(productName)) {
                 item.findElement(decreaseQtyBtn).click();
                 wait.until(ExpectedConditions.visibilityOfElementLocated(toastSuccess));
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(toastSuccess));
                 return;
             }
         }
     }
 
     // Delete Item
-    public void  deleteItem(String productName) {
+    public void deleteItem(String productName) {
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(cartItems));
         List<WebElement> items = driver.findElements(cartItems);
 
@@ -433,6 +441,7 @@ public class OrderingPage {
             if (name.equalsIgnoreCase(productName)) {
                 item.findElement(deleteIcon).click();
                 wait.until(ExpectedConditions.visibilityOfElementLocated(toastSuccess));
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(toastSuccess));
                 return;
             }
         }

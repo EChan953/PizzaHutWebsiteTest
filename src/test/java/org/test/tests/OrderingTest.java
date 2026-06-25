@@ -102,10 +102,11 @@ public class OrderingTest extends BaseTest {
         // Click on closest-matching address option
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.className("pac-item")));
         homepage.selectBestAddressOption(expectedAddress);
+        homepage.checkTime();
 
-        wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.cssSelector("div[class='container-localization-info media ml-4 cursor-pointer'] span[class='font-weight-bold']")
-        ));
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(
+//                By.cssSelector("div[class='container-localization-info media ml-4 cursor-pointer'] span[class='font-weight-bold']")
+//        ));
     }
 
     // wait for checkout
@@ -193,7 +194,7 @@ public class OrderingTest extends BaseTest {
     }
 
     // Verify PIZZA Tab
-    @Test(groups = {"ordering"})
+    @Test(groups = {"ordering", "regression"})
     public void OSTC007_verifyPizzaTab() {
         // 1. Click on the PIZZA tab
         extentTest.log(Status.INFO, "Clicking PIZZA Tab");
@@ -225,7 +226,7 @@ public class OrderingTest extends BaseTest {
     }
 
     // Verify MELTS Tab
-    @Test(groups = {"ordering"})
+    @Test(groups = {"ordering", "regression"})
     public void OSTC009_verifyMeltsTab() {
         // 1. Click on the MELTS tab
         extentTest.log(Status.INFO, "Clicking MELTS Tab");
@@ -238,7 +239,7 @@ public class OrderingTest extends BaseTest {
     }
 
     // Verify Pasta Tab
-    @Test(groups = {"ordering"})
+    @Test(groups = {"ordering", "regression"})
     public void OSTC010_verifyPastaTab() {
         // 1. Click on the PASTA tab
         extentTest.log(Status.INFO, "Clicking PASTA Tab");
@@ -267,7 +268,7 @@ public class OrderingTest extends BaseTest {
     }
 
     // Verify Wingstreet Tab
-    @Test(groups = {"ordering"})
+    @Test(groups = {"ordering", "regression"})
     public void OSTC012_verifyWingstreetTab() {
         // 1. Click on the WINGSTREET tab
         extentTest.log(Status.INFO, "Clicking WINGSTREET Tab");
@@ -280,7 +281,7 @@ public class OrderingTest extends BaseTest {
     }
 
     // verify chicken&sides tab
-    @Test(groups = {"ordering"})
+    @Test(groups = {"ordering", "regression"})
     public void OSTC013_verifyChickenAndSidesTab() {
         // 1. Click on the CHICKEN & SIDES tab
         extentTest.log(Status.INFO, "Clicking CHICKEN & SIDES Tab");
@@ -293,7 +294,7 @@ public class OrderingTest extends BaseTest {
     }
 
     // verify beverages tab
-    @Test(groups = {"ordering"})
+    @Test(groups = {"ordering", "regression"})
     public void OSTC014_verifyBeveragesTab() {
         // 1. Click on the BEVERAGES tab
         extentTest.log(Status.INFO, "Clicking BEVERAGES Tab");
@@ -355,7 +356,7 @@ public class OrderingTest extends BaseTest {
     }
 
     // Verify Vouchers Tab
-    @Test(groups = {"ordering"})
+    @Test(groups = {"ordering", "regression"})
     public void OSTC018_verifyVouchersTab() {
         // 1. Click on the Vouchers tab
         extentTest.log(Status.INFO, "Clicking Vouchers Tab");
@@ -368,7 +369,7 @@ public class OrderingTest extends BaseTest {
     }
 
     // Verify "Choose from voucher list" button works
-    @Test(groups = {"ordering"})
+    @Test(groups = {"ordering", "regression"})
     public void OSTC019_verifyChooseFromVoucherListFunctionality() {
         // 1. Click on "Choose from voucher list" Button located in Your Cart section
         orderingPage.clickChooseFromVouchersListBtn();
