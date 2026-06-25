@@ -7,10 +7,8 @@ import org.test.base.BaseTest;
 import org.test.pages.Homepage;
 import org.test.pages.RegisterPage;
 import org.test.utils.ExcelReader;
-import org.test.utils.TestListener;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.annotations.*;
 
@@ -20,7 +18,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-@Listeners(TestListener.class)
 public class RegisterTest extends BaseTest {
     private RegisterPage register;
     private Homepage homepage;

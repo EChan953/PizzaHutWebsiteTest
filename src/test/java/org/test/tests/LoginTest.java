@@ -5,11 +5,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.test.base.BaseTest;
 import org.test.pages.*;
 import org.test.utils.ExcelReader;
-import org.test.utils.TestListener;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.lang.reflect.Method;
@@ -18,7 +16,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-@Listeners(TestListener.class)
 public class LoginTest extends BaseTest {
     private LoginPage login;
     private Homepage homepage;

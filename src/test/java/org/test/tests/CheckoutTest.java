@@ -1,21 +1,13 @@
 package org.test.tests;
 
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.interactions.SourceType;
 import org.test.base.BaseTest;
-import com.aventstack.extentreports.ExtentTest;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.test.pages.*;
 import org.test.utils.ExcelReader;
-import org.test.utils.ExtentManager;
-import org.test.utils.TestListener;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.lang.reflect.Method;
@@ -24,7 +16,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-@Listeners(TestListener.class)
 public class CheckoutTest extends BaseTest {
     private CheckoutPage checkout;
     private LoginPage login;

@@ -1,6 +1,5 @@
 package org.test.tests;
 
-import com.aventstack.extentreports.ExtentTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,19 +9,15 @@ import org.test.base.BaseTest;
 import org.test.pages.Homepage;
 import org.test.utils.DriverFactory;
 import org.test.utils.ExcelReader;
-import org.test.utils.ExtentManager;
-import org.test.utils.TestListener;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.lang.reflect.Method;
 import java.time.Duration;
 import java.util.*;
 
-@Listeners(TestListener.class)
 public class GeolocationTest extends BaseTest {
     private Homepage homepage;
 
