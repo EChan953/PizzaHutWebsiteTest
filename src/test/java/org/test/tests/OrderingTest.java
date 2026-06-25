@@ -36,11 +36,6 @@ public class OrderingTest extends BaseTest {
         orderingPage = new OrderingPage(driver);
     }
 
-    @BeforeMethod(groups = {"smoke", "regression", "e2e", "ordering"})
-    public void setupPreRequisite(Method method) {
-        // FOR Pre-Requisite: User is on the Registration Page
-    }
-
     //Test Data for ordering
     @DataProvider(name="orderingTestData")
     public Iterator<Object[]> getOrderTestData(Method method){
