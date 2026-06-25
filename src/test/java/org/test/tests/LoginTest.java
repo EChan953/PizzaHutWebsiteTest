@@ -98,7 +98,7 @@ public class LoginTest extends BaseTest {
         ));
     }
 
-    @Test(groups = {"smoke", "regression", "e2e", "login"})
+    @Test(groups = {"smoke", "login"})
     public void LSTC001_verifyLoginPageAccessibility(){
         //1. Access Login Page
         extentTest.info("Access Login Page");
@@ -117,7 +117,7 @@ public class LoginTest extends BaseTest {
         Assert.assertEquals(actualTitle, "Login", "Login Page not Found");
     }
 
-    @Test(groups = {"smoke", "regression", "login"})
+    @Test(groups = {"smoke", "login"})
     public void LSTC002_verifyBackButton(){
         //Refresh
         homepage.openWebsite(SITE);
@@ -136,7 +136,7 @@ public class LoginTest extends BaseTest {
         Assert.assertEquals(actual,"https://www.pizzahut.com.ph/", "Homepage not Found");
     }
 
-    @Test(groups = {"smoke", "regression", "login"})
+    @Test(groups = {"smoke", "login"})
     public void LSTC003_verifyLogoRedirection(){
         //Refresh
         homepage.openWebsite(SITE);
@@ -155,7 +155,7 @@ public class LoginTest extends BaseTest {
         Assert.assertEquals(actual,"https://www.pizzahut.com.ph/", "Homepage not Found");
     }
 
-    @Test(groups = {"regression", "login"})
+    @Test(groups = {"login"})
     public void LSTC004_verifyEmptyLoginCredentials(){
         //Refresh
         homepage.openWebsite(SITE);
@@ -176,7 +176,7 @@ public class LoginTest extends BaseTest {
         Assert.assertFalse(isValid, "Invalid Password Accepted");
     }
 
-    @Test(dataProvider = "loginTestData", groups = {"regression", "login"})
+    @Test(dataProvider = "loginTestData", groups = {"login"})
     public void LSTC005_verifyInvalidLoginCredentials(Map<String, String> data){
         //Refresh
         homepage.openWebsite(SITE);
@@ -199,7 +199,7 @@ public class LoginTest extends BaseTest {
         Assert.assertEquals(actual,"Authentication failed", "Error Message not Found");
     }
 
-    @Test(dataProvider = "loginTestData", groups = {"regression", "login"})
+    @Test(dataProvider = "loginTestData", groups = {"login"})
     public void LSTC006_verifyInvalidEmail(Map<String, String> data){
         //Refresh
         homepage.openWebsite(SITE);
@@ -223,7 +223,7 @@ public class LoginTest extends BaseTest {
 
     }
 
-    @Test(dataProvider = "loginTestData", groups = {"regression", "login"})
+    @Test(dataProvider = "loginTestData", groups = {"login"})
     public void LSTC007_verifyInvalidPassword(Map<String, String> data){
         //Refresh
         homepage.openWebsite(SITE);
@@ -250,7 +250,7 @@ public class LoginTest extends BaseTest {
         Assert.assertEquals(actual,"Authentication failed", "Error Message not Found");
     }
 
-    @Test(dataProvider = "loginTestData", groups = {"smoke", "regression", "e2e", "login"})
+    @Test(dataProvider = "loginTestData", groups = {"smoke", "login"})
     public void LSTC008_VerifyValidCredentials(Map<String, String> data){
         //Refresh
         homepage.openWebsite(SITE);
@@ -273,7 +273,7 @@ public class LoginTest extends BaseTest {
         Assert.assertEquals(actual,"Login successfully!", "Success Message not Found");
     }
 
-    @Test(groups = {"smoke", "regression", "login"})
+    @Test(groups = {"smoke", "login"})
     public void LSTC009_VerifyLogoutButton() throws InterruptedException {
         //Continue from previous test "LSTC007"
         //4. Press Logout located at the navigation bar
@@ -286,7 +286,7 @@ public class LoginTest extends BaseTest {
 
     }
 
-    @Test(groups = {"regression", "login"})
+    @Test(groups = {"login"})
     public void LSTC010_VerifyForgetPasswordEmptyEmail(){
         //1. Click on the Login Link located in the navigation bar
         extentTest.info("Click on the Login Link located in the navigation bar");
@@ -306,7 +306,7 @@ public class LoginTest extends BaseTest {
         Assert.assertFalse(isValid, "Invalid Email Accepted");
     }
 
-    @Test(dataProvider = "forgetPasswordTestData", groups = {"regression", "login"})
+    @Test(dataProvider = "forgetPasswordTestData", groups = {"login"})
     public void LSTC011_VerifyForgetPasswordInvalidEmail(Map<String, String> data){
         //Refresh
         homepage.openWebsite(SITE);
@@ -333,7 +333,7 @@ public class LoginTest extends BaseTest {
         Assert.assertEquals(actual,"Please input valid email.", "Error Message not Found");
     }
 
-    @Test(dataProvider = "forgetPasswordTestData", groups = {"regression", "login"})
+    @Test(dataProvider = "forgetPasswordTestData", groups = {"login"})
     public void LSTC012_VerifyEmptyPassword(Map<String, String> data) throws InterruptedException {
         //Continue from previous test "LSTC009"
         //3. Enter valid email
@@ -368,7 +368,7 @@ public class LoginTest extends BaseTest {
         isValid = forgetpassword.isConfirmPasswordInputValid();
         Assert.assertFalse(isValid, "Invalid Confirm Password Accepted");
     }
-    @Test(dataProvider = "forgetPasswordTestData", groups = {"regression", "login"})
+    @Test(dataProvider = "forgetPasswordTestData", groups = {"login"})
     public void LSTC013_VerifyInvalidPassword(Map<String, String> data){
         //Continue from previous test "LSTC012"
         //6. Enter invalid password conditions
@@ -386,7 +386,7 @@ public class LoginTest extends BaseTest {
         Assert.assertEquals(actual, "Password policy requirements are not met", "Password was Accepted");
     }
 
-    @Test(dataProvider = "forgetPasswordTestData", groups = {"regression", "login"})
+    @Test(dataProvider = "forgetPasswordTestData", groups = {"login"})
     public void LSTC014_VerifyInvalidConfirmPassword(Map<String, String> data){
         //Continue from previous test "LSTC010"
         //6. Enter valid password
@@ -409,7 +409,7 @@ public class LoginTest extends BaseTest {
         Assert.assertEquals(actual, "Password and Retype password don't match", "Password was Accepted");
     }
 
-    @Test(dataProvider = "forgetPasswordTestData", groups = {"regression", "login"})
+    @Test(dataProvider = "forgetPasswordTestData", groups = {"login"})
     public void LSTC015_VerifyPasswordMasking(Map<String, String> data){
         //Continue from previous test "LSTC011"
         //7. Click the "eye" icon to turn off password masking
@@ -422,7 +422,7 @@ public class LoginTest extends BaseTest {
         Assert.assertEquals(actual, "Password@1234", "Password not found");
     }
 
-    @Test(dataProvider = "forgetPasswordTestData", groups = {"regression", "login"})
+    @Test(dataProvider = "forgetPasswordTestData", groups = {"login"})
     public void LSTC016_VerifyValidPasswordChange(Map<String, String> data){
         //Continue from previous test "LSTC012"
         //7. Enter valid confirm password
@@ -441,7 +441,7 @@ public class LoginTest extends BaseTest {
         Assert.assertEquals(currentPage, "Login", "Valid Password not Accepted");
     }
 
-    @Test(dataProvider = "loginTestData", groups = {"regression", "login"})
+    @Test(dataProvider = "loginTestData", groups = {"login"})
     public void LSTC017_VerifyUpdatedPassword(Map<String, String> data) throws InterruptedException {
         //Continue from previous test "LSTC013"
         //10. Enter valid email address and updated password
