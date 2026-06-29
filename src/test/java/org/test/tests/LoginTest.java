@@ -22,7 +22,7 @@ public class LoginTest extends BaseTest {
     private Homepage homepage;
     private EmailPage email;
     private ForgetPasswordPage forgetpassword;
-
+ 
     private static final String SITE = ConfigReader.getProperty("site.url");
     private static final String LOGIN = ConfigReader.getProperty("login.url");
     private static final String excelFilePath = ConfigReader.getProperty("excel.path");

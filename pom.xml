@@ -17,8 +17,6 @@
         <testng.version>7.12.0</testng.version>
         <extentreports.version>5.1.0</extentreports.version>
         <jakarta_mail.version>2.0.2</jakarta_mail.version>
-        
-        <suiteXmlFile>test_suites/testng_e2e.xml</suiteXmlFile>
     </properties>
 
     <build>
@@ -37,7 +35,14 @@
                 <version>3.5.2</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+                        <suiteXmlFile>test_suites/testng_smoke.xml</suiteXmlFile>
+                        <suiteXmlFile>test_suites/testng_regression.xml</suiteXmlFile>
+                        <suiteXmlFile>test_suites/testng_e2e.xml</suiteXmlFile>
+                        <suiteXmlFile>test_suites/testng_geolocation.xml</suiteXmlFile>
+                        <suiteXmlFile>test_suites/testng_ordering.xml</suiteXmlFile>
+                        <suiteXmlFile>test_suites/testng_checkout.xml</suiteXmlFile>
+                        <suiteXmlFile>test_suites/testng_register.xml</suiteXmlFile>
+                        <suiteXmlFile>test_suites/testng_login.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>

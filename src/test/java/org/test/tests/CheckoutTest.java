@@ -22,7 +22,7 @@ public class CheckoutTest extends BaseTest {
     private LoginPage login;
     private Homepage homepage;
     private Actions actions;
-
+ 
     private static final String SITE = ConfigReader.getProperty("site.url");
     private static final String CHECKOUT = ConfigReader.getProperty("checkout.url");
     private static final String excelFilePath = ConfigReader.getProperty("excel.path");

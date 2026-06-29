@@ -21,7 +21,7 @@ public class RegisterTest extends BaseTest {
     private RegisterPage register;
     private Homepage homepage;
 
-    private static final String SITE = ConfigReader.getProperty("site.url");
+    private static final String SITE = ConfigReader.getProperty("site.url"); 
     private static final String REGISTER = ConfigReader.getProperty("register.url");
     private static final String excelFilePath = ConfigReader.getProperty("excel.path");
 

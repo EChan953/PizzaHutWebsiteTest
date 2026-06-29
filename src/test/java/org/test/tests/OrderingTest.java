@@ -25,7 +25,7 @@ import java.util.Map;
 
 public class OrderingTest extends BaseTest {
     private Homepage homepage;
-    private OrderingPage orderingPage;
+    private OrderingPage orderingPage; 
 
     private static final String SITE = ConfigReader.getProperty("site.url");
     private static final String ORDER = ConfigReader.getProperty("order.url");
