@@ -17,13 +17,17 @@ public class DriverFactory {
         EDGE,
     }
 
-    public static WebDriver createDriver(BrowserType browserType, int geoPermission) { // 1 = allow, 2 = deny
+    public static WebDriver createDriver(BrowserType browserType, int geoPermission, boolean headless) { // 1 = allow, 2 = deny
         WebDriver driver = null;
 
         switch (browserType) {
             case CHROME:
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments("--start-maximized", "incognito");
+                if (headless) {
+                    chromeOptions.addArguments("-headless=new");
+                    chromeOptions.addArguments("--disable-gpu");
+                }
 
                 // Geolocation Toggle Code
                 HashMap<String, Integer> contentSettings = new HashMap<>();

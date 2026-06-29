@@ -10,6 +10,7 @@ import org.test.pages.Homepage;
 import org.test.utils.DriverFactory;
 import org.test.utils.ExcelReader;
 import org.testng.Assert;
+import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -199,7 +200,7 @@ public class GeolocationTest extends BaseTest {
     public void GTSTC006_denyDeliveryLocationPermission() {
         // 1. Navigate to Delivery tab
         extentTest.info("Navigate to Delivery tab");
-        WebDriver geoDriver = DriverFactory.createDriver(DriverFactory.BrowserType.CHROME, 2); // deny
+        WebDriver geoDriver = DriverFactory.createDriver(DriverFactory.BrowserType.CHROME, 2, false); // deny
         WebDriverWait geoWait = new WebDriverWait(geoDriver, Duration.ofSeconds(10));
         Homepage geoHomepage = new Homepage(geoDriver);
         geoDriver.get(SITE);
@@ -307,7 +308,7 @@ public class GeolocationTest extends BaseTest {
     public void GTSTC012_denyPickupLocationPermission() {
         // 1. Navigate to Pickup tab
         extentTest.info("Navigate to Pickup Tab");
-        WebDriver geoDriver = DriverFactory.createDriver(DriverFactory.BrowserType.CHROME, 2); // deny
+        WebDriver geoDriver = DriverFactory.createDriver(DriverFactory.BrowserType.CHROME, 2, false); // deny
         WebDriverWait geoWait = new WebDriverWait(geoDriver, Duration.ofSeconds(10));
         Homepage geoHomepage = new Homepage(geoDriver);
         geoDriver.get(SITE);
