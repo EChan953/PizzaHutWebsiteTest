@@ -26,6 +26,7 @@ import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
+import java.util.Objects;
 
 public class BaseTest {
 
@@ -37,11 +38,11 @@ public class BaseTest {
 
     @BeforeSuite(alwaysRun = true)
     public void setup() {
-        driver = DriverFactory.createDriver(DriverFactory.BrowserType.CHROME, 1);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        driver = DriverFactory.createDriver(DriverFactory.BrowserType.CHROME, 1, false);
+        Duration timeout = Objects.requireNonNull(Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver, timeout);
         js = (JavascriptExecutor) driver;
         extent = ExtentManager.getReports();
-        System.out.println("Yay!");
     }
 
     @AfterSuite(alwaysRun = true)
