@@ -43,4 +43,4 @@ test-output/
 screenshots/
 
 ### Secrets ###
-secret.properties
+secrets.properties
