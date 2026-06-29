@@ -9,10 +9,9 @@ public class EmailUtil {
 
     public static void sendReport() {
 
-        final String fromEmail = "pizza.automation.reports@gmail.com";
-        final String password = "bxjwbcwccnomxoyj";
-        final String toEmail = "echan@vertere-gs.com";
-
+        final String fromEmail = ConfigReader.getSecret("fromEmail");
+        final String password = ConfigReader.getSecret("fromPassword");
+        final String toEmail = ConfigReader.getSecret("toEmail");
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.port", "587");
