@@ -8,6 +8,7 @@ import org.test.base.BaseTest;
 import org.test.pages.Homepage;
 import org.test.pages.OrderingPage;
 import org.test.pages.RegisterPage;
+import org.test.utils.ConfigReader;
 import org.test.utils.ExcelReader;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -15,6 +16,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.io.ObjectInputFilter.Config;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -25,10 +27,10 @@ public class OrderingTest extends BaseTest {
     private Homepage homepage;
     private OrderingPage orderingPage;
 
-    private static final String SITE = "https://www.pizzahut.com.ph/";
-    private static final String ORDER = SITE + "order";
-    private static final String CHECKOUT = SITE + "checkout";
-    private static final String excelFilePath = "src/test/resources/testdata/TestData.xlsx";
+    private static final String SITE = ConfigReader.getProperty("site.url");
+    private static final String ORDER = ConfigReader.getProperty("order.url");
+    private static final String CHECKOUT = ConfigReader.getProperty("checkout.url");
+    private static final String excelFilePath = ConfigReader.getProperty("excel.path");
 
     @BeforeTest(groups = {"smoke", "regression", "e2e", "ordering"})
     public void initPage() {

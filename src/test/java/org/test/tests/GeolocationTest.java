@@ -7,10 +7,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.test.base.BaseTest;
 import org.test.pages.Homepage;
+import org.test.utils.ConfigReader;
 import org.test.utils.DriverFactory;
 import org.test.utils.ExcelReader;
 import org.testng.Assert;
-import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -22,9 +22,9 @@ import java.util.*;
 public class GeolocationTest extends BaseTest {
     private Homepage homepage;
 
-    private static final String SITE = "https://www.pizzahut.com.ph/";
-    private static final String ORDER = SITE + "order/deal";
-    private static final String excelFilePath = "src/test/resources/testdata/TestData.xlsx";
+    private static final String SITE = ConfigReader.getProperty("site.url");
+    private static final String ORDER = ConfigReader.getProperty("order2.url");
+    private static final String excelFilePath = ConfigReader.getProperty("excel.path");
 
     @BeforeTest(groups = {"smoke", "regression", "e2e", "geolocation"})
     public void initPage() {

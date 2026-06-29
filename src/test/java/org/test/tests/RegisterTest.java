@@ -6,10 +6,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.test.base.BaseTest;
 import org.test.pages.Homepage;
 import org.test.pages.RegisterPage;
+import org.test.utils.ConfigReader;
 import org.test.utils.ExcelReader;
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
 import org.testng.annotations.*;
 
 import java.lang.reflect.Method;
@@ -22,9 +21,9 @@ public class RegisterTest extends BaseTest {
     private RegisterPage register;
     private Homepage homepage;
 
-    private static final String SITE = "https://www.pizzahut.com.ph/";
-    private static final String REGISTER = SITE + "register";
-    private static final String excelFilePath = "src/test/resources/testdata/TestData.xlsx";
+    private static final String SITE = ConfigReader.getProperty("site.url");
+    private static final String REGISTER = ConfigReader.getProperty("register.url");
+    private static final String excelFilePath = ConfigReader.getProperty("excel.path");
 
     @BeforeTest(groups = {"smoke", "regression", "e2e", "register"})
     public void initPage() {

@@ -4,6 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.test.base.BaseTest;
 import org.test.pages.*;
+import org.test.utils.ConfigReader;
 import org.test.utils.ExcelReader;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
@@ -22,9 +23,9 @@ public class CheckoutTest extends BaseTest {
     private Homepage homepage;
     private Actions actions;
 
-    private static final String SITE = "https://www.pizzahut.com.ph/";
-    private static final String CHECKOUT = SITE + "checkout";
-    private static final String excelFilePath = "src/test/resources/testdata/TestData.xlsx";
+    private static final String SITE = ConfigReader.getProperty("site.url");
+    private static final String CHECKOUT = ConfigReader.getProperty("checkout.url");
+    private static final String excelFilePath = ConfigReader.getProperty("excel.path");
 
     @BeforeTest(groups = {"smoke", "regression", "login", "e2e", "checkoutTest"})
     public void initPage() {
